@@ -73,10 +73,10 @@
 ;; (load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Soporte para el GIT y SVN;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (require 'git)
+(require 'git)
 (require 'psvn)
 
-(add-to-list 'load-path "~/wallemacs/git-emacs")
+(add-to-list 'load-path "~/wallemacs/git-emacs1")
 (add-to-list 'load-path "~/wallemacs/magit")
 ;; (require 'git-emacs)
 (require 'magit)
@@ -124,22 +124,22 @@
 (windmove-default-keybindings 'meta)
 
 ;; ;; para el jabber.el 
-(add-to-list 'load-path "~/wallemacs/site-lisp/emacs-jabber/")
-(load "jabber-autoloads")
-(require 'jabber)
-(setq jabber-account-list '(
-                            ("invertedplate@gmail.com"
-;;; 			     (:password . nil) or (:password . "")
-			     (:network-server . "talk.google.com")
-;;; 			     (:port . 443)
-			     (:port . 5223)
-			     (:connection-type . ssl))
-                            ))
+;; (add-to-list 'load-path "~/wallemacs/site-lisp/emacs-jabber/")
+;; (load "jabber-autoloads")
+;; (require 'jabber)
+;; (setq jabber-account-list '(
+;;                             ("invertedplate@gmail.com"
+;; ;;; 			     (:password . nil) or (:password . "")
+;; 			     (:network-server . "talk.google.com")
+;; ;;; 			     (:port . 443)
+;; 			     (:port . 5223)
+;; 			     (:connection-type . ssl))
+;;                             ))
 
 ;; ;; el winner mode es para lo de C-c y left etc..
 (winner-mode t)
 
-(add-to-list 'load-path "~/wallemacs/emacs-rails-reloaded/")
+(add-to-list 'load-path "~/wallemacs/emacs-rails-reloaded1/")
 (require 'rails-autoload)
 
 ;; ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
