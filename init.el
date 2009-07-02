@@ -73,12 +73,12 @@
 ;; (load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Soporte para el GIT y SVN;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'git)
+;; (require 'git)
 (require 'psvn)
 
 (add-to-list 'load-path "~/wallemacs/git-emacs1")
 (add-to-list 'load-path "~/wallemacs/magit")
-;; (require 'git-emacs)
+(require 'git-emacs)
 (require 'magit)
 
 
