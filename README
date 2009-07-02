@@ -1,2 +1,5 @@
 ;; To start using just git clone at your home ~/ and write this on your ~/.emacs
 (load-file "~/wallemacs/init.el")
+
+;; Adding support for flex...
+;; Just download the flex sdk into ~/ home folder

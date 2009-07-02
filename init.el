@@ -219,3 +219,6 @@
    [?\C-a ?\C-  ?\C-e])
 (global-set-key "\C-c\C-e" 'wally-select-line-macro)
 
+;; poniendo cosas para flex
+(load-file "~/wallemacs/flex-dev-mode/fcsh-compile.el")
+(load-file "~/wallemacs/flex-dev-mode/fcsh-mode.el")
