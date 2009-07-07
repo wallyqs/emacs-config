@@ -5,6 +5,12 @@
     horizontalAlign="center" verticalAlign="middle"
     viewSourceURL="src/HandlingEventsEventHandler/index.html"
 >
+  <mx:Script>
+    
+    public void var yeah
+    
+
+  </mx:Script>
 <mx:Panel title="My first Flex application" horizontalAlign="center" >
     <mx:Label fontSize="18" text="Hello, World." />
 

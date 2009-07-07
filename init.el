@@ -17,6 +17,13 @@
  '(tramp-default-host "localhost")
  '(tramp-default-method "ssh")
  '(w3m-home-page "http://news.ycombinator.com"))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil)))
+ '(mumamo-background-chunk-submode ((((class color) (min-colors 88) (background dark)) nil))))
 
 ;; CARGAR EL PATH DEL SITE LISP
 (add-to-list 'load-path "~/wallemacs/site-lisp")
@@ -238,6 +245,8 @@
 
 ;; para los mumamos
 (add-to-list 'load-path "~/wallemacs/mumamos/")
+(require 'ourcomments-util)
+(require 'mlinks)
 (require 'mumamo-fun)
 
 ;; para soporte para mumamos en mxmls...
@@ -247,3 +256,4 @@
 ;; esto lo encontre aca...http://github.com/zpinter/emacs.d/blob/3adb41b6f864b50a88698a9083eb59fe3f0bd129/290-flex/init.el
 
 ;; muchas cosas interesantes por aca http://github.com/zpinter/emacs.d/tree/master
+
