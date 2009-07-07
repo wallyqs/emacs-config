@@ -1,8 +1,8 @@
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(auto-save-default nil)
  '(browse-url-browser-function (quote browse-url-default-browser))
  '(desktop-base-file-name ".emacs.desktop")
@@ -18,10 +18,10 @@
  '(tramp-default-method "ssh")
  '(w3m-home-page "http://news.ycombinator.com"))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil)))
  '(mumamo-background-chunk-submode ((((class color) (min-colors 88) (background dark)) nil))))
 
@@ -43,14 +43,14 @@
 (autoload 'inf-ruby-keys "inf-ruby"
   "Set local key defs for inf-ruby in ruby-mode")
 (add-hook 'ruby-mode-hook
-	  '(lambda ()
-	     (inf-ruby-keys)
-	     (ruby-electric-mode t)
-	     ))
+          '(lambda ()
+             (inf-ruby-keys)
+             (ruby-electric-mode t)
+             ))
 ;;;;;;;;;;;;;;;;;;;ALGUNOS BINDINGS LOCOS;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key (kbd "<C-tab>") 'dabbrev-expand)
-(global-set-key "\C-c\C-p" 'sgml-tag) 
+(global-set-key "\C-c\C-p" 'sgml-tag)
 (global-set-key "\C-c\C-o" 'shrink-window)
 (global-set-key "\C-c\C-k" 'copy-region-as-kill)
 (global-set-key "\C-c\C-v" 'x-clipboard-yank)
@@ -129,20 +129,21 @@
 (global-set-key (kbd "<S-f12>")  'text-scale-increase)
 (global-set-key (kbd "<M-f12>")  'other-frame)
 
+
 ;; para poder moverme en las ventanas
 (windmove-default-keybindings 'meta)
 
-;; ;; para el jabber.el 
+;; ;; para el jabber.el
 ;; (add-to-list 'load-path "~/wallemacs/site-lisp/emacs-jabber/")
 ;; (load "jabber-autoloads")
 ;; (require 'jabber)
 ;; (setq jabber-account-list '(
 ;;                             ("invertedplate@gmail.com"
-;; ;;; 			     (:password . nil) or (:password . "")
-;; 			     (:network-server . "talk.google.com")
-;; ;;; 			     (:port . 443)
-;; 			     (:port . 5223)
-;; 			     (:connection-type . ssl))
+;; ;;;                       (:password . nil) or (:password . "")
+;;                           (:network-server . "talk.google.com")
+;; ;;;                       (:port . 443)
+;;                           (:port . 5223)
+;;                           (:connection-type . ssl))
 ;;                             ))
 
 ;; ;; el winner mode es para lo de C-c y left etc..
@@ -158,7 +159,7 @@
 ;;           '(lambda ()
 ;;              (make-variable-buffer-local 'yas/trigger-key)
 ;;              ;; (setq yas/trigger-key [tab])
-;; 	     ))
+;;           ))
 
 (require 'yasnippet)
 (add-to-list 'yas/extra-mode-hooks
@@ -179,45 +180,45 @@
 
 (require 'auto-complete)
 ;; (global-auto-complete-mode t)
- (when (require 'auto-complete nil t)
-   (require 'auto-complete-yasnippet)
-   ;; (require 'auto-complete-ruby)
-   (require 'auto-complete-emacs-lisp)
-   (require 'auto-complete-css)
-   (global-auto-complete-mode t)
-   (set-face-background 'ac-menu-face "lightgray")
-   (set-face-underline 'ac-menu-face "darkgray")
-   (set-face-background 'ac-selection-face "steelblue")
-   (define-key ac-complete-mode-map "\t" 'ac-expand)
-   (define-key ac-complete-mode-map "\r" 'ac-complete)
-   (define-key ac-complete-mode-map "\M-n" 'ac-next)
-   (define-key ac-complete-mode-map "\M-p" 'ac-previous)
-   (setq ac-auto-start 3)
-   (setq ac-dwim t)
-   (set-default 'ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
-   (setq ac-modes
-         (append ac-modes
-                 '(eshell-mode
-                   ;org-mode
-                   )))
-   ;(add-to-list 'ac-trigger-commands 'org-self-insert-command)
-   (add-hook 'emacs-lisp-mode-hook
-             (lambda ()
-               (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer ac-source-symbols))))
-   (add-hook 'eshell-mode-hook
-             (lambda ()
-               (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-files-in-current-dir ac-source-words-in-buffer))))
-   ;; (add-hook 'ruby-mode-hook
-   ;;              (lambda ()
-   ;;                (setq ac-omni-completion-sources '(("\\.\\=" ac-source-rcodetools)))))
-)					;fin del autocomplete
+(when (require 'auto-complete nil t)
+  (require 'auto-complete-yasnippet)
+  ;; (require 'auto-complete-ruby)
+  (require 'auto-complete-emacs-lisp)
+  (require 'auto-complete-css)
+  (global-auto-complete-mode t)
+  (set-face-background 'ac-menu-face "lightgray")
+  (set-face-underline 'ac-menu-face "darkgray")
+  (set-face-background 'ac-selection-face "steelblue")
+  (define-key ac-complete-mode-map "\t" 'ac-expand)
+  (define-key ac-complete-mode-map "\r" 'ac-complete)
+  (define-key ac-complete-mode-map "\M-n" 'ac-next)
+  (define-key ac-complete-mode-map "\M-p" 'ac-previous)
+  (setq ac-auto-start 3)
+  (setq ac-dwim t)
+  (set-default 'ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
+  (setq ac-modes
+        (append ac-modes
+                '(eshell-mode
+                                        ;org-mode
+                  )))
+                                        ;(add-to-list 'ac-trigger-commands 'org-self-insert-command)
+  (add-hook 'emacs-lisp-mode-hook
+            (lambda ()
+              (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer ac-source-symbols))))
+  (add-hook 'eshell-mode-hook
+            (lambda ()
+              (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-files-in-current-dir ac-source-words-in-buffer))))
+  ;; (add-hook 'ruby-mode-hook
+  ;;              (lambda ()
+  ;;                (setq ac-omni-completion-sources '(("\\.\\=" ac-source-rcodetools)))))
+  )                                     ;fin del autocomplete
 
 
 (defun hashRocket()  (interactive)  (insert " => "))
 (defun heart()  (interactive)  (insert "♥"))
 
 ;; ponerle su global-set-key para que indente todo...
-(defun iwb ()
+(defun indent-whole-buffer()
   "indent whole buffer"
   (interactive)
   (delete-trailing-whitespace)
@@ -228,12 +229,12 @@
 
 ;; para comentar una linea como en el Aptana
 (fset 'wally-comment-macro
-   [?\C-a ?\C-  ?\C-e ?\M-\; ?\C-a ?\C-n])
+      [?\C-a ?\C-  ?\C-e ?\M-\; ?\C-a ?\C-n])
 (global-set-key "\C-c\C-a" 'wally-comment-macro)
 (global-set-key "\C-c=" 'hashRocket)
 
 (fset 'wally-select-line-macro
-   [?\C-a ?\C-  ?\C-e])
+      [?\C-a ?\C-  ?\C-e])
 (global-set-key "\C-c\C-e" 'wally-select-line-macro)
 
 ;; poniendo cosas para flex
@@ -257,3 +258,8 @@
 
 ;; muchas cosas interesantes por aca http://github.com/zpinter/emacs.d/tree/master
 
+;; unas cosas que pidio choche
+(global-set-key (kbd "<M-f11>")  'indent-whole-buffer)
+(global-set-key "\C-cw" 'kill-this-buffer)
+(global-set-key "\C-z" 'undo)
+(global-set-key "\C-t" 'other-frame)
