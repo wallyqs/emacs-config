@@ -95,7 +95,7 @@
 (global-set-key [?\C--] 'hippie-expand)
 (global-set-key (kbd "<f1>") 'copy-region-as-kill)
 (global-set-key (kbd "<f2>") 'ido-switch-buffer)
-(global-set-key (kbd "<f3>") 'find-file-other-window)
+;; (global-set-key (kbd "<f3>") 'find-file-other-window)
 (global-set-key (kbd "<S-f3>") 'find-file-other-frame)
 (global-set-key (kbd "<f4>") 'speedbar)
 (global-set-key (kbd "<f5>") 'replace-regexp)
@@ -258,8 +258,17 @@
 
 ;; muchas cosas interesantes por aca http://github.com/zpinter/emacs.d/tree/master
 
+(fset 'wally-select-line
+   [?\C-a ?\C-  ?\C-e])
+
+(defun filetemignon()
+  (interactive)
+  (message "Filete mignon listo!!!"))
+
 ;; unas cosas que pidio choche
 (global-set-key (kbd "<M-f11>")  'indent-whole-buffer)
 (global-set-key "\C-cw" 'kill-this-buffer)
 (global-set-key "\C-z" 'undo)
+(global-set-key "\C-cm" 'filetemignon)
+(global-set-key "\C-cs" 'wally-select-line)
 (global-set-key "\C-t" 'other-frame)
