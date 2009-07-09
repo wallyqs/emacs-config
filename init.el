@@ -167,6 +167,7 @@
 (yas/initialize)
 (setq yas/window-system-popup-function 'yas/x-popup-menu-for-template)
 (yas/load-directory "~/wallemacs/yasnippet/snippets")
+(yas/load-directory "~/wallemacs/yasnippets-flex/flex-snippets")
 (yas/load-directory "~/wallemacs/yasnippets-rails/rails-snippets/")
 (make-variable-buffer-local 'yas/trigger-key)
 (require 'rhtml-mode)
@@ -193,7 +194,8 @@
   (define-key ac-complete-mode-map "\r" 'ac-complete)
   (define-key ac-complete-mode-map "\M-n" 'ac-next)
   (define-key ac-complete-mode-map "\M-p" 'ac-previous)
-  (setq ac-auto-start 3)
+  ;; esto es para definir con cuantas letras se puede empezar a escribir
+  (setq ac-auto-start 2)
   (setq ac-dwim t)
   (set-default 'ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
   (setq ac-modes
@@ -205,6 +207,11 @@
   (add-hook 'emacs-lisp-mode-hook
             (lambda ()
               (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer ac-source-symbols))))
+  ;; crear un archivo donde se encuentre el api completo de flex
+  ;; de una vez hacer lo mismo para javascript y actionscript
+  (add-hook 'nxml-mode-hook
+            (lambda ()
+              (setq ac-sources '(ac-source-yasnippet ac-source-words-in-buffer ))))
   (add-hook 'eshell-mode-hook
             (lambda ()
               (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-files-in-current-dir ac-source-words-in-buffer))))

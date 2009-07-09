@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application
     xmlns:mx="http://www.adobe.com/2006/mxml"
-    width="300" height="200"
+    width="500" height="500"
     horizontalAlign="center" verticalAlign="middle"
     viewSourceURL="src/HandlingEventsEventHandler/index.html"
->
+    >
   <mx:Script>
-    
-    public void var yeah
-    
 
+    // public  function hola : vo(){
+    //     trace("yeah");
+    // }
   </mx:Script>
-<mx:Panel title="My first Flex application" horizontalAlign="center" >
-    <mx:Label fontSize="18" text="Hello, World." />
 
-</mx:Panel>
+  <mx:Script>
+    trace("ok esta funcionando");
+    trace("luego probar que tan bien lo hace");
+  </mx:Script>
+  <mx:Panel title="My first Flex application" horizontalAlign="center" >
+    <mx:Label fontSize="18" text="Hello, World." />
+    <mx:Label fontSize="19" text="Hola probando mi emacs con flex!!!" />
+
+  </mx:Panel>
 </mx:Application>
+

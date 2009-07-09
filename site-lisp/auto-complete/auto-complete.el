@@ -276,7 +276,7 @@
   :group 'convenience
   :prefix "auto-complete-")
 
-(defcustom ac-candidate-menu-height 10
+(defcustom ac-candidate-menu-height 15
   "Max height of candidate menu."
   :type 'number
   :group 'auto-complete)
@@ -292,7 +292,7 @@
                     perl-mode cperl-mode python-mode ruby-mode
                     ecmascript-mode javascript-mode js2-mode php-mode css-mode
                     makefile-mode sh-mode fortran-mode f90-mode ada-mode
-                    xml-mode sgml-mode)
+                    xml-mode sgml-mode nxml-mode)
   "Major modes `auto-complete-mode' can run on."
   :type '(list symbol)
   :group 'auto-complete)
@@ -322,6 +322,7 @@ minor-mode keymap conflicts."
   :type 'boolean
   :group 'auto-complete)
 
+;; FIXME: cambiar los colores de estos menus. wally
 (defface ac-menu-face
   '((t (:background "lightgray" :foreground "black")))
   "Face for candidate menu."
