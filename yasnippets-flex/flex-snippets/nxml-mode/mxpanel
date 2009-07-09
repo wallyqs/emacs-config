@@ -1,0 +1,4 @@
+#contributor : Waldemar Quevedo Salinas <invertedplate@inovaz.com>
+#name : <mx:Panel title="" horizontalAlign="" >...</mx:Panel>
+# --
+<mx:Panel title="$1" horizontalAlign="$2" verticalAlign="$3"> $4 </mx:Panel>$0
