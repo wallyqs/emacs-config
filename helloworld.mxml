@@ -20,6 +20,12 @@
     <mx:Label fontSize="18" text="Hello, World." />
     <mx:Label fontSize="19" text="Hola probando mi emacs con flex!!!" />
 
+    <mx:Label text="probando como se ve" />
+
+
+
+
   </mx:Panel>
 </mx:Application>
+
 

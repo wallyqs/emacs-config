@@ -183,9 +183,15 @@
 ;; (global-auto-complete-mode t)
 (when (require 'auto-complete nil t)
   (require 'auto-complete-yasnippet)
-  ;; (require 'auto-complete-ruby)
   (require 'auto-complete-emacs-lisp)
-  (require 'auto-complete-css)
+  (require 'auto-complete-flex)
+;;;   (defvar ac-flex-sources '(ac-source-flex-keywords))
+;;;   (ac-define-dictionary-source ac-source-flex-keywords
+;;;                                '("wallywwwwwwwwwww" "wallace" "walalcepalace" "parararar" "aaaaaaa" ))
+;;;   (setq ac-sources  (append ac-flex-sources ac-sources))
+;;;   (setq ac-sources  (append ac-source-flex-keywords ac-sources))
+  ;; (defun ac-flex-init ()
+  ;;     (add-hook 'nxml-mode-hook 'ac-flex-setup))
   (global-auto-complete-mode t)
   (set-face-background 'ac-menu-face "lightgray")
   (set-face-underline 'ac-menu-face "darkgray")
@@ -195,9 +201,9 @@
   (define-key ac-complete-mode-map "\M-n" 'ac-next)
   (define-key ac-complete-mode-map "\M-p" 'ac-previous)
   ;; esto es para definir con cuantas letras se puede empezar a escribir
-  (setq ac-auto-start 2)
+  (setq ac-auto-start 1)
   (setq ac-dwim t)
-  (set-default 'ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
+  (set-default 'ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer ))
   (setq ac-modes
         (append ac-modes
                 '(eshell-mode
@@ -207,17 +213,16 @@
   (add-hook 'emacs-lisp-mode-hook
             (lambda ()
               (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer ac-source-symbols))))
-  ;; crear un archivo donde se encuentre el api completo de flex
-  ;; de una vez hacer lo mismo para javascript y actionscript
+  ;; DEFINIR LOS NUEVOS SOURCES PARA EL AUTOCOMPLETE AQUI!!!
   (add-hook 'nxml-mode-hook
             (lambda ()
               (setq ac-sources '(ac-source-yasnippet ac-source-words-in-buffer ))))
   (add-hook 'eshell-mode-hook
             (lambda ()
               (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-files-in-current-dir ac-source-words-in-buffer))))
-  ;; (add-hook 'ruby-mode-hook
-  ;;              (lambda ()
-  ;;                (setq ac-omni-completion-sources '(("\\.\\=" ac-source-rcodetools)))))
+;;;   (add-hook 'ruby-mode-hook
+;;;                (lambda ()
+;;;                  (setq ac-omni-completion-sources '(("\\.\\=" ac-source-rcodetools)))))
   )                                     ;fin del autocomplete
 
 
@@ -266,7 +271,7 @@
 ;; muchas cosas interesantes por aca http://github.com/zpinter/emacs.d/tree/master
 
 (fset 'wally-select-line
-   [?\C-a ?\C-  ?\C-e])
+      [?\C-a ?\C-  ?\C-e])
 
 (defun filetemignon()
   (interactive)
@@ -279,3 +284,14 @@
 (global-set-key "\C-cm" 'filetemignon)
 (global-set-key "\C-cs" 'wally-select-line)
 (global-set-key "\C-t" 'other-frame)
+
+(fset 'choche-magical-quotes
+   "\C-w\"\C-y\"")
+(global-set-key "\C-cl" 'choche-magical-quotes)
+
+(fset 'choche-start-mysql
+   [?\M-x ?s ?q ?l ?- ?m ?s ?q backspace backspace ?y ?s ?q ?l return ?r ?o ?o ?t return ?i ?n ?o ?v ?a ?z ?0 ?8 return return ?l ?o ?c ?a ?l ?h ?o ?s ?t return])
+
+
+(global-set-key (kbd "<C-f2>")  'choche-start-mysql)
+(global-set-key (kbd "<C-f1>")  'rails/goto-associated)

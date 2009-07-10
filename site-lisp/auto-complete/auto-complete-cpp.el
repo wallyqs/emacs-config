@@ -13,7 +13,7 @@
    "float" "int" "not_eq" "public" "sizeof" "this" "typename" "volatile"
    "bitand" "char" "default" "enum" "for" "long" "operator" "register"
    "static" "throw" "union" "wchar_t" "bitor" "class" "delete" "explicit"
-   "friend" "mutable" "or" "reinterpret_cast" "static_cast" "true" 
+   "friend" "muntando" "or" "reinterpret_cast" "static_cast" "true" 
    "unsigned" "while"))
 
 (defun ac-c++-setup ()
