@@ -216,7 +216,10 @@
   ;; DEFINIR LOS NUEVOS SOURCES PARA EL AUTOCOMPLETE AQUI!!!
   (add-hook 'nxml-mode-hook
             (lambda ()
-              (setq ac-sources '(ac-source-yasnippet ac-source-words-in-buffer ))))
+              (setq ac-sources '(ac-source-flex ac-source-yasnippet ac-source-words-in-buffer ))
+	      (setq ac-omni-completion-sources '(("\\mx:\\=" ac-source-flex)))
+	      ))
+
   (add-hook 'eshell-mode-hook
             (lambda ()
               (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-files-in-current-dir ac-source-words-in-buffer))))
