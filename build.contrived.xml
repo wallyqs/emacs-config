@@ -1,0 +1,144 @@
+<?xml version="1.0" ?>
+<project name="FATSTUDENT" default="build" >
+
+  <!-- Wally's note: Do not use / at the end for APP_ROOT -->
+  <!-- These variables should be changed to adapt to the environment -->
+  <!-- There is an issue with routes... and lots of warnings -->
+  <property name="FLEX_HOME" value="/home/waldemarpc/flex_sdk_3/" />
+  <property name="APP_ROOT" value="/home/waldemarpc/proyectos/fatstudent" />
+  <taskdef  resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
+
+  <!-- DEFAULT task, builds both fatstudent and fatemployer -->
+  <target name="build">
+    <!-- ant assets:load should be run aswell -->
+    <mxmlc file="${APP_ROOT}/app/flex/FatStudent.mxml" output="${APP_ROOT}/public/FatStudent.swf">
+      <load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+      <source-path path-element="${FLEX_HOME}/frameworks"/>
+      <compiler.library-path dir="${APP_ROOT}/" append="true">
+        <include name="libs" />
+      </compiler.library-path>
+    </mxmlc>
+    <html-wrapper
+       title="FatStudent"
+       file="Fatstudent.html"
+       height="100%"
+       width="100%"
+       application="Fatstudent"
+       swf="FatStudent"
+       version-major="9"
+       version-minor="0"
+       version-revision="0"
+       history="true"
+       template="express-installation"
+       output="${APP_ROOT}/public"/>
+
+    <mxmlc file="${APP_ROOT}/app/flex/FatEmployer.mxml" output="${APP_ROOT}/public/FatEmployer.swf">
+      <load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+      <source-path path-element="${FLEX_HOME}/frameworks"/>
+      <compiler.library-path dir="${APP_ROOT}/" append="true">
+        <include name="libs" />
+      </compiler.library-path>
+    </mxmlc>
+    <html-wrapper
+       title="FatEmployer"
+       file="Fatemployer.html"
+       height="100%"
+       width="100%"
+       application="Fatemployer"
+       swf="FatEmployer"
+       version-major="9"
+       version-minor="0"
+       version-revision="0"
+       history="true"
+       template="express-installation"
+       output="${APP_ROOT}/public"/>
+
+  </target> <!-- END OF DEFAULT TASK -->
+
+  <!-- FatEmployer task -->
+  <target name="fatemployer">
+    <mxmlc file="${APP_ROOT}/app/flex/FatEmployer.mxml" output="${APP_ROOT}/public/FatEmployer.swf">
+      <load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+      <source-path path-element="${FLEX_HOME}/frameworks"/>
+      <compiler.library-path dir="${APP_ROOT}/" append="true">
+        <include name="libs" />
+      </compiler.library-path>
+    </mxmlc>
+    <html-wrapper
+       title="FatEmployer"
+       file="Fatemployer.html"
+       height="100%"
+       width="100%"
+       application="Fatemployer"
+       swf="FatEmployer"
+       version-major="9"
+       version-minor="0"
+       version-revision="0"
+       history="true"
+       template="express-installation"
+       output="${APP_ROOT}/public"/>
+  </target>
+
+  <!-- FatStudent task -->
+  <target name="fatstudent">
+    <mxmlc file="${APP_ROOT}/app/flex/FatStudent.mxml" output="${APP_ROOT}/public/FatStudent.swf">
+      <load-config filename="${FLEX_HOME}/frameworks/flex-config.xml"/>
+      <source-path path-element="${FLEX_HOME}/frameworks"/>
+      <compiler.library-path dir="${APP_ROOT}/" append="true">
+        <include name="libs" />
+      </compiler.library-path>
+    </mxmlc>
+    <html-wrapper
+       title="FatStudent"
+       file="Fatstudent.html"
+       height="100%"
+       width="100%"
+       application="Fatstudent"
+       swf="FatStudent"
+       version-major="9"
+       version-minor="0"
+       version-revision="0"
+       history="true"
+       template="express-installation"
+       output="${APP_ROOT}/public"/>
+
+  </target>
+
+  <!-- TEST: HTML para el FatStudent -->
+  <target name="Fatstudenthtml">
+    <html-wrapper
+       title="FatStudent"
+       file="Fatstudent.html"
+       height="100%"
+       width="100%"
+       application="Fatstudent"
+       swf="FatStudent"
+       version-major="9"
+       version-minor="0"
+       version-revision="0"
+       history="true"
+       template="express-installation"
+       output="${APP_ROOT}/public"/>
+  </target>
+
+
+  <!-- Copiar los folders /app/flex/com/fatstudent/student/assets a /public/com/fatstudent/student/assets  -->
+  <target name="assets:load">
+    <!-- COPY STUDENT ASSETS -->
+    <copy todir="${APP_ROOT}/public/com/fatstudent/student/assets/">
+      <fileset dir="${APP_ROOT}/app/flex/com/fatstudent/student/assets/"/>
+    </copy>
+    <copy todir="${APP_ROOT}/public/com/fatstudent/student/styles/">
+      <fileset dir="${APP_ROOT}/app/flex/com/fatstudent/student/styles/"/>
+    </copy>
+
+    <!-- COPY EMPLOYER ASSETS -->
+    <copy todir="${APP_ROOT}/public/com/fatstudent/employer/assets/">
+      <fileset dir="${APP_ROOT}/app/flex/com/fatstudent/employer/assets/"/>
+    </copy>
+    <copy todir="${APP_ROOT}/public/com/fatstudent/employer/styles/">
+      <fileset dir="${APP_ROOT}/app/flex/com/fatstudent/employer/styles/"/>
+    </copy>
+  </target>
+
+</project>

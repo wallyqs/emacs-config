@@ -77,3 +77,4 @@ This covers inlined style and script for mxml."
                   )))
  
 (add-to-list 'auto-mode-alist '("\\.mxml\\'" . mxml-actionscript-mumamo-mode))
+(add-to-list 'auto-mode-alist '("\\.as\\'" . actionscript-mode))
