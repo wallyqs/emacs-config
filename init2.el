@@ -303,7 +303,8 @@
 (load-file "~/wallemacs/site-lisp/light-symbol.el")
 (require 'textmate)
 (display-time)
+(require 'pastie)
 ;; (zone-when-idle 600)
-
+;; (require 'dpaste)
 
 

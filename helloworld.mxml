@@ -10,22 +10,22 @@
     // public  function hola : vo(){
     //     trace("yeah");
     // }
+    trace("que onda como andamos");
+
+
   </mx:Script>
 
-  <mx:Script>
-    trace("ok esta funcionando");
-    trace("luego probar que tan bien lo hace");
-  </mx:Script>
   <mx:Panel title="My first Flex application" horizontalAlign="center" >
     <mx:Label fontSize="18" text="Hello, World." />
     <mx:Label fontSize="19" text="Hola probando mi emacs con flex!!!" />
-
     <mx:Label text="probando como se ve" />
-
-
-
-
   </mx:Panel>
+
+
+  <mx:Panel title="Yeah todo woooo" horizontalAlign="center" verticalAlign="center"> 
+    <mx:Label fontSize="20" text="A ver que pasa................." />
+ </mx:Panel>
+
 </mx:Application>
 
 
