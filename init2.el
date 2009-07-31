@@ -23,6 +23,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil)))
+ '(twitter-header-face ((t nil)))
  '(mumamo-background-chunk-submode ((((class color) (min-colors 88) (background dark)) nil))))
 
 ;; CARGAR EL PATH DEL SITE LISP
@@ -79,7 +80,9 @@
 (load-file "~/wallemacs/site-lisp/color-theme-blue.el")
 (load-file "~/wallemacs/site-lisp/color-theme-github.el")
 (load-file "~/wallemacs/site-lisp/color-theme-hober2.el")
-;; (load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
+(load-file "~/wallemacs/site-lisp/color-theme-subdued.el")
+(load-file "~/wallemacs/site-lisp/color-theme-less.el")
+(load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Soporte para el GIT y SVN;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'git)
@@ -288,7 +291,7 @@
 (global-set-key "\C-t" 'other-frame)
 
 (fset 'choche-magical-quotes
-   "\C-w\"\C-y\"")
+   "\C-w\"\C-y")
 (global-set-key "\C-cl" 'choche-magical-quotes)
 
 (fset 'choche-start-mysql
@@ -307,4 +310,4 @@
 ;; (zone-when-idle 600)
 ;; (require 'dpaste)
 
-
+(set-frame-parameter (selected-frame) 'alpha 90)

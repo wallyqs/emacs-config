@@ -53,7 +53,8 @@
   :group 'twitter)
 
 (defface twitter-header-face
-  '((t (:background "light gray")))
+;;;   '((t (:background "light gray")))
+  '((t nil))
   "base face for headers"
   :group 'twitter-faces)
 

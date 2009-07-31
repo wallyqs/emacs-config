@@ -139,15 +139,18 @@ to values."
   '(unless (zenburn-format-spec-works-p)
      (zenburn-define-format-spec)))
 
+;; Estas partes hacen overlap con los otros color-themes
 (setq-default mode-line-buffer-identification
               (list (propertize "%12b" 'face
                                 (list :weight 'bold
-                                      :foreground zenburn-yellow))))
+;;;                                       :foreground zenburn-yellow))))
+				      :foreground "black"))))
 (setq-default mode-line-frame-identification "")
 (setq-default erc-mode-line-format
               (concat (propertize "%t" 'face
                                   (list :weight 'bold
-                                        :foreground zenburn-yellow))
+;;;                                         :foreground zenburn-yellow))
+					:foreground "black"))
                       " %a"))
 
 (setq gnus-logo-colors `(,zenburn-bg+2 ,zenburn-bg+1)
@@ -372,8 +375,9 @@ static char *gnus-pointer[] = {
                       :box (:color "#1e2320" :line-width 2)))))
      '(mode-line-inactive ((t (:background "#2e3330" :foreground "#88b090"
                                :box (:color "#2e3330" :line-width 2)))))
-     `(minibuffer-prompt ((t (:foreground ,zenburn-yellow))))
-     `(Buffer-menu-buffer ((t (:inherit zenburn-primary-1))))
+;;;      `(minibuffer-prompt ((t (:foreground zenburn-yellow))))
+;;;      `(minibuffer-prompt ((t (:foreground ,zenburn-yellow))))
+;;;      `(Buffer-menu-buffer ((t (:inherit zenburn-primary-1))))
 
      '(region ((t (:foreground "#71d3b4" :background "#233323"))))
      `(secondary-selection ((t (:foreground ,zenburn-fg :background "#506070"))))
