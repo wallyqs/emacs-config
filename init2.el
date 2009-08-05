@@ -57,8 +57,6 @@
 (global-set-key "\C-c\C-v" 'x-clipboard-yank)
 
 ;; hacer que no se atore con esto cuando no estoy en window mode
-(scroll-bar-mode nil)
-(tool-bar-mode nil)
 (show-paren-mode t)
 (ido-mode t)
 (menu-bar-mode nil)
@@ -90,7 +88,7 @@
 
 (add-to-list 'load-path "~/wallemacs/git-emacs1")
 (add-to-list 'load-path "~/wallemacs/magit")
-(require 'git-emacs)
+(require 'git-emacs)			;no funciona en todos los emacs
 (require 'magit)
 
 
@@ -113,8 +111,8 @@
 ;; (global-set-key (kbd "<C-f12>") 'xmp)
 
 ;; COSAS PARA EL TWIT MODE
-(load-file "~/wallemacs/site-lisp/twit.el")
-(twit-minor-mode)
+;; (load-file "~/wallemacs/site-lisp/twit.el")
+;; (twit-minor-mode)
 
 ;; aqui le voy a poner lo del twitter.el
 (autoload 'twitter-get-friends-timeline "twitter" nil t)
@@ -242,12 +240,14 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-(load-file "~/wallemacs/site-lisp/typing.el")
+;; (load-file "~/wallemacs/site-lisp/typing.el")
 
 ;; para comentar una linea como en el Aptana
-(fset 'wally-comment-macro
-      [?\C-a ?\C-  ?\C-e ?\M-\; ?\C-a ?\C-n])
-(global-set-key "\C-c\C-a" 'wally-comment-macro)
+;; (fset 'wally-comment-macro
+;;;       [?\C-a ?\C-  ?\C-e ?\M-\; ?\C-a ?\C-n])
+(fset 'wally-comment-macro2
+   [?\C-a ?\C-  ?\C-e ?\M-\; ?\C-a tab ?\C-n])
+(global-set-key "\C-c\C-a" 'wally-comment-macro2)
 (global-set-key "\C-c=" 'hashRocket)
 
 (fset 'wally-select-line-macro
@@ -311,3 +311,33 @@
 ;; (require 'dpaste)
 
 (set-frame-parameter (selected-frame) 'alpha 90)
+
+;; para el nombre de los buffers
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
+;; para tener un shell donde sea
+(require 'dame-shell)
+
+;; proyecto de textile
+(require 'textile-mode)
+(add-to-list 'auto-mode-alist '("\\.textile$" . textile-mode))
+
+;; (if (not (equal (terminal-name) "/dev/tty"))
+;;     ((scroll-bar-mode nil)
+;;      (tool-bar-mode nil)
+;;      ;; no funciona el twit.el en la terminal
+;;      (load-file "~/wallemacs/site-lisp/twit.el")
+;;      (twit-minor-mode))
+;;   ;; else estas en terminal
+;;   (color-theme-zenburn))
+
+;; HACER REFACTOR DE ESTO... una lista de todo
+(if (not (equal (terminal-name) "/dev/tty"))
+    (scroll-bar-mode nil))
+(if (not (equal (terminal-name) "/dev/tty"))
+    (tool-bar-mode nil))
+(if (not (equal (terminal-name) "/dev/tty"))
+    (load-file "~/wallemacs/site-lisp/twit.el"))
+(if (not (equal (terminal-name) "/dev/tty"))
+    (twit-minor-mode))
