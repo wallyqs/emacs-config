@@ -341,3 +341,15 @@
     (load-file "~/wallemacs/site-lisp/twit.el"))
 (if (not (equal (terminal-name) "/dev/tty"))
     (twit-minor-mode))
+
+;; Adding anthy package...
+(set-language-environment "Japanese")
+; anthy.el をロードできるようにする (必要に応じて)。
+;; (push "/usr/local/share/emacs/site-lisp/anthy/" load-path)
+(add-to-list 'load-path "~/wallemacs/site-lisp/anthy/")
+; anthy.el をロードする。
+(load-library "anthy")
+; japanese-anthy をデフォルトの input-method にする。
+(setq default-input-method "japanese-anthy")
+
+(global-set-key (kbd "<f12>")  'anthy-mode)
