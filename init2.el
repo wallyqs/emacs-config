@@ -33,6 +33,7 @@
 ;; lo del js2, quiero poner el auto-complete tambien...
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(autoload 'espresso-mode "espresso" nil t)
 
 ;; IMPORTANTISIMO PONER AL RUBY PRIMERO
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
@@ -88,7 +89,7 @@
 
 (add-to-list 'load-path "~/wallemacs/git-emacs1")
 (add-to-list 'load-path "~/wallemacs/magit")
-(require 'git-emacs)			;no funciona en todos los emacs
+(require 'git-emacs)                    ;no funciona en todos los emacs
 (require 'magit)
 
 
@@ -186,12 +187,13 @@
   (require 'auto-complete-yasnippet)
   (require 'auto-complete-emacs-lisp)
   (require 'auto-complete-flex)
+  (require 'auto-complete-sql)
 ;;;   (defvar ac-flex-sources '(ac-source-flex-keywords))
-
-  ;; (ac-define-dictionary-source ac-source-flex-keywords
-;;                                '("wallywwwwwwwwwww" "wallace" "walalcepalace" "parararar" "aaaaaaa" ))
-;; ;;
-					;   (setq ac-sources  (append ac-flex-sources ac-sources))
+  
+  ;; (ac-define-dictionary-source ac-source-testing
+  ;;                                '("wallywwwwwwwwwww" "wallace" "walalcepalace" "parararar" "aaaaaaa" ))
+  ;; ;;
+                                        ;   (setq ac-sources  (append ac-flex-sources ac-sources))
 ;;;   (setq ac-sources  (append ac-source-flex-keywords ac-sources))
   ;; (defun ac-flex-init ()
   ;;     (add-hook 'nxml-mode-hook 'ac-flex-setup))
@@ -206,10 +208,11 @@
   ;; esto es para definir con cuantas letras se puede empezar a escribir
   (setq ac-auto-start 1)
   (setq ac-dwim t)
-  (set-default 'ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer ))
+  (set-default 'ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
   (setq ac-modes
         (append ac-modes
                 '(eshell-mode
+		  sql-mode
                                         ;org-mode
                   )))
                                         ;(add-to-list 'ac-trigger-commands 'org-self-insert-command)
@@ -219,10 +222,17 @@
   ;; DEFINIR LOS NUEVOS SOURCES PARA EL AUTOCOMPLETE AQUI!!!
   (add-hook 'nxml-mode-hook
             (lambda ()
-              (setq ac-sources '(ac-source-yasnippet ac-source-words-in-buffer ))))
+              (setq ac-sources '(ac-source-flex ac-source-yasnippet ac-source-words-in-buffer ))
+              (setq ac-omni-completion-sources '(("\\mx:\\=" ac-source-flex)))
+              ))
   (add-hook 'eshell-mode-hook
             (lambda ()
               (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-files-in-current-dir ac-source-words-in-buffer))))
+  ;; hacer yasnippets para sql
+  (add-hook 'sql-mode-hook
+            (lambda ()
+              (setq ac-sources '(ac-source-sql ac-source-words-in-buffer))))
+  ;;
 ;;;   (add-hook 'ruby-mode-hook
 ;;;                (lambda ()
 ;;;                  (setq ac-omni-completion-sources '(("\\.\\=" ac-source-rcodetools)))))
@@ -246,7 +256,7 @@
 ;; (fset 'wally-comment-macro
 ;;;       [?\C-a ?\C-  ?\C-e ?\M-\; ?\C-a ?\C-n])
 (fset 'wally-comment-macro2
-   [?\C-a ?\C-  ?\C-e ?\M-\; ?\C-a tab ?\C-n])
+      [?\C-a ?\C-  ?\C-e ?\M-\; ?\C-a tab ?\C-n])
 (global-set-key "\C-c\C-a" 'wally-comment-macro2)
 (global-set-key "\C-c=" 'hashRocket)
 
@@ -291,14 +301,20 @@
 (global-set-key "\C-t" 'other-frame)
 
 (fset 'choche-magical-quotes
-   "\C-w\"\C-y")
+      "\C-w\"\C-y")
 (global-set-key "\C-cl" 'choche-magical-quotes)
 
 (fset 'choche-start-mysql
-   [?\M-x ?s ?q ?l ?- ?m ?s ?q backspace backspace ?y ?s ?q ?l return ?r ?o ?o ?t return ?i ?n ?o ?v ?a ?z ?0 ?8 return return ?l ?o ?c ?a ?l ?h ?o ?s ?t return])
-
+      [?\M-x ?s ?q ?l ?- ?m ?s ?q backspace backspace ?y ?s ?q ?l return ?r ?o ?o ?t return ?i ?n ?o ?v ?a ?z ?0 ?8 return return ?l ?o ?c ?a ?l ?h ?o ?s ?t return])
+;; (fset 'wally-start-mysql
+;;    [?\M-x ?s ?q ?l ?- ?m ?y ?s ?q ?l return ?r ?o ?o ?t return ?i ?n ?o ?v ?a ?z ?0 ?8 return return ?l ?o ?c ?a ?l ?h ?o ?s ?t return ?\M-x ?s ?q ?l ?- ?m ?o ?d ?e return])
+;; (defun wally-start-mysql()
+;;   (interactive)
+;;   (choche-start-mysql)
+;;   (sql-mode))
 
 (global-set-key (kbd "<C-f2>")  'choche-start-mysql)
+;; (global-set-key (kbd "<C-f2>")  'wally-start-mysql)
 (global-set-key (kbd "<C-f1>")  'rails/goto-associated)
 
 ;; blank-mode
@@ -344,12 +360,13 @@
 
 ;; Adding anthy package...
 (set-language-environment "Japanese")
-; anthy.el をロードできるようにする (必要に応じて)。
+                                        ; anthy.el をロードできるようにする (必要に応じて)。
 ;; (push "/usr/local/share/emacs/site-lisp/anthy/" load-path)
 (add-to-list 'load-path "~/wallemacs/site-lisp/anthy/")
-; anthy.el をロードする。
+                                        ; anthy.el をロードする。
 (load-library "anthy")
-; japanese-anthy をデフォルトの input-method にする。
+                                        ; japanese-anthy をデフォルトの input-method にする。
 (setq default-input-method "japanese-anthy")
 
+(global-set-key (kbd "<C-f10>")  'dame-shell)
 (global-set-key (kbd "<f12>")  'anthy-mode)
