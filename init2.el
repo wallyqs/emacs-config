@@ -89,7 +89,7 @@
 
 (add-to-list 'load-path "~/wallemacs/git-emacs1")
 (add-to-list 'load-path "~/wallemacs/magit")
-(require 'git-emacs)                    ;no funciona en todos los emacs
+;; (require 'git-emacs)                    ;no funciona en todos los emacs
 (require 'magit)
 
 
