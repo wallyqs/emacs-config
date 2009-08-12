@@ -189,7 +189,7 @@
   (require 'auto-complete-flex)
   (require 'auto-complete-sql)
 ;;;   (defvar ac-flex-sources '(ac-source-flex-keywords))
-  
+
   ;; (ac-define-dictionary-source ac-source-testing
   ;;                                '("wallywwwwwwwwwww" "wallace" "walalcepalace" "parararar" "aaaaaaa" ))
   ;; ;;
@@ -212,7 +212,7 @@
   (setq ac-modes
         (append ac-modes
                 '(eshell-mode
-		  sql-mode
+                  sql-mode
                                         ;org-mode
                   )))
                                         ;(add-to-list 'ac-trigger-commands 'org-self-insert-command)
@@ -313,6 +313,7 @@
 ;;   (choche-start-mysql)
 ;;   (sql-mode))
 
+(global-set-key (kbd "<C-f3>")  'rgrep)
 (global-set-key (kbd "<C-f2>")  'choche-start-mysql)
 ;; (global-set-key (kbd "<C-f2>")  'wally-start-mysql)
 (global-set-key (kbd "<C-f1>")  'rails/goto-associated)
@@ -358,6 +359,7 @@
 (if (not (equal (terminal-name) "/dev/tty"))
     (twit-minor-mode))
 
+
 ;; Adding anthy package...
 (set-language-environment "Japanese")
                                         ; anthy.el をロードできるようにする (必要に応じて)。
@@ -370,3 +372,8 @@
 
 (global-set-key (kbd "<C-f10>")  'dame-shell)
 (global-set-key (kbd "<f12>")  'anthy-mode)
+
+;; para ver las cosas con rgrep mejor
+
+(global-set-key (kbd "<M-prior>") 'previous-error)
+(global-set-key (kbd "<M-next>")  'next-error)
