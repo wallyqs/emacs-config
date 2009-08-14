@@ -255,9 +255,16 @@
 ;; para comentar una linea como en el Aptana
 ;; (fset 'wally-comment-macro
 ;;;       [?\C-a ?\C-  ?\C-e ?\M-\; ?\C-a ?\C-n])
+
 (fset 'wally-comment-macro2
       [?\C-a ?\C-  ?\C-e ?\M-\; ?\C-a tab ?\C-n])
-(global-set-key "\C-c\C-a" 'wally-comment-macro2)
+
+;; sometimes the one above does not work on emacs 23
+(fset 'wally-comment-indent-line
+   [home ?\C-  ?\S-\C-e ?\M-\; ?\S-\C-a tab home])
+
+;; (global-set-key "\C-c\C-a" 'wally-comment-macro2)
+(global-set-key "\C-c\C-a" 'wally-comment-indent-line)
 (global-set-key "\C-c=" 'hashRocket)
 
 (fset 'wally-select-line-macro
@@ -377,3 +384,4 @@
 
 (global-set-key (kbd "<M-prior>") 'previous-error)
 (global-set-key (kbd "<M-next>")  'next-error)
+
