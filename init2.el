@@ -334,7 +334,7 @@
 ;; (zone-when-idle 600)
 ;; (require 'dpaste)
 
-(set-frame-parameter (selected-frame) 'alpha 90)
+(set-frame-parameter (selected-frame) 'alpha 93)
 
 ;; para el nombre de los buffers
 (require 'uniquify)
