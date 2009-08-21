@@ -201,6 +201,7 @@
                               (equal nombre "mariko") "number=3312540884&name=wally&"
                             (equal nombre "wally") "number=3312540884&name=wally&"
                             (equal nombre "choche") "number=3334000534&name=wally&"
+			    (equal nombre "carlos") "number=3310734111&name=wally&"
                             )
                           "message="
                           (url-hexify-string (read-from-minibuffer "Message: ")))
@@ -210,6 +211,5 @@
   "Switch to the buffer returned by `url-retreive'.
     The buffer contains the raw HTTP response sent by the server."
   (switch-to-buffer (current-buffer)))
-
 
 (wally-send-sms)
