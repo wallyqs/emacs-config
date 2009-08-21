@@ -103,6 +103,7 @@
 (global-set-key (kbd "<f5>") 'replace-regexp)
 (global-set-key (kbd "<f6>") 'replace-string)
 (global-set-key (kbd "<f7>") 'regexp-builder)
+(global-set-key (kbd "<C-f7>") 'twit-post-region)
 (global-set-key (kbd "<f8>") 'toggle-truncate-lines)
 (global-set-key (kbd "<C-f9>") 'menu-bar-mode)
 (global-set-key (kbd "<f10>") 'linum-mode)
@@ -384,4 +385,13 @@
 
 (global-set-key (kbd "<M-prior>") 'previous-error)
 (global-set-key (kbd "<M-next>")  'next-error)
+
+;; funcion para hacer el set del alpha
+(defun wally-alpha()
+  (interactive)
+  (set-frame-parameter (selected-frame) 'alpha 
+		       (string-to-int (read-from-minibuffer "Cuanto: " ))))
+
+
+
 
