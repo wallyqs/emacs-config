@@ -99,7 +99,8 @@
 (global-set-key (kbd "<f2>") 'ido-switch-buffer)
 ;; (global-set-key (kbd "<f3>") 'find-file-other-window)
 (global-set-key (kbd "<S-f3>") 'find-file-other-frame)
-(global-set-key (kbd "<f4>") 'speedbar)
+;; (global-set-key (kbd "<f4>") 'speedbar)
+(global-set-key (kbd "<f4>")  'sr-speedbar-open)
 (global-set-key (kbd "<f5>") 'replace-regexp)
 (global-set-key (kbd "<f6>") 'replace-string)
 (global-set-key (kbd "<f7>") 'regexp-builder)
@@ -125,6 +126,7 @@
 (global-set-key (kbd "<S-f1>")  'twitter-get-friends-timeline)
 (global-set-key (kbd "<S-f2>")  'ido-switch-buffer-other-window)
 (global-set-key (kbd "<S-f4>")  'speedbar-update-contents)
+;; (global-set-key (kbd "<S-f4>")  'speedbar-update-contents)
 (global-set-key (kbd "<S-f8>")  'rails/console)
 (global-set-key (kbd "<C-f11>")  'undo)
 (global-set-key (kbd "<C-S-f2>")  'ido-switch-buffer-other-frame)
@@ -262,7 +264,7 @@
 
 ;; sometimes the one above does not work on emacs 23
 (fset 'wally-comment-indent-line
-   [home ?\C-  ?\S-\C-e ?\M-\; ?\S-\C-a tab home])
+      [home ?\C-  ?\S-\C-e ?\M-\; ?\S-\C-a tab home])
 
 ;; (global-set-key "\C-c\C-a" 'wally-comment-macro2)
 (global-set-key "\C-c\C-a" 'wally-comment-indent-line)
@@ -389,9 +391,7 @@
 ;; funcion para hacer el set del alpha
 (defun wally-alpha()
   (interactive)
-  (set-frame-parameter (selected-frame) 'alpha 
-		       (string-to-int (read-from-minibuffer "Cuanto: " ))))
+  (set-frame-parameter (selected-frame) 'alpha
+                       (string-to-int (read-from-minibuffer "Cuanto: " ))))
 
-
-
-
+(require 'sr-speedbar)
