@@ -43,20 +43,22 @@
      (read-from-minibuffer "Url: ")
      'my-switch-to-url-buffer)))
 
-;; FIXME:  Hacer que se pueda aceptar utf-8
+;; FIXME:  Hacer que se pueda aceptar utf-8 --> DONE!!!
 (defun wally-create-essay()
   "interactive function for feeding the borges RESTful interface"
   (interactive)
   (let ((url-request-method "POST")
         (url-request-extra-headers '(("Content-Type" . "application/xml")))
-        (url-request-data (concat "<essay>"
-                                  "<title>"
-                                  (read-from-minibuffer "Essay title: ")
-                                  "</title>"
-                                  "<content>"
-                                  (buffer-string) ; here is the text that will be posted
-                                  "</content>"
-                                  "</essay>"))
+        (url-request-data
+         (encode-coding-string (concat "<essay>"
+                                       "<title>"
+                                       (read-from-minibuffer "Essay title: ")
+                                       "</title>"
+                                       "<content>"
+                                       (buffer-string) ; here is the text that will be posted
+                                       "</content>"
+                                       "</essay>") 'utf-8)
+         )
         )                               ;end of let varlist
     (url-retrieve "http://127.0.0.1:3000/essays.xml" 'my-switch-to-url-buffer)))
 
@@ -66,14 +68,16 @@
   (interactive)
   (let ((url-request-method "PUT")
         (url-request-extra-headers '(("Content-Type" . "application/xml")))
-        (url-request-data (concat "<essay>"
-                                  "<title>"
-                                  (read-from-minibuffer "Essay title: ")
-                                  "</title>"
-                                  "<content>"
-                                  (buffer-string) ; here is the text that will be posted
-                                  "</content>"
-                                  "</essay>"))
+        (url-request-data
+         (encode-coding-string (concat "<essay>"
+                 "<title>"
+                 (read-from-minibuffer "Essay title: ")
+                 "</title>"
+                 "<content>"
+                 (buffer-string) ; here is the text that will be posted
+                 "</content>"
+                 "</essay>") 'utf-8)
+	 )
         )                               ;end of let varlist
     (url-retrieve (concat "http://127.0.0.1:3000/essays/" (read-from-minibuffer "Which one?(number) ") ".xml") 'my-switch-to-url-buffer)))
 
@@ -93,11 +97,11 @@
     (url-retrieve (concat "http://127.0.0.1:3000/essays/" (read-from-minibuffer "Number: ") ".xml") 'wally-parse-getted-buffer)))
 
 
-;; FIXME: learning elisp. Super development. 
-;; Debo de hacer el get del essay, 
-;; meter el xml adentro de otro buffer. 
+;; FIXME: learning elisp. Super development.
+;; Debo de hacer el get del essay,
+;; meter el xml adentro de otro buffer.
 ;; parsear el xml y obtener lo que hay dentro de <content></content>
-;; y a eso meterlo de otro buffer para editar. 
+;; y a eso meterlo de otro buffer para editar.
 ;; una vez que se guarda, se tiene que hacer el put de que se edito el recurso.
 (defun wally-get-essay-and-write-lambda()
   "Esta funcion hace un get a un essay y te abre un buffer sobre el cual puedes editarlo"
@@ -131,15 +135,15 @@
         (set-buffer append-to)
         (setq point (point))
         (barf-if-buffer-read-only)
-	(goto-char 243)			;nos movemos hasta el lugar donde empieza el xml
-	;; obvio debe de insertar hasta lo del final, el tamanho siempre va a ser variable
+        (goto-char 243)                 ;nos movemos hasta el lugar donde empieza el xml
+        ;; obvio debe de insertar hasta lo del final, el tamanho siempre va a ser variable
         (insert-buffer-substring oldbuf 243 630)
         (dolist (window windows)
           (when (= (window-point window) point)
             (set-window-point window (point))))))))
 
 ;; development
-(wally-get-essay-and-write-lambda)
+;; (wally-get-essay-and-write-lambda)
 
 
 
