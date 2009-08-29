@@ -46,7 +46,7 @@ y ponerme la lista parseada en un buffer que se llame. *essays index*"
                                        "</essay>") 'utf-8)
          )
         )                               ;end of let varlist
-    (url-retrieve "http://127.0.0.1:3000/essays.xml" 'my-kill-url-buffer)))
+    (url-retrieve "http://waricho.com:3000/essays.xml" 'my-kill-url-buffer)))
 
 (defun wally-create-essay-buffer-name()
   "Funcion que crea un ensayo haciendo un post de todo lo que esta en el buffer.
@@ -67,7 +67,7 @@ El recurso que se crea tiene el mismo nombre que el buffer."
                                        "</essay>") 'utf-8)
          )
         )                               ;end of let varlist
-    (url-retrieve "http://127.0.0.1:3000/essays.xml" 'my-kill-url-buffer)))
+    (url-retrieve "http://waricho.com:3000/essays.xml" 'my-kill-url-buffer)))
 
 ;; TODO: Crear una funcion que tome el nombre del archivo y que con eso
 ;; haga el update.
@@ -96,7 +96,7 @@ misma forma que lo hace wally-create-essay-with-title"
         )
        )                               ;end of let varlist
     (url-retrieve
-     (concat "http://127.0.0.1:3000/essays/"
+     (concat "http://waricho.com:3000/essays/"
              ;; (read-from-minibuffer "Which? (title-like-this) ")
              ;; por que se llama hello aqui!????
              ;; por que let te deja tener los valores antiguos
@@ -131,7 +131,7 @@ asi como guardarse el archivo en la computadora.
         )
        )                               ;end of let varlist
     (url-retrieve
-     (concat "http://127.0.0.1:3000/essays/"
+     (concat "http://waricho.com:3000/essays/"
              ;; (read-from-minibuffer "Which? (title-like-this) ")
              ;; por que se llama hello aqui!????
              ;; por que let te deja tener los valores antiguos
@@ -148,7 +148,7 @@ asi como guardarse el archivo en la computadora.
   (let ((url-request-method "GET")
         (url-request-extra-headers '(("Content-Type" . "application/xml")))
         )                               ;end of let varlist
-    (url-retrieve (concat "http://127.0.0.1:3000/essays/"
+    (url-retrieve (concat "http://waricho.com:3000/essays/"
                           (read-from-minibuffer "Which? (name): ")
                           ".xml")
                   'my-switch-to-url-buffer)))
@@ -163,13 +163,13 @@ Es el analogo al edit, de hecho se deberia de llamar edit-essay-with-title"
   (interactive)
   (let ((url-request-method "GET")
         (url-request-extra-headers '(("Content-Type" . "application/xml"))))
-;;;     (url-retrieve (concat "http://127.0.0.1:3000/essays/24.xml")
+;;;     (url-retrieve (concat "http://waricho.com:3000/essays/24.xml")
 ;;;                   'wally-append-to-buffer)
     ;; esto me devuelve una string con los contenidos del buffer
     ;; el CALLBACK me devuelve un buffer sobre el cual trabajar
     (wally-response-create-buffer2
      (url-retrieve-synchronously
-      (concat "http://127.0.0.1:3000/essays/"
+      (concat "http://waricho.com:3000/essays/"
               (read-from-minibuffer "Which one? (id number)")
               ".xml")                   ; finished concatenating
       )                                 ; end of url-retrieval

@@ -221,7 +221,9 @@
                                         ;(add-to-list 'ac-trigger-commands 'org-self-insert-command)
   (add-hook 'emacs-lisp-mode-hook
             (lambda ()
-              (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer ac-source-symbols))))
+              (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer ac-source-symbols))
+	      (eldoc-mode)		;para que se parezca a slime
+	      ))
   ;; DEFINIR LOS NUEVOS SOURCES PARA EL AUTOCOMPLETE AQUI!!!
   (add-hook 'nxml-mode-hook
             (lambda ()
