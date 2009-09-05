@@ -42,8 +42,7 @@ y ponerme la lista parseada en un buffer que se llame. *essays index*"
                                        (read-from-minibuffer "Essay title: ")
                                        "</title>"
                                        "<content>"
-                                       ;; (buffer-string) ; here is the text that will be posted
-				       (wally-quitar (buffer-string))
+                                       (buffer-string) ; here is the text that will be posted
                                        "</content>"
                                        "</essay>") 'utf-8)
          )
@@ -64,16 +63,12 @@ El recurso que se crea tiene el mismo nombre que el buffer."
                                         essay-title
                                         "</title>"
                                         "<content>"
-                                        ;; (buffer-string) ; here is the text that will be posted
-					(wally-quitar (buffer-string))
+                                        (buffer-string) ; here is the text that will be posted
                                         "</content>"
                                         "</essay>") 'utf-8)
           )
          )                               ;end of let varlist
-    (url-retrieve "http://127.0.0.1:3000/essays.xml" 'my-kill-url-buffer)
-    (textile-mode)
-    (local-set-key "\C-cs" 'wally-update-essay-buffer-name)
-    ))
+    (url-retrieve "http://127.0.0.1:3000/essays.xml" 'my-kill-url-buffer)))
 
 ;; TODO: Crear una funcion que tome el nombre del archivo y que con eso
 ;; haga el update.
@@ -96,8 +91,7 @@ misma forma que lo hace wally-create-essay-with-title"
                                       essay-title
                                       "</title>"
                                       "<content>"
-                                      ;; (buffer-string) ; here is the text that will be posted
-				      (wally-quitar (buffer-string))
+                                      (buffer-string) ; here is the text that will be posted
                                       "</content>"
                                       "</essay>") 'utf-8)
         )
@@ -132,9 +126,7 @@ asi como guardarse el archivo en la computadora.
                                       essay-title
                                       "</title>"
                                       "<content>"
-				      ;; deberia de llamar la funciona para quitar los < y > del buffer
-                                      ;; (buffer-string) ; here is the text that will be posted
-				      (wally-quitar (buffer-string))
+                                      (buffer-string) ; here is the text that will be posted
                                       "</content>"
                                       "</essay>") 'utf-8)
         )
@@ -149,35 +141,8 @@ asi como guardarse el archivo en la computadora.
      'my-kill-url-buffer)))
 
 
-
-;; 4 de Septiembre del 2009
-;; -------------------------------------  new development area -----------------------------------
-;; Debo de hacer una funcion que al llamarla te cree un buffer en ~/escritos/essays/
-;; O hacer un hook que en el momento que abro un archivo en la carpeta de escritos me va a poner las
-;; opciones que quiero ya por default.
-
-;; Debe de recibir una string y devolver una string ya sana
-(defun wally-quitar(stringy)
-  "Funcion para quitar los < y >, se debe de llamar cada 
-vez que se hace un push al servicio "
-  (with-temp-buffer
-    (insert stringy)
-    (save-excursion
-      (goto-char (point-min))
-      (while (re-search-forward ">" nil t)
-        (replace-match "&gt;"))
-      )
-    (save-excursion
-      (goto-char (point-min))
-      (while (re-search-forward "<" nil t)
-        (replace-match "&lt;"))
-      )
-    (buffer-string)			; return del temp buffer
-    ))
-
-
 ;; 28 de Agosto del 2009
-;; ------------------------------------- -----------------------------------
+;; -------------------------------------  new development area -----------------------------------
 (defun wally-get-essay-xml()
   "Funcion que te da el xml de un essay "
   (interactive)
@@ -225,7 +190,7 @@ nuevo buffer *essay* en donde se encuentra lo que parseo"
     (with-current-buffer response-buffer
       (goto-char (point-min))
       ;; (when (looking-at "^HTTP/1.* 200 OK$")
-      (when (looking-at "^HTTP/1.* 200 OK")
+      (when (looking-at "^HTTP/1.* 200$")
         (re-search-forward "^$" nil t 1)
         (setq retval (buffer-substring-no-properties (point) (point-max))))
       (kill-buffer response-buffer))
@@ -265,8 +230,7 @@ nuevo buffer *essay* en donde se encuentra lo que parseo"
     (with-current-buffer response-buffer
       (goto-char (point-min))           ;ir al principio
       ;; It used to read the OK from the HTTP header but Passenger for example does not say anything...
-      ;; (when (looking-at "^HTTP/1.* 200$")
-      (when (looking-at "^HTTP/1.* 200") ; algunas veces no termina en OK o 200. deberia de poner regexp opcional
+      (when (looking-at "^HTTP/1.* 200$") ;estas dos funciones se ven utiles
         (re-search-forward "^$" nil t 1)
         (setq retval
               (buffer-substring-no-properties (point) (point-max)) ; lo de adentro
@@ -314,7 +278,7 @@ nuevo buffer *essay* en donde se encuentra lo que parseo"
     (set-buffer inner-title-get)
     (textile-mode)
     ;; aqui hacer el override de local-set-key
-    (local-set-key "\C-cs" 'wally-update-essay-buffer-name)
+    (local-set-key "\C-x\C-s" 'wally-update-essay-buffer-name)
     (set-window-buffer (selected-window) inner-title-get)
     ;; (set-buffer-major-mode
     )                                   ; end of big let
