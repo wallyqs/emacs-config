@@ -34,6 +34,8 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (autoload 'espresso-mode "espresso" nil t)
+(require 'javascript-mode)
+
 
 ;; IMPORTANTISIMO PONER AL RUBY PRIMERO
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
@@ -291,6 +293,8 @@
 
 ;; para soporte para mumamos en mxmls...
 (load-file "~/wallemacs/flex-dev-mode/mxml-as3-mode.el")
+;; para el javascript...
+(load-file "~/wallemacs/flex-dev-mode/html-ecmascript-mode.el")
 
 ;; (require 'actionscript)
 ;; esto lo encontre aca...http://github.com/zpinter/emacs.d/blob/3adb41b6f864b50a88698a9083eb59fe3f0bd129/290-flex/init.el
