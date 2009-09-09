@@ -34,7 +34,7 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (autoload 'espresso-mode "espresso" nil t)
-(require 'javascript-mode)
+;; (require 'javascript-mode)
 
 
 ;; IMPORTANTISIMO PONER AL RUBY PRIMERO
