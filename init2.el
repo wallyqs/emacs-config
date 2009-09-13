@@ -34,7 +34,7 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (autoload 'espresso-mode "espresso" nil t)
-(require 'javascript-mode)
+;; (require 'javascript-mode)
 
 
 ;; IMPORTANTISIMO PONER AL RUBY PRIMERO
@@ -365,15 +365,21 @@
 ;;   ;; else estas en terminal
 ;;   (color-theme-zenburn))
 
+(scroll-bar-mode nil)
+
 ;; HACER REFACTOR DE ESTO... una lista de todo
-(if (not (equal (terminal-name) "/dev/tty"))
-    (scroll-bar-mode nil))
-(if (not (equal (terminal-name) "/dev/tty"))
-    (tool-bar-mode nil))
-(if (not (equal (terminal-name) "/dev/tty"))
-    (load-file "~/wallemacs/site-lisp/twit.el"))
-(if (not (equal (terminal-name) "/dev/tty"))
-    (twit-minor-mode))
+;; (if (not (equal (terminal-name) "/dev/tta"))
+;;     (scroll-bar-mode nil)
+;;   )
+;; (if (not (equal (terminal-name) "/dev/tty"))
+(tool-bar-mode nil)
+;;     )
+;; (if (not (equal (terminal-name) "/dev/tty"))
+;;     ;; (load-file "~/wallemacs/site-lisp/twit.el")
+;;     )
+;; (if (not (equal (terminal-name) "/dev/tty"))
+;;     ;; (twit-minor-mode)
+;;     )
 
 
 ;; Adding anthy package...

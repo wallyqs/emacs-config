@@ -1,6 +1,7 @@
 (require 'url)
 (require 'xml)
 
+
 ;; Support functions. CALLBACKs
 ;; もう終わったfunctionがバーファにkillする。
 ;; そして、もう日本語でちゃんた機能している。でももしxmlヘーダが現れたら、
@@ -46,7 +47,7 @@ y ponerme la lista parseada en un buffer que se llame. *essays index*"
                                        "</essay>") 'utf-8)
          )
         )                               ;end of let varlist
-    (url-retrieve "http://waricho.com:3000/essays.xml" 'my-kill-url-buffer)))
+    (url-retrieve "http://dauphin.waricho.com/essays.xml" 'my-kill-url-buffer)))
 
 (defun wally-create-essay-buffer-name()
   "Funcion que crea un ensayo haciendo un post de todo lo que esta en el buffer.
@@ -67,7 +68,7 @@ El recurso que se crea tiene el mismo nombre que el buffer."
                                        "</essay>") 'utf-8)
          )
         )                               ;end of let varlist
-    (url-retrieve "http://waricho.com:3000/essays.xml" 'my-kill-url-buffer)))
+    (url-retrieve "http://dauphin.waricho.com/essays.xml" 'my-kill-url-buffer)))
 
 ;; TODO: Crear una funcion que tome el nombre del archivo y que con eso
 ;; haga el update.
@@ -96,7 +97,7 @@ misma forma que lo hace wally-create-essay-with-title"
         )
        )                               ;end of let varlist
     (url-retrieve
-     (concat "http://waricho.com:3000/essays/"
+     (concat "http://dauphin.waricho.com/essays/"
              ;; (read-from-minibuffer "Which? (title-like-this) ")
              ;; por que se llama hello aqui!????
              ;; por que let te deja tener los valores antiguos
@@ -131,7 +132,7 @@ asi como guardarse el archivo en la computadora.
         )
        )                               ;end of let varlist
     (url-retrieve
-     (concat "http://waricho.com:3000/essays/"
+     (concat "http://dauphin.waricho.com/essays/"
              ;; (read-from-minibuffer "Which? (title-like-this) ")
              ;; por que se llama hello aqui!????
              ;; por que let te deja tener los valores antiguos
@@ -148,7 +149,7 @@ asi como guardarse el archivo en la computadora.
   (let ((url-request-method "GET")
         (url-request-extra-headers '(("Content-Type" . "application/xml")))
         )                               ;end of let varlist
-    (url-retrieve (concat "http://waricho.com:3000/essays/"
+    (url-retrieve (concat "http://dauphin.waricho.com/essays/"
                           (read-from-minibuffer "Which? (name): ")
                           ".xml")
                   'my-switch-to-url-buffer)))
@@ -163,18 +164,19 @@ Es el analogo al edit, de hecho se deberia de llamar edit-essay-with-title"
   (interactive)
   (let ((url-request-method "GET")
         (url-request-extra-headers '(("Content-Type" . "application/xml"))))
-;;;     (url-retrieve (concat "http://waricho.com:3000/essays/24.xml")
+;;;     (url-retrieve (concat "http://dauphin.waricho.com/essays/24.xml")
 ;;;                   'wally-append-to-buffer)
     ;; esto me devuelve una string con los contenidos del buffer
     ;; el CALLBACK me devuelve un buffer sobre el cual trabajar
-    (wally-response-create-buffer2
+    (wally-response-create-buffer3
      (url-retrieve-synchronously
-      (concat "http://waricho.com:3000/essays/"
+      (concat "http://dauphin.waricho.com/essays/"
               (read-from-minibuffer "Which one? (id number)")
               ".xml")                   ; finished concatenating
       )                                 ; end of url-retrieval
      )                                  ; buffer created
-    )                                   ; end of let
+    )                                   ; end of let... C-xe aqui para ejecutar
+  
   )
 
 ;; TODO: Le falta mucho a esta funcion para poder quedar bien.
@@ -220,6 +222,7 @@ nuevo buffer *essay* en donde se encuentra lo que parseo"
     )                                   ; end of big let
   )
 
+;; Quiero arreglar esta funcion para que funcione con waricho.
 ;; Muy bien!!!
 (defun wally-response-create-buffer2 (response-buffer)
   "Parse the response and append it into a buffer. Crea un
@@ -228,7 +231,8 @@ nuevo buffer *essay* en donde se encuentra lo que parseo"
     (with-current-buffer response-buffer
       (goto-char (point-min))           ;ir al principio
 
-      (when (looking-at "^HTTP/1.* 200 OK$") ;estas dos funciones se ven utiles
+      ;; creo que el detalle esta en el momento que checa el header
+      (when (looking-at "^HTTP/1.* 200 OK") ;estas dos funciones se ven utiles
         (re-search-forward "^$" nil t 1)
         (setq retval
               (buffer-substring-no-properties (point) (point-max)) ; lo de adentro
@@ -279,6 +283,72 @@ nuevo buffer *essay* en donde se encuentra lo que parseo"
     (local-set-key "\C-x\C-s" 'wally-update-essay-buffer-name)
     (set-window-buffer (selected-window) inner-title-get)
     ;; (set-buffer-major-mode
+    )                                   ; end of big let
+  )
+
+
+
+;; Arreglar la funcion para que funcione con waricho
+(defun wally-response-create-buffer3 (response-buffer)
+  "Parse the response and append it into a buffer. Crea un
+nuevo buffer *essay* en donde se encuentra lo que parseo"
+  ;; desde aqui
+  (let* ((retval nil))
+
+    (with-current-buffer response-buffer
+      (goto-char (point-min))           ;ir al principio
+
+      ;; (when (looking-at "^HTTP/1.* 200 OK$") ;estas dos funciones se ven utiles
+      ;; No todos los servers dicen OK, por lo menos Passenger no...
+      (when (looking-at "^HTTP/1.* 200$") ;estas dos funciones se ven utiles
+        (re-search-forward "^$" nil t 1)
+        (setq retval
+              (buffer-substring-no-properties (point) (point-max)) ; lo de adentro
+              ))                                                   ; end of when
+      ;; (kill-buffer response-buffer)     ;elimina el buffer de la response
+      ) ;fin current-buffer
+
+    ;; parse the xml string in a temporal buffer
+    (setq root
+          (with-temp-buffer
+            (insert "\n" retval "\n")
+            (goto-char (point-min))
+            (while (re-search-forward "\r" nil t)
+              (replace-match ""))	; borrar los espacios
+            (xml-parse-region (point-min) (point-max)))) ; gets the whole xml into a list structure
+
+    (setq essay (car root))
+    (setq content (car (xml-get-children essay 'content)))
+    (setq inner-content (car (xml-node-children content))) ;end of parsing of content
+    
+    (setq essay-title-get (car (xml-get-children essay 'title)))
+    (setq inner-title-get (car (xml-node-children essay-title-get))) ;end of parsing of title
+
+    (save-excursion
+      ;; Deberia de llamarse como el title, se deberia de parsear el title tambien
+      (let* (
+             ;; Parsear el titulo del archivo y se nombrea al buffer asi.
+             (append-to (get-buffer-create inner-title-get))
+
+             (windows (get-buffer-window-list append-to t t))
+             point)
+        (set-buffer append-to)
+        (setq point (point))
+        (barf-if-buffer-read-only)
+        (insert-string inner-content)   ; meter el contenido dentro del buffer
+        ;; FIXME: NO ENTIENDO PARA NADA ESTA PARTE ---------
+        (dolist (window windows)
+          (when (= (window-point window) point)
+            (set-window-point window (point))))
+        ;; FIXME: NO ENTIENDO PARA NADA ESTA PARTE ---------
+        )                          ; end of let*
+      )                                 ; end of excursion within the buffer
+    
+    (set-buffer inner-title-get)	;set a buffer with a named after the title
+    (textile-mode)
+    ;; aqui hacer el override de local-set-key
+    (local-set-key "\C-cs" 'wally-update-essay-buffer-name)
+    (set-window-buffer (selected-window) inner-title-get)
     )                                   ; end of big let
   )
 
