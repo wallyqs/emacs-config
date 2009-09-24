@@ -1,0 +1,87 @@
+This is semantic-langdev.info, produced by makeinfo version 4.3 from
+lang-support-guide.texi.
+
+This manual documents Application Development with Semantic.
+
+   Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004 Eric M. Ludlam
+Copyright (C) 2001, 2002, 2003, 2004 David Ponce Copyright (C) 2002,
+2003 Richard Y. Kim
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.1 or any later version published by the Free Software
+     Foundation; with the Invariant Sections being list their titles,
+     with the Front-Cover Texts being list, and with the Back-Cover
+     Texts being list.  A copy of the license is included in the
+     section entitled "GNU Free Documentation License".
+   
+INFO-DIR-SECTION Emacs
+START-INFO-DIR-ENTRY
+* Semantic Language Writer's guide: (semantic-langdev).
+END-INFO-DIR-ENTRY
+
+   This file documents Language Support Development with Semantic.
+_Infrastructure for parser based text analysis in Emacs_
+
+   Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004 Eric M. Ludlam,
+David Ponce, and Richard Y. Kim
+
+
+Indirect:
+semantic-langdev.info-1: 1127
+semantic-langdev.info-2: 51175
+
+Tag Table:
+(Indirect)
+Node: Top1127
+Node: Tag Structure2234
+Node: Language Support Overview3789
+Node: Semantic Overload Mechanism5073
+Node: Semantic Parser Structure10141
+Node: Application API Structure10435
+Node: Semantic Analyzer Support11954
+Node: Writing Lexers12104
+Ref: semantic-lex12907
+Node: Lexer Overview14110
+Node: Lexer Output15337
+Node: Lexer Construction19196
+Ref: define-lex19649
+Node: Lexer Built In Analyzers20503
+Node: Lexer Analyzer Construction23973
+Node: Keywords28232
+Node: Keyword Properties29793
+Node: Writing Parsers30665
+Node: External Parsers32145
+Node: Grammar Programming Environment32459
+Node: Parsing a language file33005
+Ref: semantic-fetch-tags33374
+Ref: semantic-fetch-available-tags34143
+Ref: semantic-clear-toplevel-cache34592
+Node: Parser Backend Support34750
+Node: Example Backend File35544
+Node: Tag Expansion37872
+Ref: semantic-tag-expand-function38188
+Node: Debugging39838
+Node: Lexical Debugging40361
+Ref: semantic-lex-debug40768
+Node: Parser Output tools41243
+Ref: semantic-show-unmatched-syntax-mode41733
+Ref: semantic-show-tag-boundaries-mode42667
+Ref: semantic-highlight-by-attribute-mode43304
+Ref: bovinate44013
+Node: Bovine Parser Debugging44247
+Ref: semantic-debug44713
+Node: Wisent Parser Debugging46227
+Node: Overlay Debugging46609
+Ref: semantic-tag-components-with-overlays47321
+Node: Incremental Parser Debugging48064
+Ref: semantic-highlight-edits-mode48826
+Ref: semantic-show-parser-state-mode49560
+Node: Debugging Analysis50350
+Ref: semantic-analyze-current-context50888
+Node: Semantic 1.4 Doc51175
+Node: Parser Error Handling52927
+Node: GNU Free Documentation License53116
+Node: Index72846
+
+End Tag Table

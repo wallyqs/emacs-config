@@ -1,8 +1,4 @@
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(auto-save-default nil)
  '(browse-url-browser-function (quote browse-url-default-browser))
  '(desktop-base-file-name ".emacs.desktop")
@@ -18,10 +14,6 @@
  '(tramp-default-method "ssh")
  '(w3m-home-page "http://news.ycombinator.com"))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(mumamo-background-chunk-major ((((class color) (min-colors 88) (background dark)) nil)))
  '(twitter-header-face ((t nil)))
  '(mumamo-background-chunk-submode ((((class color) (min-colors 88) (background dark)) nil))))
@@ -30,12 +22,19 @@
 (add-to-list 'load-path "~/wallemacs/site-lisp")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 
-;; lo del js2, quiero poner el auto-complete tambien...
+;; Adding support for CEDET
+(add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/common")
+(load-file "~/wallemacs/cedet-1.0beta3b/common/cedet.el")
+;; (semantic-load-enable-code-helpers)
+;; (setq semantic-load-turn-useful-things-on t)
+;; (setq semanticdb-project-roots
+;;       (list "/home/mariko/proyectos/dev/" ))
+
+;; Lo del js2, quiero poner el auto-complete tambien...
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (autoload 'espresso-mode "espresso" nil t)
 ;; (require 'javascript-mode)
-
 
 ;; IMPORTANTISIMO PONER AL RUBY PRIMERO
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
@@ -111,9 +110,6 @@
 (global-set-key (kbd "<C-f9>") 'menu-bar-mode)
 (global-set-key (kbd "<f10>") 'linum-mode)
 (global-set-key (kbd "<f11>") 'make-frame-command)
-;; (global-set-key (kbd "<f12>") 'anthy-mode)
-;; esto es para llamar las funciones de ruby automaticamente, necesita las rcodetools
-;; (global-set-key (kbd "<C-f12>") 'xmp)
 
 ;; COSAS PARA EL TWIT MODE
 ;; (load-file "~/wallemacs/site-lisp/twit.el")
@@ -128,7 +124,6 @@
 (global-set-key (kbd "<S-f1>")  'twitter-get-friends-timeline)
 (global-set-key (kbd "<S-f2>")  'ido-switch-buffer-other-window)
 (global-set-key (kbd "<S-f4>")  'speedbar-update-contents)
-;; (global-set-key (kbd "<S-f4>")  'speedbar-update-contents)
 (global-set-key (kbd "<S-f8>")  'rails/console)
 (global-set-key (kbd "<C-f11>")  'undo)
 (global-set-key (kbd "<C-S-f2>")  'ido-switch-buffer-other-frame)
@@ -136,38 +131,25 @@
 (global-set-key (kbd "<S-f12>")  'text-scale-increase)
 (global-set-key (kbd "<M-f12>")  'other-frame)
 
-
 ;; para poder moverme en las ventanas
 (windmove-default-keybindings 'meta)
-
-;; ;; para el jabber.el
-;; (add-to-list 'load-path "~/wallemacs/site-lisp/emacs-jabber/")
-;; (load "jabber-autoloads")
-;; (require 'jabber)
-;; (setq jabber-account-list '(
-;;                             ("invertedplate@gmail.com"
-;; ;;;                       (:password . nil) or (:password . "")
-;;                           (:network-server . "talk.google.com")
-;; ;;;                       (:port . 443)
-;;                           (:port . 5223)
-;;                           (:connection-type . ssl))
-;;                             ))
 
 ;; ;; el winner mode es para lo de C-c y left etc..
 (winner-mode t)
 
 (add-to-list 'load-path "~/wallemacs/emacs-rails-reloaded1/")
 (require 'rails-autoload)
+(require 'rhtml-mode)
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(require 'weblogger)
 
-;; ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 (add-to-list 'load-path "~/wallemacs/yasnippets-rails")
+;; HACER EL SETUP DEL NUEVO YASNIPPET --------------------------------------------------
+;; CON AUTOCOMPLETE
 (add-to-list 'load-path "~/wallemacs/yasnippet/")
-;; (add-hook 'ruby-mode-hook ; or rails-minor-mode-hook ?
-;;           '(lambda ()
-;;              (make-variable-buffer-local 'yas/trigger-key)
-;;              ;; (setq yas/trigger-key [tab])
-;;           ))
-
+;; ;; super anything
+(add-to-list 'load-path "~/wallemacs/auto-complete/")
 (require 'yasnippet)
 (add-to-list 'yas/extra-mode-hooks
              'ruby-mode-hook)
@@ -177,14 +159,6 @@
 (yas/load-directory "~/wallemacs/yasnippets-flex/flex-snippets")
 (yas/load-directory "~/wallemacs/yasnippets-rails/rails-snippets/")
 (make-variable-buffer-local 'yas/trigger-key)
-(require 'rhtml-mode)
-
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-(require 'weblogger)
-
-;; ;; super anything
-(add-to-list 'load-path "~/wallemacs/auto-complete/")
 
 (require 'auto-complete)
 ;; (global-auto-complete-mode t)
@@ -193,6 +167,7 @@
   (require 'auto-complete-emacs-lisp)
   (require 'auto-complete-flex)
   (require 'auto-complete-sql)
+  (require 'auto-complete-semantic)
 ;;;   (defvar ac-flex-sources '(ac-source-flex-keywords))
 
   ;; (ac-define-dictionary-source ac-source-testing
@@ -224,8 +199,8 @@
   (add-hook 'emacs-lisp-mode-hook
             (lambda ()
               (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer ac-source-symbols))
-	      (eldoc-mode)		;para que se parezca a slime
-	      ))
+              (eldoc-mode)              ;para que se parezca a slime
+              ))
   ;; DEFINIR LOS NUEVOS SOURCES PARA EL AUTOCOMPLETE AQUI!!!
   (add-hook 'nxml-mode-hook
             (lambda ()
@@ -239,6 +214,11 @@
   (add-hook 'sql-mode-hook
             (lambda ()
               (setq ac-sources '(ac-source-sql ac-source-words-in-buffer))))
+  (add-hook 'c++-mode-hook
+            (lambda ()
+              ;; (setq ac-sources '(ac-source-semantic ac-source-words-in-buffer))
+	      (setq ac-omni-completion-sources '(("\\.\\=" ac-source-semantic)))
+	      ))
   ;;
 ;;;   (add-hook 'ruby-mode-hook
 ;;;                (lambda ()
@@ -246,10 +226,12 @@
   )                                     ;fin del autocomplete
 
 
+
+;; HASTA AQUI LA CONFIGURACION DEL AUTO-COMPLETE-MODE Y YASNIPPETS --------------------------------------------------
+
 (defun hashRocket()  (interactive)  (insert " => "))
 (defun heart()  (interactive)  (insert "♥"))
 
-;; ponerle su global-set-key para que indente todo...
 (defun indent-whole-buffer()
   "indent whole buffer"
   (interactive)
@@ -279,8 +261,8 @@
 (global-set-key "\C-c\C-e" 'wally-select-line-macro)
 
 ;; poniendo cosas para flex
-(load-file "~/wallemacs/flex-dev-mode/fcsh-compile.el")
-(load-file "~/wallemacs/flex-dev-mode/fcsh-mode.el")
+;; (load-file "~/wallemacs/flex-dev-mode/fcsh-compile.el")
+;; (load-file "~/wallemacs/flex-dev-mode/fcsh-mode.el")
 
 ;; creo que no hace el provide del actionscript, luego lo checo...
 (load-file "~/wallemacs/site-lisp/actionscript-mode.el")
@@ -291,15 +273,11 @@
 (require 'mlinks)
 (require 'mumamo-fun)
 
+;; MUMAMOS ----------------------------------------
 ;; para soporte para mumamos en mxmls...
 (load-file "~/wallemacs/flex-dev-mode/mxml-as3-mode.el")
-;; para el javascript...
+;; use mejor ecmascript para el javascript porque estaba medio pirata el js
 (load-file "~/wallemacs/flex-dev-mode/html-ecmascript-mode.el")
-
-;; (require 'actionscript)
-;; esto lo encontre aca...http://github.com/zpinter/emacs.d/blob/3adb41b6f864b50a88698a9083eb59fe3f0bd129/290-flex/init.el
-
-;; muchas cosas interesantes por aca http://github.com/zpinter/emacs.d/tree/master
 
 (fset 'wally-select-line
       [?\C-a ?\C-  ?\C-e])
@@ -308,7 +286,6 @@
   (interactive)
   (message "Filete mignon listo!!!"))
 
-;; unas cosas que pidio choche
 (global-set-key (kbd "<M-f11>")  'indent-whole-buffer)
 (global-set-key "\C-cw" 'kill-this-buffer)
 (global-set-key "\C-z" 'undo)
@@ -348,13 +325,11 @@
 ;; para el nombre de los buffers
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-
-;; para tener un shell donde sea
 (require 'dame-shell)
-
-;; proyecto de textile
 (require 'textile-mode)
 (add-to-list 'auto-mode-alist '("\\.textile$" . textile-mode))
+
+;; UGLY CONFS -------------------------------------------------------------
 
 ;; (if (not (equal (terminal-name) "/dev/tty"))
 ;;     ((scroll-bar-mode nil)
@@ -395,12 +370,10 @@
 (global-set-key (kbd "<C-f10>")  'dame-shell)
 (global-set-key (kbd "<f12>")  'anthy-mode)
 
-;; para ver las cosas con rgrep mejor
-
+;;  RGREP
 (global-set-key (kbd "<M-prior>") 'previous-error)
 (global-set-key (kbd "<M-next>")  'next-error)
 
-;; funcion para hacer el set del alpha
 (defun wally-alpha()
   (interactive)
   (set-frame-parameter (selected-frame) 'alpha
@@ -409,7 +382,12 @@
 (require 'sr-speedbar)
 
 
-;; por el momento si voy a estar haciendo pushes a waricho de lo que 
+;; por el momento si voy a estar haciendo pushes a waricho de lo que
 ;; pienso. bye bye twitter
 (load-file "~/wallemacs/borges-el/essayWARICHO.el")
+
+
+;; quiero poner hasta abajo lo de cada una de mism global set keys mejor pero luego...
+
+
 

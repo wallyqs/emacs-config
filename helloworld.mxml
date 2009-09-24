@@ -12,6 +12,11 @@
     // }
     trace("que onda como andamos");
 
+    trace("probando que esto funcione bien por lo menos")
+
+    function hey(){
+	trace("no hace cosas locas este modo");
+    }
 
   </mx:Script>
 
@@ -22,9 +27,9 @@
   </mx:Panel>
 
 
-  <mx:Panel title="Yeah todo woooo" horizontalAlign="center" verticalAlign="center"> 
+  <mx:Panel title="Yeah todo woooo" horizontalAlign="center" verticalAlign="center">
     <mx:Label fontSize="20" text="A ver que pasa................." />
- </mx:Panel>
+  </mx:Panel>
 
 </mx:Application>
 
