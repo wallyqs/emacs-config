@@ -384,7 +384,7 @@
 
 ;; por el momento si voy a estar haciendo pushes a waricho de lo que
 ;; pienso. bye bye twitter
-(load-file "~/wallemacs/borges-el/essayWARICHO.el")
+;; (load-file "~/wallemacs/borges-el/essayWARICHO.el")
 
 
 ;; quiero poner hasta abajo lo de cada una de mism global set keys mejor pero luego...

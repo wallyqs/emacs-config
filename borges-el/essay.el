@@ -1,5 +1,7 @@
 (require 'url)
 (require 'xml)
+(require 'url-http)
+
 
 ;; Support functions. CALLBACKs
 ;; もう終わったfunctionがバーファにkillする。
@@ -14,7 +16,20 @@
     The buffer contains the raw HTTP response sent by the server."
   (switch-to-buffer (current-buffer)))
 
+;;  --------------------------- new 目的: loggearme y hacer un index de los essays.--------------------------
+(defun wally-login-index-essays ()
+  "Esta funcion me debe de dar el index de los essays que tengo en total
+y ponerme la lista parseada en un buffer que se llame. *essays index*"
+  (interactive)
+  (let ((url-request-method "GET"))
+    (url-retrieve "http://127.0.0.1:3000/essays.xml" 'my-switch-to-url-buffer))
+  )
+
+
+
+
 ;;  --------------------------- to-be-done functions  ------------------------------------------------------
+;; ---------------------------------------------------------------------------------------------------------
 ;; TODO: parsear la lista
 (defun wally-index-essays ()
   "Esta funcion me debe de dar el index de los essays que tengo en total
@@ -23,6 +38,7 @@ y ponerme la lista parseada en un buffer que se llame. *essays index*"
   (let ((url-request-method "GET"))
     (url-retrieve "http://127.0.0.1:3000/essays.xml" 'my-switch-to-url-buffer))
   )
+
 
 ;; TODO: Se deben de poder parsear cierto tipo de META-DATOS COMO LO HACE EL WEBLOGGER. Por ejemplo,
 ;; (1) sea posible decirle cual es el titulo del archivo. El cual puede o no llamarse como un numero.
