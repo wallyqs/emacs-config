@@ -1,0 +1,21 @@
+;; Object obby/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "obby/"
+  :tables (list 
+   (semanticdb-table "rudel-obby.el"
+    :major-mode 'emacs-lisp-mode
+    :tags '(("cl" include nil nil [1096 1109]) ("eieio" include nil nil [1112 1128]) ("rudel" include nil nil [1130 1146]) ("rudel-util" include nil nil [1147 1168]) ("rudel-compat" include nil nil [1169 1192]) ("rudel-obby-version" variable (:constant-flag t :default-value 0.1) nil [1246 1322]) ("rudel-obby-protocol-version" variable (:constant-flag t :default-value 8) nil [1324 1423]) ("rudel-obby-long-message-threshold" variable (:default-value 32768) nil [1425 1555]) ("rudel-obby-long-message-chunk-size" variable (:default-value 16384) nil [1557 1656]) ("rudel-obby-backend" type (:typemodifiers ("\"Class rudel-obby-backend \"") :superclasses "rudel-backend" :members (("capabilities" variable (:default-value "(quote (join host change-color track-subscriptions))") nil nil)) :type "class") nil [1693 1859]) ("rudel-ask-connect-info" function (:parent "rudel-obby-backend" :arguments ("this")) nil [1861 2332]) ("rudel-connect" function (:parent "rudel-obby-backend" :arguments ("this" "info")) nil [2334 3330]) ("rudel-ask-host-info" function (:parent "rudel-obby-backend" :arguments ("this")) nil [3332 3463]) ("rudel-host" function (:parent "rudel-obby-backend" :arguments ("this" "info")) nil [3465 4264]) ("rudel-make-document" function (:parent "rudel-obby-backend" :arguments ("this" "name" "session")) nil [4266 4643]) ("rudel-available-document-id" function (:parent "rudel-obby-backend" :arguments ("this" "session")) nil [4645 5044]) ("rudel-obby-user" type (:typemodifiers ("\"Class rudel-obby-user \"") :superclasses "rudel-user" :members (("client-id" variable (:documentation "Id of the client connection, which the user used to log in.
+The value is an integer, if the user is connected, and nil
+otherwise." :default-value "nil" :type "(or null integer)") nil nil) ("user-id" variable (:type "integer") nil nil) ("connected" variable (:type "boolean") nil nil) ("encryption" variable (:type "boolean") nil nil)) :type "class") nil [5078 6009]) ("eieio-speedbar-description" function (:parent "rudel-obby-user" :arguments ("this")) nil [6011 6397]) ("eieio-speedbar-object-buttonname" function (:parent "rudel-obby-user" :arguments ("this")) nil [6399 6774]) ("rudel-obby-document" type (:typemodifiers ("\"Objects of the class rudel-obby-document represent shared
+documents in obby sessions.\"") :superclasses "rudel-document" :members (("id" variable (:documentation "The id of this document.
+The id has to be unique only with respect to the other documents
+owned by the owner." :type "integer") nil nil) ("owner-id" variable (:type "integer") nil nil) ("suffix" variable (:documentation "A counter used to distinguish identically named
+documents." :type "integer") nil nil)) :type "class") nil [6812 7398]) ("rudel-both-ids" function (:parent "rudel-obby-document" :arguments ("this")) nil [7400 7598]) ("rudel-unique-name" function (:parent "rudel-obby-document" :arguments ("this")) nil [7600 7847]) ("eieio-speedbar-description" function (:parent "rudel-obby-document" :arguments ("this")) nil [7849 8038]) ("eieio-speedbar-object-buttonname" function (:parent "rudel-obby-document" :arguments ("this")) nil [8040 8288]) ("rudel-obby-replace-in-string" function (:arguments ("string" "replacements")) nil [8323 8757]) ("rudel-obby-escape-string" function (:arguments ("string")) nil [8759 8967]) ("rudel-obby-unescape-string" function (:arguments ("string")) nil [8969 9212]) ("rudel-obby-parse-color" function (:arguments ("color")) nil [9214 9567]) ("rudel-obby-format-color" function (:arguments ("color")) nil [9571 9797]) ("rudel-obby-assemble-message" function (:arguments ("name" "&rest" "arguments")) nil [9799 10044]) ("rudel-obby-parse-message" function (:arguments ("message")) nil [10046 10292]) ("rudel-obby-send" function (:arguments ("socket" "name" "arguments")) nil [10294 11102]) ("add-to-list" code nil nil [11141 11210]) ("rudel-obby" package nil nil [11212 11233]))
+    :file "rudel-obby.el"
+    :pointmax 11262
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0beta3"
+  :semanticdb-version "2.0beta3"
+  )

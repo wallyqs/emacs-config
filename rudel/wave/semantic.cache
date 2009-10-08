@@ -1,0 +1,16 @@
+;; Object wave/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "wave/"
+  :tables (list 
+   (semanticdb-table "rudel-wave.el"
+    :major-mode 'emacs-lisp-mode
+    :tags '(("rudel-backend" include nil nil [1040 1064]) ("rudel-protocol" include nil nil [1065 1090]) ("rudel-wave-version" variable (:constant-flag t :default-value (quote (0 1))) nil [1112 1191]) ("rudel-wave-backend" type (:typemodifiers ("\"Main class of the Rudel Wave backend. Creates wave client
+connections.\"") :superclasses "rudel-protocol-backend" :members (("capabilities" variable (:default-value "(quote (join chat track-subscriptions))") nil nil)) :type "class") nil [1243 1450]) ("initialize-instance" function (:parent "rudel-wave-backend" :arguments ("this" "&rest" "slots")) nil [1452 1655]) ("rudel-add-backend" code nil nil [1694 1782]) ("rudel-wave" package nil nil [1784 1805]))
+    :file "rudel-wave.el"
+    :pointmax 1834
+    )
+   )
+  :file "semantic.cache"
+  :semantic-tag-version "2.0beta3"
+  :semanticdb-version "2.0beta3"
+  )

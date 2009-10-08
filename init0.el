@@ -23,12 +23,15 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 
 ;; Adding support for CEDET
-(add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/common")
-(load-file "~/wallemacs/cedet-1.0beta3b/common/cedet.el")
+;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/common")
+;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/eieio")
+;; (load-file "~/wallemacs/cedet-1.0beta3b/common/cedet.el")
+(add-to-list 'load-path "~/wallemacs/cedet/common")
+(add-to-list 'load-path "~/wallemacs/cedet/eieio")
+(load-file "~/wallemacs/cedet/common/cedet.el")
 ;; (semantic-load-enable-code-helpers)
 ;; (setq semantic-load-turn-useful-things-on t)
-;; (setq semanticdb-project-roots
-;;       (list "/home/mariko/proyectos/dev/" ))
+;; (setq semanticdb-project-roots (list "/home/waldemarpc/proyectos/dev/" ))
 
 ;; Lo del js2, quiero poner el auto-complete tambien...
 (autoload 'js2-mode "js2" nil t)
@@ -389,5 +392,12 @@
 
 ;; quiero poner hasta abajo lo de cada una de mism global set keys mejor pero luego...
 
+;; quiero poner lo del modo cooperativo de emacs...
+(add-to-list 'load-path "~/wallemacs/rudel/")
+(add-to-list 'load-path "~/wallemacs/rudel/jupiter/")
+(add-to-list 'load-path "~/wallemacs/rudel/obby/")
+(add-to-list 'load-path "~/wallemacs/rudel/telepathy/")
+(add-to-list 'load-path "~/wallemacs/rudel/wave/")
+(add-to-list 'load-path "~/wallemacs/rudel/zeroconf/")
 
-
+(load-file "~/wallemacs/rudel/rudel-loaddefs.el")
