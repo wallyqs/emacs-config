@@ -401,3 +401,8 @@
 (add-to-list 'load-path "~/wallemacs/rudel/zeroconf/")
 
 (load-file "~/wallemacs/rudel/rudel-loaddefs.el")
+
+;; no se por que tengo que hacer esto 2 veces...
+(global-rudel-minor-mode)
+(global-rudel-minor-mode)
+
