@@ -14,6 +14,16 @@
 (eval-after-load 'rudel
   '(progn (global-rudel-minor-mode)
           (require 'rudel-obby)
-          (require 'rudel-zeroconf)))
+          (require 'rudel-zeroconf)
+	  (require 'rudel-speedbar)
+	  (require 'rudel-operations)
+	  (require 'rudel-protocol)
+	  (require 'rudel-icons)
+	  (require 'rudel)
+	  (require 'rudel-tls)
+	  (require 'rudel-transport)
+	  (require 'rudel-util)
+	  (require 'rudel-obby-util)
+	  ))
 
 (provide 'rudel-loaddefs)

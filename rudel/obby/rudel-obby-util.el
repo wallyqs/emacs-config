@@ -303,8 +303,9 @@ coding-system."
 			   (string-to-number string 16))
 			 (split-string ,var " " t)))
 		      ;; Coding System
-		      (coding-system
-		       `(coding-system-from-name (downcase ,var)))))))
+		      ;; (coding-system
+		      ;; 		       `(coding-system-from-name (downcase ,var)))
+		      ))))
 	  specs)))
     `(let (,@bindings)
        ,@forms))
