@@ -406,3 +406,29 @@
 (global-rudel-minor-mode)
 (global-rudel-minor-mode)
 
+
+;; no va a ser para siempre pero aqui le pongo lo del ampl-mode de cualquier forma...
+;; AMPL MODE --------------------------------------------------------------------------------
+(add-to-list 'auto-mode-alist '("\\.mod$" . ampl-mode))
+(add-to-list 'auto-mode-alist '("\\.dat$" . ampl-mode))
+(add-to-list 'auto-mode-alist '("\\.ampl$" . ampl-mode))
+
+(setq interpreter-mode-alist
+      (cons '("ampl" . ampl-mode)
+            interpreter-mode-alist))
+
+(require 'ampl-mode)
+;; (load "ampl-mode")
+
+;; Enable syntax coloring
+;; (add-hook 'ampl-mode-hook 'turn-on-font-lock)
+
+;; If you find parenthesis matching a nuisance, turn it off by
+;; removing the leading semi-colons on the following lines:
+
+;(setq ampl-auto-close-parenthesis nil)
+;(setq ampl-auto-close-brackets nil)
+;(setq ampl-auto-close-curlies nil)
+;(setq ampl-auto-close-double-quote nil)
+;(setq ampl-auto-close-single-quote nil)
+;; end AMPL MODE --------------------------------------------------------------------------------

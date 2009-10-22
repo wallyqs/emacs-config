@@ -21,32 +21,16 @@
   "Esta funcion me debe de dar el index de los essays que tengo en total
 y ponerme la lista parseada en un buffer que se llame. *essays index*"
   (interactive)
-  (let ((url-request-method "GET"))
-    (url-retrieve "http://127.0.0.1:3000/essays.xml" 'my-switch-to-url-buffer))
-  )
-
-
-(defun twit-set-auth (user pass)
-  "Set the http url authentication string from USER and PASS."
   (let (
-        (old-http-storage          (assoc "localhost:80"  (symbol-value url-basic-auth-storage)))
-        (old-https-storage         (assoc "localhost:443" (symbol-value url-basic-auth-storage)))
-        ;; (auth-pair                 (cons "Twitter API"      (base64-encode-string (format "%s:%s" user pass))))
-        (auth-pair                 (cons "Twitter API"      (base64-encode-string (format "%s:%s" "admin" "admin"))))
+        (url-request-method "GET")
+        (url-request-extra-headers '(("Content-Type" . "application/xml")))
         )
-    (when old-http-storage   (set url-basic-auth-storage    (delete old-http-storage  (symbol-value url-basic-auth-storage))))
-    (when old-https-storage  (set url-basic-auth-storage    (delete old-https-storage (symbol-value url-basic-auth-storage))))
-    (set url-basic-auth-storage
-         (cons (list "localhost:443" auth-pair)
-               (cons (list "localhost:80" auth-pair)
-                     (symbol-value url-basic-auth-storage)))))
+    
+    (url-retrieve "http://localhost:3000/essays.xml" 'my-switch-to-url-buffer))
   )
+;; (wally-login-index-essays)
 
-
-
-
-
-
+;; debo de lograr loggearmeeeeeeeeeee!!!!!!!!!!!!!!!!!!
 
 ;;  --------------------------- to-be-done functions  ------------------------------------------------------
 ;; ---------------------------------------------------------------------------------------------------------
