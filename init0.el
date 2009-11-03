@@ -55,12 +55,6 @@
              ))
 ;;;;;;;;;;;;;;;;;;;ALGUNOS BINDINGS LOCOS;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (kbd "<C-tab>") 'dabbrev-expand)
-(global-set-key "\C-c\C-p" 'sgml-tag)
-(global-set-key "\C-c\C-o" 'shrink-window)
-(global-set-key "\C-c\C-k" 'copy-region-as-kill)
-(global-set-key "\C-c\C-v" 'x-clipboard-yank)
-
 ;; hacer que no se atore con esto cuando no estoy en window mode
 (show-paren-mode t)
 (ido-mode t)
@@ -85,7 +79,7 @@
 (load-file "~/wallemacs/site-lisp/color-theme-hober2.el")
 (load-file "~/wallemacs/site-lisp/color-theme-subdued.el")
 (load-file "~/wallemacs/site-lisp/color-theme-less.el")
-(load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
+;; (load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Soporte para el GIT y SVN;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'git)
@@ -96,24 +90,6 @@
 ;; (require 'git-emacs)                    ;no funciona en todos los emacs
 (require 'magit)
 
-
-;; DEDICATED KEYS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key [?\C--] 'hippie-expand)
-(global-set-key (kbd "<f1>") 'copy-region-as-kill)
-(global-set-key (kbd "<f2>") 'ido-switch-buffer)
-;; (global-set-key (kbd "<f3>") 'find-file-other-window)
-(global-set-key (kbd "<S-f3>") 'find-file-other-frame)
-(global-set-key (kbd "<f4>") 'speedbar)
-(global-set-key (kbd "<C-f4>")  'sr-speedbar-open)
-(global-set-key (kbd "<f5>") 'replace-regexp)
-(global-set-key (kbd "<f6>") 'replace-string)
-(global-set-key (kbd "<f7>") 'regexp-builder)
-(global-set-key (kbd "<C-f7>") 'twit-post-region)
-(global-set-key (kbd "<f8>") 'toggle-truncate-lines)
-(global-set-key (kbd "<C-f9>") 'menu-bar-mode)
-(global-set-key (kbd "<f10>") 'linum-mode)
-(global-set-key (kbd "<f11>") 'make-frame-command)
-
 ;; COSAS PARA EL TWIT MODE
 ;; (load-file "~/wallemacs/site-lisp/twit.el")
 ;; (twit-minor-mode)
@@ -122,20 +98,6 @@
 (autoload 'twitter-get-friends-timeline "twitter" nil t)
 (autoload 'twitter-status-edit "twitter" nil t)
 (add-hook 'twitter-status-edit-mode-hook 'longlines-mode)
-
-;; GLOBAL SET KEYS DE LOS SHIFTS
-(global-set-key (kbd "<S-f1>")  'twitter-get-friends-timeline)
-(global-set-key (kbd "<S-f2>")  'ido-switch-buffer-other-window)
-(global-set-key (kbd "<S-f4>")  'speedbar-update-contents)
-(global-set-key (kbd "<S-f8>")  'rails/console)
-(global-set-key (kbd "<C-f11>")  'undo)
-(global-set-key (kbd "<C-S-f2>")  'ido-switch-buffer-other-frame)
-(global-set-key (kbd "<S-f11>")  'text-scale-decrease)
-(global-set-key (kbd "<S-f12>")  'text-scale-increase)
-(global-set-key (kbd "<M-f12>")  'other-frame)
-
-;; para poder moverme en las ventanas
-(windmove-default-keybindings 'meta)
 
 ;; ;; el winner mode es para lo de C-c y left etc..
 (winner-mode t)
@@ -171,6 +133,7 @@
   (require 'auto-complete-flex)
   (require 'auto-complete-sql)
   (require 'auto-complete-semantic)
+  (require 'auto-complete-css)
 ;;;   (defvar ac-flex-sources '(ac-source-flex-keywords))
 
   ;; (ac-define-dictionary-source ac-source-testing
@@ -222,7 +185,11 @@
               ;; (setq ac-sources '(ac-source-semantic ac-source-words-in-buffer))
 	      (setq ac-omni-completion-sources '(("\\.\\=" ac-source-semantic)))
 	      ))
-  ;;
+  (add-hook 'css-mode-hook
+            (lambda ()
+              (setq ac-sources '(ac-source-css-keywords ac-source-yasnippet ac-source-words-in-buffer ))
+              ))
+
 ;;;   (add-hook 'ruby-mode-hook
 ;;;                (lambda ()
 ;;;                  (setq ac-omni-completion-sources '(("\\.\\=" ac-source-rcodetools)))))
@@ -230,7 +197,7 @@
 
 
 
-;; HASTA AQUI LA CONFIGURACION DEL AUTO-COMPLETE-MODE Y YASNIPPETS --------------------------------------------------
+;; HASTA AQUI LA CONFIGURACION DEL AUTO-COMPLETE-MODE Y YASNIPPETS ------------------------
 
 (defun hashRocket()  (interactive)  (insert " => "))
 (defun heart()  (interactive)  (insert "♥"))
@@ -255,13 +222,9 @@
 (fset 'wally-comment-indent-line
       [home ?\C-  ?\S-\C-e ?\M-\; ?\S-\C-a tab home])
 
-;; (global-set-key "\C-c\C-a" 'wally-comment-macro2)
-(global-set-key "\C-c\C-a" 'wally-comment-indent-line)
-(global-set-key "\C-c=" 'hashRocket)
 
 (fset 'wally-select-line-macro
       [?\C-a ?\C-  ?\C-e])
-(global-set-key "\C-c\C-e" 'wally-select-line-macro)
 
 ;; poniendo cosas para flex
 ;; (load-file "~/wallemacs/flex-dev-mode/fcsh-compile.el")
@@ -289,19 +252,31 @@
   (interactive)
   (message "Filete mignon listo!!!"))
 
-(global-set-key (kbd "<M-f11>")  'indent-whole-buffer)
-(global-set-key "\C-cw" 'kill-this-buffer)
-(global-set-key "\C-z" 'undo)
-(global-set-key "\C-cm" 'filetemignon)
-(global-set-key "\C-cs" 'wally-select-line)
-(global-set-key "\C-t" 'other-frame)
 
 (fset 'choche-magical-quotes
       "\C-w\"\C-y")
-(global-set-key "\C-cl" 'choche-magical-quotes)
+
 
 (fset 'choche-start-mysql
       [?\M-x ?s ?q ?l ?- ?m ?s ?q backspace backspace ?y ?s ?q ?l return ?r ?o ?o ?t return ?i ?n ?o ?v ?a ?z ?0 ?8 return return ?l ?o ?c ?a ?l ?h ?o ?s ?t return])
+
+
+(defun swap-windows ()
+ "If you have 2 windows, it swaps them."
+ (interactive)
+ (cond ((not (= (count-windows) 2)) (message "You need exactly 2 windows to do this."))
+       (t
+        (let* ((w1 (first (window-list)))
+               (w2 (second (window-list)))
+               (b1 (window-buffer w1))
+               (b2 (window-buffer w2))
+               (s1 (window-start w1))
+               (s2 (window-start w2)))
+          (set-window-buffer w1 b2)
+          (set-window-buffer w2 b1)
+          (set-window-start w1 s2)
+          (set-window-start w2 s1)))))
+
 ;; (fset 'wally-start-mysql
 ;;    [?\M-x ?s ?q ?l ?- ?m ?y ?s ?q ?l return ?r ?o ?o ?t return ?i ?n ?o ?v ?a ?z ?0 ?8 return return ?l ?o ?c ?a ?l ?h ?o ?s ?t return ?\M-x ?s ?q ?l ?- ?m ?o ?d ?e return])
 ;; (defun wally-start-mysql()
@@ -309,10 +284,6 @@
 ;;   (choche-start-mysql)
 ;;   (sql-mode))
 
-(global-set-key (kbd "<C-f3>")  'rgrep)
-(global-set-key (kbd "<C-f2>")  'choche-start-mysql)
-;; (global-set-key (kbd "<C-f2>")  'wally-start-mysql)
-(global-set-key (kbd "<C-f1>")  'rails/goto-associated)
 
 ;; blank-mode
 (require 'blank-mode)
@@ -368,14 +339,7 @@
                                         ; anthy.el をロードする。
 (load-library "anthy")
                                         ; japanese-anthy をデフォルトの input-method にする。
-(setq default-input-method "japanese-anthy")
-
-(global-set-key (kbd "<C-f10>")  'dame-shell)
-(global-set-key (kbd "<f12>")  'anthy-mode)
-
-;;  RGREP
-(global-set-key (kbd "<M-prior>") 'previous-error)
-(global-set-key (kbd "<M-next>")  'next-error)
+;; (setq default-input-method "japanese-anthy")
 
 (defun wally-alpha()
   (interactive)
@@ -389,10 +353,7 @@
 ;; pienso. bye bye twitter
 ;; (load-file "~/wallemacs/borges-el/essayWARICHO.el")
 
-
-;; quiero poner hasta abajo lo de cada una de mism global set keys mejor pero luego...
-
-;; quiero poner lo del modo cooperativo de emacs...
+;; RUDEL ------------------------------------------------------------------------
 (add-to-list 'load-path "~/wallemacs/rudel/")
 (add-to-list 'load-path "~/wallemacs/rudel/jupiter/")
 (add-to-list 'load-path "~/wallemacs/rudel/obby/")
@@ -406,8 +367,6 @@
 (global-rudel-minor-mode)
 (global-rudel-minor-mode)
 
-
-;; no va a ser para siempre pero aqui le pongo lo del ampl-mode de cualquier forma...
 ;; AMPL MODE --------------------------------------------------------------------------------
 (add-to-list 'auto-mode-alist '("\\.mod$" . ampl-mode))
 (add-to-list 'auto-mode-alist '("\\.dat$" . ampl-mode))
@@ -431,4 +390,72 @@
 ;(setq ampl-auto-close-curlies nil)
 ;(setq ampl-auto-close-double-quote nil)
 ;(setq ampl-auto-close-single-quote nil)
-;; end AMPL MODE --------------------------------------------------------------------------------
+;; end AMPL MODE ------------------------------------------------------------------------
+
+
+;; CSS MODE COLORS ----------------------------------------------------------------------
+(defvar hexcolour-keywords
+    '(("#[abcdef[:digit:]]\\{6\\}"
+       (0 (put-text-property
+           (match-beginning 0)
+           (match-end 0)
+           'face (list :background 
+                       (match-string-no-properties 0)))))))
+  
+  (defun hexcolour-add-to-font-lock ()
+    (font-lock-add-keywords nil hexcolour-keywords))
+  
+  (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
+
+
+;; DEDICATED KEYS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key [?\C--] 'hippie-expand)
+(global-set-key (kbd "<f1>") 'copy-region-as-kill)
+(global-set-key (kbd "<f2>") 'ido-switch-buffer)
+;; (global-set-key (kbd "<f3>") 'find-file-other-window)
+(global-set-key (kbd "<S-f3>") 'find-file-other-frame)
+(global-set-key (kbd "<f4>") 'speedbar)
+(global-set-key (kbd "<C-f4>")  'sr-speedbar-open)
+(global-set-key (kbd "<f5>") 'replace-regexp)
+(global-set-key (kbd "<f6>") 'replace-string)
+(global-set-key (kbd "<f7>") 'regexp-builder)
+(global-set-key (kbd "<C-f7>") 'twit-post-region)
+(global-set-key (kbd "<f8>") 'toggle-truncate-lines)
+(global-set-key (kbd "<C-f9>") 'menu-bar-mode)
+(global-set-key (kbd "<f10>") 'linum-mode)
+(global-set-key (kbd "<f11>") 'make-frame-command)
+(global-set-key (kbd "<C-tab>") 'dabbrev-expand)
+(global-set-key "\C-c\C-p" 'sgml-tag)
+(global-set-key "\C-c\C-o" 'shrink-window)
+(global-set-key "\C-c\C-k" 'copy-region-as-kill)
+(global-set-key "\C-c\C-v" 'x-clipboard-yank)
+(global-set-key (kbd "<C-f10>")  'dame-shell)
+(global-set-key (kbd "<f12>")  'anthy-mode)
+(global-set-key (kbd "<M-prior>") 'previous-error)
+(global-set-key (kbd "<M-next>")  'next-error)
+(global-set-key (kbd "<C-f3>")  'rgrep)
+(global-set-key (kbd "<C-f2>")  'choche-start-mysql)
+;; (global-set-key (kbd "<C-f2>")  'wally-start-mysql)
+(global-set-key (kbd "<C-f1>")  'rails/goto-associated)
+(global-set-key (kbd "<S-f1>")  'twitter-get-friends-timeline)
+(global-set-key (kbd "<S-f2>")  'ido-switch-buffer-other-window)
+(global-set-key (kbd "<S-f4>")  'speedbar-update-contents)
+(global-set-key (kbd "<S-f8>")  'rails/console)
+(global-set-key (kbd "<C-f11>")  'undo)
+(global-set-key (kbd "<C-S-f2>")  'ido-switch-buffer-other-frame)
+(global-set-key (kbd "<S-f11>")  'text-scale-decrease)
+(global-set-key (kbd "<S-f12>")  'text-scale-increase)
+(global-set-key (kbd "<M-f12>")  'other-frame)
+(windmove-default-keybindings 'meta)
+;; (global-set-key "\C-c\C-a" 'wally-comment-macro2)
+(global-set-key "\C-c\C-a" 'wally-comment-indent-line)
+(global-set-key "\C-c=" 'hashRocket)
+(global-set-key "\C-c\C-e" 'wally-select-line-macro)
+(global-set-key (kbd "<M-f11>")  'indent-whole-buffer)
+(global-set-key "\C-cw" 'kill-this-buffer)
+(global-set-key "\C-z" 'undo)
+(global-set-key "\C-cm" 'filetemignon)
+(global-set-key "\C-cs" 'wally-select-line)
+(global-set-key "\C-t" 'other-frame)
+(global-set-key "\C-cl" 'choche-magical-quotes)
+(global-set-key "\M-2" 'swap-windows)

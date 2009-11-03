@@ -1,20 +1,21 @@
-;http://kaede.blog.abk.nu/sakura-css
+                                        ;http://kaede.blog.abk.nu/sakura-css
+;; (defvar ac-css-sources
+;;   '(ac-source-css-keywords))
 
-(defvar ac-css-sources
-  '(ac-source-css-keywords))
+;; (defun ac-css-prefix ()
+;;   (or (and (looking-back "#[0-9a-ZA-Z]+")
+;;            (match-beginning 0))
+;;       (ac-sources-prefix-default)))
 
-(defun ac-css-prefix ()
-  (or (and (looking-back "#[0-9a-ZA-Z]+")
-           (match-beginning 0))
-      (ac-sources-prefix-default)))
+;; (defun ac-css-setup ()
+;;   (make-local-variable 'ac-sources-prefix-function)
+;;   (setq ac-sources-prefix-function 'ac-css-prefix)
+;;   (setq ac-sources (append ac-css-sources ac-sources)))
 
-(defun ac-css-setup ()
-  (make-local-variable 'ac-sources-prefix-function)
-  (setq ac-sources-prefix-function 'ac-css-prefix)
-  (setq ac-sources (append ac-css-sources ac-sources)))
+;; (defun ac-css-init ()
+;;   (add-hook 'css-mode-hook 'ac-css-setup))
 
-(defun ac-css-init ()
-  (add-hook 'css-mode-hook 'ac-css-setup))
+(require 'auto-complete)
 
 (ac-define-dictionary-source
  ac-source-css-keywords
@@ -1204,5 +1205,5 @@
    "z"
    "z-index"
    "zero"))
-          
+
 (provide 'auto-complete-css)
