@@ -55,8 +55,11 @@
 (require 'oauth)
 (require 'image-file)
 
-(defvar yammer-consumer-key "skrSNtKjXO0sueSA8IRiNg")
-(defvar yammer-consumer-secret "CIWsqH9iqjNGACLPbMk9AccjrBuSk3bi5st7Jd0")
+;; (defvar yammer-consumer-key "skrSNtKjXO0sueSA8IRiNg")
+;; (defvar yammer-consumer-secret "CIWsqH9iqjNGACLPbMk9AccjrBuSk3bi5st7Jd0")
+
+(defvar yammer-consumer-key nil)
+(defvar yammer-consumer-secret nil)
 
 (defvar yammer-request-url "https://www.yammer.com/oauth/request_token")
 (defvar yammer-access-url  "https://www.yammer.com/oauth/access_token") 
