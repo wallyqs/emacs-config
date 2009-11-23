@@ -71,5 +71,5 @@ This covers inlined style and script for mxml."
                   mumamo-chunk-inlined-javascript
                   )))
  
-(add-to-list 'auto-mode-alist '("\\.html\\'" . html-ecmascript-mumamo-mode))
+;; (add-to-list 'auto-mode-alist '("\\.html\\'" . html-ecmascript-mumamo-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.as\\'" . actionscript-mode))

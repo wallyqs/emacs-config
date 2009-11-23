@@ -63,7 +63,10 @@
 (put 'upcase-region 'disabled nil)
 
 ;;;;;;;;;;;;;;;;;;;;;DE NUEVO ALGO PARA LAS FONTS;;;;;;;;;;;;;;;;;;;;;;;
-(set-default-font "-unknown-inconsolata-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+;; (set-default-font "-unknown-inconsolata-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+;; (set-default-font "-bitstream-Bitstream Vera Sans Mono-bold-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+(set-default-font "-bitstream-Bitstream Vera Sans Mono-bold-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+
 
 ;;;;COLOR THEMES;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/wallemacs/emacs-rails-kit/vendor/color-theme")
@@ -79,7 +82,7 @@
 (load-file "~/wallemacs/site-lisp/color-theme-hober2.el")
 (load-file "~/wallemacs/site-lisp/color-theme-subdued.el")
 (load-file "~/wallemacs/site-lisp/color-theme-less.el")
-;; (load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
+(load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Soporte para el GIT y SVN;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'git)
@@ -332,7 +335,8 @@
 
 
 ;; Adding anthy package...
-(set-language-environment "Japanese")
+;; (set-language-environment "Japanese")
+(set-language-environment "UTF-8")
                                         ; anthy.el をロードできるようにする (必要に応じて)。
 ;; (push "/usr/local/share/emacs/site-lisp/anthy/" load-path)
 (add-to-list 'load-path "~/wallemacs/site-lisp/anthy/")
@@ -406,6 +410,9 @@
     (font-lock-add-keywords nil hexcolour-keywords))
   
   (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
+
+;; adding filladapt-mode
+(require 'filladapt)
 
 
 ;; DEDICATED KEYS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
