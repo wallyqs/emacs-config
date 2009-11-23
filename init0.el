@@ -471,3 +471,8 @@
 
 ;; para que el speedbar ya no se actualice
 (speedbar-disable-update)
+
+;; ya ni modo le voy a poner php de nuevo
+;; (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(require 'php-mode)
+(add-to-list 'auto-mode-alist '("\\.php$" . mumamo-alias-html-mumamo-mode))
