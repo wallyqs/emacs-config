@@ -356,6 +356,9 @@
 ;; por el momento si voy a estar haciendo pushes a waricho de lo que
 ;; pienso. bye bye twitter
 ;; (load-file "~/wallemacs/borges-el/essayWARICHO.el")
+;; Supporting my own writing interface: Borges
+(add-to-list 'load-path "~/wallemacs/borges-el/")
+(require 'essay)
 
 ;; RUDEL ------------------------------------------------------------------------
 (add-to-list 'load-path "~/wallemacs/rudel/")
