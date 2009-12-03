@@ -1,13 +1,14 @@
 (defun color-theme-nightingale ()
-  "Color theme by Altxwally, port from http://www.winterdom.com/weblog/2007/09/11/NightingaleAVS2005ColorScheme.aspx. Created 2009-03-05"
+  "Color theme by invertedplate, port from http://www.winterdom.com/weblog/2007/09/11/NightingaleAVS2005ColorScheme.aspx. Created 2009-03-05"
   (interactive)
   (color-theme-install
    '(color-theme-nightingale
-     ((background-color . "gray20")
+     ((background-color . "gray5")
       (background-mode . dark)
       (border-color . "black")
       (cursor-color . "gray20")
-      (foreground-color . "#C7D4E2")
+      ;; (foreground-color . "#C7D4E2")
+      (foreground-color . "#FFFFFF")
       (mouse-color . "sienna1"))
      (default ((t (:background "black" :foreground "#FEF1A9"))))
      (blue ((t (:foreground "blue"))))
