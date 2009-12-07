@@ -3,17 +3,25 @@
 ;;
 ;;  * Essay posting, reading and editing
 ;;  * Authorization
-;; 
-;; TODO: Se deben de poder parsear cierto tipo de META-DATOS COMO LO HACE EL WEBLOGGER. Por ejemplo,
-;; 
-;; (1) sea posible decirle cual es el titulo del archivo. El cual puede o no llamarse como un numero.
+;;
+;; TODO: Se deben de poder parsear cierto tipo de META-DATOS COMO LO HACE EL WEBLOGGER. Por ejemplo:
+;;
+;; (1) Sea posible decirle cual es el titulo del archivo. El cual puede o no llamarse como un numero.
 ;; El titulo que define autor se le podra hacer GET asi: nuevo-titulo-autor.
 ;; Que pasa si no le quiere poner titulo? Luego.
-;; 
+;;
 ;; (2) Otro approach es que el titulo del ensayo sea el nombre del archivo.
 ;; Si ya existe un essay con ese nombre entonces lo crea como otra version. ~/essays/nuevo-titulo-autor-2
 ;; Hacer dos funciones para los tipos de approaches.
 ;; Quiero hacer un quick login de fallback
+;;
+;; (3) Necesito de una funcion para crear un nuevo post sin tener que tomar el
+;; nombre del buffer. wally-new-essay por ejemplo
+;;
+;; (4) Quiero que cuando no hecho login y creo un essay me pida que me loggee.
+;; Esto lo voy a hacer hasta que reciba un OK creo...
+;; 
+;; 
 ;; 
 ;; 4 de Septiembre del 2009
 ;; -------------------------------------  new development area -----------------------------------
@@ -22,9 +30,15 @@
 ;; opciones que quiero ya por default.
 
 
+;; CURRENT HACK
+;; poniendole el parametro de is_private a los posts que se hacen.
+
+
 (require 'url)
 (require 'xml)
 (require 'url-http)
+
+
 
 (defun wally-quick-login ()
   "Esta funcion me debe de dar el index de los essays que tengo en total
@@ -44,6 +58,54 @@ y ponerme la lista parseada en un buffer que se llame. *essays index*"
                   (lambda (status)
                     (kill-buffer (current-buffer)))
                   )))
+
+
+(defun wally-new-essay ()
+  "Funcion que te crea una buffer con el modo de textile, le hace push,
+y le pone como default que es privado.
+El buffer es en realidad un draft. En el response del create, voy a recibir
+el DRAFT ID el cual voy a usar para hacerle push. Supongo que voy a tener una ruta
+que se llama essays/drafts.
+Pero eso es en el futuro, ahorita lo unico que
+quiero es que me de un buffer al cual yo le pueda poner nombre.
+"
+  (interactive)
+  (let* (
+         (title (read-string "Name: "))
+         )
+    (get-buffer-create title)
+    (set-buffer title)
+    (textile-mode)
+    (set-window-buffer (selected-window) title)
+    (local-set-key "\C-cs" 'wally-create-essay-buffer-name)
+    )                                   ;end of let
+  )
+
+(defun wally-change-privacy ()
+  "Funcion para cambiar si un essay es privado o no"
+  (interactive)
+  (let* (
+         (url-request-method "PUT")
+         (url-request-extra-headers '(("Content-Type" . "application/xml")))
+         (essay-title (read-string "De cual?: "))
+         (url-request-data
+          (encode-coding-string (concat "<essay>"
+                                        "<title>"
+                                        essay-title
+                                        "</title>"
+                                        "<is-private>"
+					;; Quiero que esta parte diga yes or no
+                                        (read-string "is private? (true or false)") 
+                                        "</is-private>"
+                                        "</essay>" ) 'utf-8 )
+          )
+         )                              ;end of varlist
+    (url-retrieve 
+     (concat "http://127.0.0.1:3000/essays/"
+	     essay-title
+	     ".xml")
+     'my-kill-url-buffer)
+    ))
 
 (defun wally-create-essay-with-title()
   "Funcion que crea un ensayo haciendo un post de todo lo que esta en el buffer."
@@ -193,7 +255,7 @@ Es el analogo al edit, de hecho se deberia de llamar edit-essay-with-title"
       (concat "http://127.0.0.1:3000/essays/"
               (read-from-minibuffer "Which one? (id number)")
               ".xml")                   ; finished concatenating
-      )					; end of url-retrieval
+      )                                 ; end of url-retrieval
      )                                  ; buffer created
     )                                   ; end of let
   )
@@ -354,9 +416,6 @@ y ponerme la lista parseada en un buffer que se llame. *essays index*"
 
 
 ;; SUPPORT FUNCTIONS. CALLBACKS UTILS 日本語のテキスト -----------------------------------------------------
-;; もう終わったfunctionがバーファにkillする。
-;; そして、もう日本語でちゃんた機能している。でももしxmlヘーダが現れたら、
-;; やっぱりFAILになる。すみません、日本語良くなくて…
 (defun my-kill-url-buffer (status)
   "Kill the buffer returned by `url-retrieve'."
   (kill-buffer (current-buffer)))
