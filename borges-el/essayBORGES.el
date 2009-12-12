@@ -260,6 +260,7 @@ Es el analogo al edit, de hecho se deberia de llamar edit-essay-with-title"
     )                                   ; end of let
   )
 
+;; HAY UN PROBLEMA CUANDO ESTA VACIO EL CONTENT DEL ENSAYO...
 (defun wally-response-create-buffer2 (response-buffer)
   "Parse the response and append it into a buffer. Crea un
 nuevo buffer *essay* en donde se encuentra lo que parseo"
@@ -274,7 +275,7 @@ nuevo buffer *essay* en donde se encuentra lo que parseo"
               (buffer-substring-no-properties (point) (point-max)) ; lo de adentro
               ))                                                   ; end of when
 
-      (kill-buffer response-buffer)     ;elimina el buffer de la response
+      ;; (kill-buffer response-buffer)     ;elimina el buffer de la response
       ) ;fin current-buffer
 
     ;; parse the xml string in a temporal buffer

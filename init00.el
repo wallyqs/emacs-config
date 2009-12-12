@@ -63,7 +63,8 @@
 (put 'upcase-region 'disabled nil)
 
 ;;;;;;;;;;;;;;;;;;;;;DE NUEVO ALGO PARA LAS FONTS;;;;;;;;;;;;;;;;;;;;;;;
-(set-default-font "-unknown-inconsolata-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+;; (set-default-font "-unknown-inconsolata-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+(set-default-font "-unknown-VL Gothic-normal-normal-normal-*-14-*-*-*-*-0-iso10646-1")
 ;; (set-default-font "-bitstream-Bitstream Vera Sans Mono-bold-normal-normal-*-14-*-*-*-m-0-iso10646-1")
 ;; (set-default-font "-bitstream-Bitstream Vera Sans Mono-bold-normal-normal-*-14-*-*-*-m-0-iso10646-1")
 
@@ -95,6 +96,7 @@
 
 ;; COSAS PARA EL TWIT MODE
 ;; (load-file "~/wallemacs/site-lisp/twit.el")
+(require 'twit)
 ;; (twit-minor-mode)
 
 ;; aqui le voy a poner lo del twitter.el
@@ -369,7 +371,8 @@
 ;; (load-file "~/wallemacs/borges-el/essayWARICHO.el")
 ;; Supporting my own writing interface: Borges
 (add-to-list 'load-path "~/wallemacs/borges-el/")
-(require 'essay)
+(load-file "~/wallemacs/borges-el/essayBORGES.el")
+;; (require 'essay)
 
 ;; RUDEL ------------------------------------------------------------------------
 (add-to-list 'load-path "~/wallemacs/rudel/")
@@ -427,6 +430,9 @@
 
 ;; adding filladapt-mode
 (require 'filladapt)
+
+(setq x-select-enable-clipboard t)
+(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 
 ;; DEDICATED KEYS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
