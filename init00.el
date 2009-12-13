@@ -96,7 +96,7 @@
 
 ;; COSAS PARA EL TWIT MODE
 ;; (load-file "~/wallemacs/site-lisp/twit.el")
-(require 'twit)
+;; (require 'twit)
 ;; (twit-minor-mode)
 
 ;; aqui le voy a poner lo del twitter.el
@@ -216,7 +216,7 @@
 ;; HASTA AQUI LA CONFIGURACION DEL AUTO-COMPLETE-MODE Y YASNIPPETS ------------------------
 
 (defun hashRocket()  (interactive)  (insert " => "))
-(defun heart()  (interactive)  (insert "♥"))
+(defun heart()  (interactive)  (insert "?"))
 
 (defun indent-whole-buffer()
   "indent whole buffer"
@@ -314,7 +314,11 @@
 
 ;; para el nombre de los buffers
 (require 'uniquify)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+(setq 
+  uniquify-buffer-name-style 'post-forward
+  uniquify-separator ":")
+
 (require 'dame-shell)
 (require 'textile-mode)
 (add-to-list 'auto-mode-alist '("\\.textile$" . textile-mode))
@@ -496,3 +500,19 @@
 ;; (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 (require 'php-mode)
 (add-to-list 'auto-mode-alist '("\\.php$" . mumamo-alias-html-mumamo-mode))
+
+
+(defun wally-fix-font()
+  (interactive)
+  (set-default-font "-unknown-VL Gothic-normal-normal-normal-*-14-*-*-*-*-0-iso10646-1")
+  )
+
+;; NICE SCROLLING!!!
+(setq
+  scroll-margin 0                  
+  scroll-conservatively 100000
+  scroll-preserve-screen-position 1)
+
+;; deberia de hacer el buffer readonly
+(require 'hacker-news)
+(global-set-key (kbd "<S-f2>")  'donde-esta-hacker-news)
