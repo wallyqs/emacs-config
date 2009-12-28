@@ -17,8 +17,8 @@
   (interactive)
   (let ((url-request-method "GET"))
     (url-retrieve
-     "http://127.0.0.1/classic"
-     ;; "http://news.ycombinator.com/classic"
+     ;; "http://127.0.0.1/classic"
+     "http://news.ycombinator.com/classic"
      '(lambda (status)
         (with-current-buffer (current-buffer)
           ;; PRINCIPIO DE LOS TITLE, deberia de ser el primer td con class title
@@ -112,14 +112,14 @@
                                           title-comments-count-start
                                           title-comments-count-end))
 
-              (message "%s %s \n %s %s %s \n Comentarios:%s"
-                       titulo
-                       title-link
-                       title-points
-                       title-id
-                       title-user
-                       title-comments-count
-                       )
+              ;; (message "%s %s \n %s %s %s \n Comentarios:%s"
+              ;;          titulo
+              ;;          title-link
+              ;;          title-points
+              ;;          title-id
+              ;;          title-user
+              ;;          title-comments-count
+              ;;          )
 
               ;; QUIERO METER ESA INFORMACION EN UN HASH
               ;; hacer un hash del titulo para que no haya INFORMACION
@@ -136,7 +136,7 @@
             )
           )
         (kill-buffer (current-buffer))
-        (pp hashy)
+        ;; (pp hashy)
 
         (get-buffer-create "*Hacker News*")
         (set-buffer "*Hacker News*")
