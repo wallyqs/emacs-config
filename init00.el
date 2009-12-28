@@ -515,4 +515,5 @@
 
 ;; deberia de hacer el buffer readonly
 (require 'hacker-news)
+
 (global-set-key (kbd "<S-f2>")  'donde-esta-hacker-news)
