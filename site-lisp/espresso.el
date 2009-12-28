@@ -43,8 +43,8 @@
 ;; load-path' for more info). Then add the following lines to your
 ;; Emacs initialization file:
 ;;
-;;    (add-to-list 'auto-mode-alist '("\\.js\\'" . espresso-mode))
-;;    (autoload 'espresso-mode "espresso" nil t)
+;;    (add-to-list 'auto-mode-alist '("\\.js\\'" . javascript-mode))
+;;    (autoload 'javascript-mode "espresso" nil t)
 ;;
 ;; After that, type M-x byte-compile-file and have Emacs byte-compile
 ;; this file. Performance is vastly better when this file is
@@ -435,8 +435,8 @@ with `\\\\_<' and `\\\\_>'."
 ;;; User Customization
 
 (defgroup espresso nil
-  "Customization variables for `espresso-mode'."
-  :tag "JavaScript - Espresso-Mode"
+  "Customization variables for `javascript-mode'."
+  :tag "JavaScript - Javascript-Mode"
   :group 'languages)
 
 (defcustom espresso-indent-level 4
@@ -469,7 +469,7 @@ function movement, marking, and so on."
   :group 'espresso)
 
 (defcustom espresso-enabled-frameworks espresso--available-frameworks
-  "Select which frameworks espresso-mode will recognize.
+  "Select which frameworks javascript-mode will recognize.
 
 Turn off some frameworks you seldom use to improve performance.
 The set of recognized frameworks can also be overriden on a
@@ -503,7 +503,7 @@ messages."
 
 ;;; KeyMap
 
-(defvar espresso-mode-map
+(defvar javascript-mode-map
   (let ((keymap (make-sparse-keymap)))
     (mapc (lambda (key)
             (define-key keymap key #'espresso-insert-and-indent))
@@ -525,7 +525,7 @@ messages."
       )
 
     keymap)
-  "Keymap for espresso-mode")
+  "Keymap for javascript-mode")
 
 (defun espresso-insert-and-indent (key)
   "Runs the command bound to KEY in the global keymap, and if
@@ -543,7 +543,7 @@ we're not in a string or comment, indents the current line."
 
 ;;; Syntax table and parsing
 
-(defvar espresso-mode-syntax-table
+(defvar javascript-mode-syntax-table
   (let ((table (make-syntax-table)))
     (c-populate-syntax-table table)
     (modify-syntax-entry ?$ "_" table)
@@ -2147,14 +2147,14 @@ its list of children."
 
 (defun espresso--get-all-known-symbols ()
   "Get a hash table of all relevant Javascript symbols across all
-espresso-mode buffers. Each key is the name of a symbol (possibly
+javascript-mode buffers. Each key is the name of a symbol (possibly
 disambiguated with <N>, where N > 1), and each value is a marker
 giving the location of that symbol."
   (loop with symbols = (make-hash-table :test 'equal)
         with imenu-use-markers = t
         for buffer being the buffers
         for imenu-index = (with-current-buffer buffer
-                            (when (eq major-mode 'espresso-mode)
+                            (when (eq major-mode 'javascript-mode)
                               (espresso--imenu-create-index)))
         do (espresso--imenu-to-flat imenu-index "" symbols)
         finally return symbols))
@@ -3319,17 +3319,17 @@ point"
 ;;; Main Function
 
 ;;;###autoload
-(defun espresso-mode ()
+(defun javascript-mode ()
   "Major mode for editing JavaScript source text.
 
 Key bindings:
 
-\\{espresso-mode-map}"
+\\{javascript-mode-map}"
   (interactive)
   (kill-all-local-variables)
 
-  (use-local-map espresso-mode-map)
-  (set-syntax-table espresso-mode-syntax-table)
+  (use-local-map javascript-mode-map)
+  (set-syntax-table javascript-mode-syntax-table)
 
   (set (make-local-variable 'indent-line-function) 'espresso-indent-line)
   (set (make-local-variable 'beginning-of-defun-function)
@@ -3366,7 +3366,7 @@ Key bindings:
   (set (make-local-variable 'imenu-create-index-function)
        #'espresso--imenu-create-index)
 
-  (setq major-mode 'espresso-mode)
+  (setq major-mode 'javascript-mode)
   (setq mode-name "Espresso")
 
   ;; for filling, pretend we're cc-mode
@@ -3397,17 +3397,17 @@ Key bindings:
   (let (font-lock-keywords) ; leaves syntactic keywords intact
     (font-lock-fontify-buffer))
 
-  (run-mode-hooks 'espresso-mode-hook))
+  (run-mode-hooks 'javascript-mode-hook))
 
 
 (eval-after-load 'hideshow
   '(add-to-list 'hs-special-modes-alist
-                '(espresso-mode "{" "}" "/[*/]"
+                '(javascript-mode "{" "}" "/[*/]"
                                 nil hs-c-like-adjust-block-beginning)))
 
 (eval-after-load 'folding
   '(when (fboundp 'folding-add-to-marks-list)
-     (folding-add-to-marks-list 'espresso-mode "// {{{" "// }}}" )))
+     (folding-add-to-marks-list 'javascript-mode "// {{{" "// }}}" )))
 
 (eval-after-load 'speedbar
   '(speedbar-add-supported-extension ".js"))
