@@ -84,6 +84,7 @@
 (load-file "~/wallemacs/site-lisp/color-theme-subdued.el")
 (load-file "~/wallemacs/site-lisp/color-theme-less.el")
 (load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
+(load-file "~/wallemacs/site-lisp/color-theme-topfunky.el")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Soporte para el GIT y SVN;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'git)
@@ -438,6 +439,18 @@
 (setq x-select-enable-clipboard t)
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
+;; ISPELL EN ESPANHOL?
+(defun wally-diccionario-es()
+    (interactive)
+    (ispell-change-dictionary "castellano")
+    (flyspell-buffer)
+    )
+
+;; (setq ispell-program-name "aspell" 
+;;       ;; ispell-extra-args '("--sug-mode=ultra")
+;;       )
+
+
 
 ;; DEDICATED KEYS;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key [?\C--] 'hippie-expand)
@@ -491,7 +504,7 @@
 (global-set-key "\C-t" 'other-frame)
 (global-set-key "\C-cl" 'choche-magical-quotes)
 (global-set-key "\M-2" 'swap-windows)
-
+(global-set-key (kbd "C-c N") 'wally-diccionario-es)
 
 ;; para que el speedbar ya no se actualice
 (speedbar-disable-update)
@@ -513,7 +526,53 @@
   scroll-conservatively 100000
   scroll-preserve-screen-position 1)
 
-;; deberia de hacer el buffer readonly
+;; DEBERIA DE HACER EL BUFFER READONLY
 (require 'hacker-news)
-
 (global-set-key (kbd "<S-f2>")  'donde-esta-hacker-news)
+
+(require 'paredit)
+
+;; PRETTY-LAMBDAS
+(defun pretty-lambdas ()
+  (interactive)
+  (font-lock-add-keywords
+   nil `(("(?\\(lambda\\>\\)"
+          (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                    ,(make-char 'greek-iso8859-7 107))
+                    nil))))))
+
+(defun untabify-buffer ()
+  (interactive)
+  (untabify (point-min) (point-max)))
+
+(defun cleanup-buffer ()
+  "Perform a bunch of operations on the whitespace content of a buffer."
+  (interactive)
+  (indent-whole-buffer)
+  (untabify-buffer)
+  (delete-trailing-whitespace))
+
+(defun lorem ()
+  "Insert a lorem ipsum."
+  (interactive)
+  (insert "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do "
+          "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim"
+          "ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut "
+          "aliquip ex ea commodo consequat. Duis aute irure dolor in "
+          "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla "
+          "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in "
+          "culpa qui officia deserunt mollit anim id est laborum."))
+
+(defun view-url ()
+  "Open a new buffer containing the contents of URL."
+  (interactive)
+  (let* ((default (thing-at-point-url-at-point))
+         (url (read-from-minibuffer "URL: " default)))
+    (switch-to-buffer (url-retrieve-synchronously url))
+    (rename-buffer url t)
+    ;; TODO: switch to nxml/nxhtml mode
+    (cond ((search-forward "<?xml" nil t) (xml-mode))
+          ((search-forward "<html" nil t) (html-mode)))))
+
+
+
