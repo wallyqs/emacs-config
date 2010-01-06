@@ -22,23 +22,7 @@
 (add-to-list 'load-path "~/wallemacs/site-lisp")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 
-;; Adding support for CEDET
-;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/common")
-;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/eieio")
-;; (load-file "~/wallemacs/cedet-1.0beta3b/common/cedet.el")
-(add-to-list 'load-path "~/wallemacs/cedet/common")
-(add-to-list 'load-path "~/wallemacs/cedet/eieio")
-(load-file "~/wallemacs/cedet/common/cedet.el")
-;; (semantic-load-enable-code-helpers)
-;; (setq semantic-load-turn-useful-things-on t)
-;; (setq semanticdb-project-roots (list "/home/waldemarpc/proyectos/dev/" ))
-
-;; Lo del js2, quiero poner el auto-complete tambien...
-(autoload 'js2-mode "js2" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-(autoload 'espresso-mode "espresso" nil t)
-;; (require 'javascript-mode)
-
+;; =================================================================================================
 ;; IMPORTANTISIMO PONER AL RUBY PRIMERO
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby files" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
@@ -141,78 +125,12 @@
 (yas/load-directory "~/wallemacs/yasnippet-new/extras/imported/rails-mode")
 ;; (yas/load-directory "~/wallemacs/yasnippet-new/extras/imported/html-mode")
 
-
+;; =================================================================================================
 (require 'auto-complete)
-;; (global-auto-complete-mode t)
 (when (require 'auto-complete nil t)
-  (require 'auto-complete-yasnippet)
-  (require 'auto-complete-emacs-lisp)
-  (require 'auto-complete-flex)
-  (require 'auto-complete-sql)
-  (require 'auto-complete-semantic)
-  (require 'auto-complete-css)
-;;;   (defvar ac-flex-sources '(ac-source-flex-keywords))
-
-  ;; (ac-define-dictionary-source ac-source-testing
-  ;;                                '("wallywwwwwwwwwww" "wallace" "walalcepalace" "parararar" "aaaaaaa" ))
-  ;; ;;
-                                        ;   (setq ac-sources  (append ac-flex-sources ac-sources))
-;;;   (setq ac-sources  (append ac-source-flex-keywords ac-sources))
-  ;; (defun ac-flex-init ()
-  ;;     (add-hook 'nxml-mode-hook 'ac-flex-setup))
-  (global-auto-complete-mode t)
-  (set-face-background 'ac-menu-face "lightgray")
-  (set-face-underline 'ac-menu-face "darkgray")
-  (set-face-background 'ac-selection-face "steelblue")
-  (define-key ac-complete-mode-map "\t" 'ac-expand)
-  (define-key ac-complete-mode-map "\r" 'ac-complete)
-  (define-key ac-complete-mode-map "\M-n" 'ac-next)
-  (define-key ac-complete-mode-map "\M-p" 'ac-previous)
-  ;; esto es para definir con cuantas letras se puede empezar a escribir
-  (setq ac-auto-start 1)
-  (setq ac-dwim t)
-  (set-default 'ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
-  (setq ac-modes
-        (append ac-modes
-                '(eshell-mode
-                  sql-mode
-                                        ;org-mode
-                  )))
-                                        ;(add-to-list 'ac-trigger-commands 'org-self-insert-command)
-  (add-hook 'emacs-lisp-mode-hook
-            (lambda ()
-              (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer ac-source-symbols))
-              (eldoc-mode)              ;para que se parezca a slime
-              ))
-  ;; DEFINIR LOS NUEVOS SOURCES PARA EL AUTOCOMPLETE AQUI!!!
-  (add-hook 'nxml-mode-hook
-            (lambda ()
-              (setq ac-sources '(ac-source-flex ac-source-yasnippet ac-source-words-in-buffer ))
-              (setq ac-omni-completion-sources '(("\\mx:\\=" ac-source-flex)))
-              ))
-  (add-hook 'eshell-mode-hook
-            (lambda ()
-              (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-files-in-current-dir ac-source-words-in-buffer))))
-  ;; hacer yasnippets para sql
-  (add-hook 'sql-mode-hook
-            (lambda ()
-              (setq ac-sources '(ac-source-sql ac-source-words-in-buffer))))
-  (add-hook 'c++-mode-hook
-            (lambda ()
-              ;; (setq ac-sources '(ac-source-semantic ac-source-words-in-buffer))
-	      (setq ac-omni-completion-sources '(("\\.\\=" ac-source-semantic)))
-	      ))
-  (add-hook 'css-mode-hook
-            (lambda ()
-              (setq ac-sources '(ac-source-css-keywords ac-source-yasnippet ac-source-words-in-buffer ))
-              ))
-
-;;;   (add-hook 'ruby-mode-hook
-;;;                (lambda ()
-;;;                  (setq ac-omni-completion-sources '(("\\.\\=" ac-source-rcodetools)))))
+  (load-file "~/wallemacs/auto-complete/auto-complete-config.el")
   )                                     ;fin del autocomplete
-
-
+;; =================================================================================================
 
 ;; HASTA AQUI LA CONFIGURACION DEL AUTO-COMPLETE-MODE Y YASNIPPETS ------------------------
 
@@ -379,19 +297,38 @@
 (load-file "~/wallemacs/borges-el/essayBORGES.el")
 ;; (require 'essay)
 
+
+;; ====== with CEDET ===============================================================
+;; NO LOS NECESITO MUCHO, TIENE COMO DEPENDENCIA CEDET 
+
+;; Adding support for CEDET
+;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/common")
+;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/eieio")
+;; (load-file "~/wallemacs/cedet-1.0beta3b/common/cedet.el")
+
+;; CASI NUNCA LOS USO, usar este!!!
+;; (add-to-list 'load-path "~/wallemacs/cedet/common")
+;; (add-to-list 'load-path "~/wallemacs/cedet/eieio")
+;; (load-file "~/wallemacs/cedet/common/cedet.el")
+
+;; (semantic-load-enable-code-helpers)
+;; (setq semantic-load-turn-useful-things-on t)
+;; (setq semanticdb-project-roots (list "/home/waldemarpc/proyectos/dev/" ))
+
 ;; RUDEL ------------------------------------------------------------------------
-(add-to-list 'load-path "~/wallemacs/rudel/")
-(add-to-list 'load-path "~/wallemacs/rudel/jupiter/")
-(add-to-list 'load-path "~/wallemacs/rudel/obby/")
-(add-to-list 'load-path "~/wallemacs/rudel/telepathy/")
-(add-to-list 'load-path "~/wallemacs/rudel/wave/")
-(add-to-list 'load-path "~/wallemacs/rudel/zeroconf/")
+;; (add-to-list 'load-path "~/wallemacs/rudel/")
+;; (add-to-list 'load-path "~/wallemacs/rudel/jupiter/")
+;; (add-to-list 'load-path "~/wallemacs/rudel/obby/")
+;; (add-to-list 'load-path "~/wallemacs/rudel/telepathy/")
+;; (add-to-list 'load-path "~/wallemacs/rudel/wave/")
+;; (add-to-list 'load-path "~/wallemacs/rudel/zeroconf/")
+;; (load-file "~/wallemacs/rudel/rudel-loaddefs.el")
 
-(load-file "~/wallemacs/rudel/rudel-loaddefs.el")
+;; ;; no se por que tengo que hacer esto 2 veces...
+;; (global-rudel-minor-mode)
+;; (global-rudel-minor-mode)
 
-;; no se por que tengo que hacer esto 2 veces...
-(global-rudel-minor-mode)
-(global-rudel-minor-mode)
+;; =====================================================================
 
 ;; AMPL MODE --------------------------------------------------------------------------------
 (add-to-list 'auto-mode-alist '("\\.mod$" . ampl-mode))
@@ -574,5 +511,32 @@
     (cond ((search-forward "<?xml" nil t) (xml-mode))
           ((search-forward "<html" nil t) (html-mode)))))
 
+;; =================================================================================================
+;; JAVASCRIPT STUFF
+;; Lo del js2, quiero poner el auto-complete tambien...
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;; (autoload 'espresso-mode "espresso" nil t)
+(autoload 'javascript-mode "javascript" nil t)
+;; (require 'javascript-mode)
+(require 'js-comint)
+;; (setq inferior-js-program-command "/usr/bin/java org.mozilla.javascript.tools.shell.Main")
+;; (setq inferior-js-program-command "/usr/bin/rhino")
+;; (setq inferior-js-program-command "java -jar ~/wallemacs/useful-javascript/env-js.jar")
+(setq inferior-js-program-command (concat 
+				   "java -jar "
+				   (expand-file-name "~/wallemacs/useful-javascript/env-js.jar")
+				   ;; poner aqui que se cargue env.rhino.js
+				   ))
 
+(add-hook 'js2-mode-hook '(lambda () 
+			    (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+			    (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+			    (local-set-key "\C-cb" 'js-send-buffer)
+			    (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+			    (local-set-key "\C-cl" 'js-load-file-and-go)
+			    (local-set-key (kbd "<S-f8>") 'js-send-buffer-and-go)
+			    ;; (local-set-key (kbd "<S-f8>") 'run-js)
+			    ))
 
+(expand-file-name "~/")
