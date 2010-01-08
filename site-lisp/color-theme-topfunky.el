@@ -32,7 +32,9 @@
   (interactive)
   (color-theme-install
    '(color-theme-topfunky
-     ((background-color . "#444444")
+     (
+      ;; (background-color . "#444444")
+      (background-color . "gray5")
       (background-mode . dark)
       (border-color . "black")
       (cursor-color . "#cccccc")

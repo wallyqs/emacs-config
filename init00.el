@@ -539,4 +539,33 @@
 			    ;; (local-set-key (kbd "<S-f8>") 'run-js)
 			    ))
 
-(expand-file-name "~/")
+;; PARA JAVASCRIPT CON RHINO
+(defun wally-load-envjs()
+  (interactive)
+  (insert (concat  "load(\""
+		   (expand-file-name "~/wallemacs/useful-javascript/env.rhino.js")
+		   "\")"
+		   ))
+  (comint-send-input)
+  )
+
+
+;; PARA JAVASCRIPT CON RHINO
+(defun wally-load-jquery()
+  (interactive)
+  (insert (concat  "load(\""
+		   (expand-file-name "~/wallemacs/useful-javascript/jquery.js")
+		   "\")"
+		   ))
+  ;;(newline)
+  (comint-send-input)
+  )
+
+(defun wally-load-prototype()
+  (interactive)
+  (insert (concat  "load(\""
+		   (expand-file-name "~/wallemacs/useful-javascript/prototype.js")
+		   "\")"
+		   ))
+  (comint-send-input)
+  )
