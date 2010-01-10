@@ -47,8 +47,8 @@
 (put 'upcase-region 'disabled nil)
 
 ;;;;;;;;;;;;;;;;;;;;;DE NUEVO ALGO PARA LAS FONTS;;;;;;;;;;;;;;;;;;;;;;;
-;; (set-default-font "-unknown-inconsolata-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
-(set-default-font "-unknown-VL Gothic-normal-normal-normal-*-14-*-*-*-*-0-iso10646-1")
+(set-default-font "-unknown-inconsolata-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+;; (set-default-font "-unknown-VL Gothic-normal-normal-normal-*-14-*-*-*-*-0-iso10646-1")
 ;; (set-default-font "-bitstream-Bitstream Vera Sans Mono-bold-normal-normal-*-14-*-*-*-m-0-iso10646-1")
 ;; (set-default-font "-bitstream-Bitstream Vera Sans Mono-bold-normal-normal-*-14-*-*-*-m-0-iso10646-1")
 
@@ -537,7 +537,13 @@
 			    (local-set-key "\C-cl" 'js-load-file-and-go)
 			    (local-set-key (kbd "<S-f8>") 'js-send-buffer-and-go)
 			    ;; (local-set-key (kbd "<S-f8>") 'run-js)
+			    ;; (wally-load-envjs)
 			    ))
+
+(add-hook 'inferior-js-mode '(lambda ()
+			       (wally-load-envjs)
+			       ))
+
 
 ;; PARA JAVASCRIPT CON RHINO
 (defun wally-load-envjs()
@@ -549,6 +555,23 @@
   (comint-send-input)
   )
 
+(defun wally-load-jsreflector()
+  (interactive)
+  (insert (concat  "load(\""
+		   (expand-file-name "~/wallemacs/useful-javascript/wally-prototype3.js")
+		   "\")"
+		   ))
+  (comint-send-input)
+  )
+
+(defun wally-load-jquery-tools()
+  (interactive)
+  (insert (concat  "load(\""
+		   (expand-file-name "~/wallemacs/useful-javascript/jquery.tools.min.full.js")
+		   "\")"
+		   ))
+  (comint-send-input)
+  )
 
 ;; PARA JAVASCRIPT CON RHINO
 (defun wally-load-jquery()
@@ -569,3 +592,7 @@
 		   ))
   (comint-send-input)
   )
+
+;; steve yegge's elisp javascript
+(add-to-list 'load-path "~/wallemacs/ejacs")  ; change this to the real location!
+(autoload 'js-console "js-console" nil t)

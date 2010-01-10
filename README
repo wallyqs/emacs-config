@@ -1,9 +1,0 @@
-;; To start using just git clone at your home ~/ and write this on your ~/.emacs
-(load-file "~/wallemacs/init2.el")
-
-;; Adding support for flex...
-;; Just download the flex sdk into ~/ home folder
-
-I wanted to give some support for flex but now I'm working on support for borgesapp, to finally 
-publish some stuff onto the nets. I want to create a rich interface for a rich app for creating 
-ideas. blogs!? c'mon the world can do better.
