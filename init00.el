@@ -51,7 +51,7 @@
 ;; (set-default-font "-unknown-VL Gothic-normal-normal-normal-*-14-*-*-*-*-0-iso10646-1")
 ;; (set-default-font "-bitstream-Bitstream Vera Sans Mono-bold-normal-normal-*-14-*-*-*-m-0-iso10646-1")
 ;; (set-default-font "-bitstream-Bitstream Vera Sans Mono-bold-normal-normal-*-14-*-*-*-m-0-iso10646-1")
-
+;; (set-default-font "-b&h-Lucida Grande-normal-normal-normal-*-*-*-*-*-*-0-iso10646-1")
 
 ;;;;COLOR THEMES;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/wallemacs/emacs-rails-kit/vendor/color-theme")
@@ -69,6 +69,7 @@
 (load-file "~/wallemacs/site-lisp/color-theme-less.el")
 (load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
 (load-file "~/wallemacs/site-lisp/color-theme-topfunky.el")
+(load-file "~/wallemacs/site-lisp/color-theme-uniqlo.el")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Soporte para el GIT y SVN;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'git)

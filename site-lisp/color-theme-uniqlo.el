@@ -1,11 +1,11 @@
-(defun color-theme-blue ()
-  "Color theme by hosiawak, created 2007-03-15."
+(defun color-theme-uniqlo ()
+  "Color theme by invertedplate, created 2010-02-05."
   (interactive)
   (color-theme-install
-   '(color-theme-blue
+   '(color-theme-uniqlo
      (
       ;; (background-color . "#162433")
-      (background-color . "#051322")
+      (background-color . "#051010")
       (background-mode . dark)
       (border-color . "black")
       (cursor-color . "yellow")
@@ -26,7 +26,8 @@
      (font-lock-keyword-face ((t (:foreground "#F9BB00"))))
      (font-lock-preprocessor-face ((t (:foreground "Aquamarine"))))
      (font-lock-reference-face ((t (:foreground "SlateBlue"))))
-     (font-lock-string-face ((t (:foreground "#00CC00"))))
+;;     (font-lock-string-face ((t (:foreground "#00CC00"))))
+     (font-lock-string-face ((t (:foreground "#F62433"))))
      (font-lock-type-face ((t (:foreground "white"))))
      (font-lock-variable-name-face ((t (:foreground "white"))))
      (font-lock-warning-face ((t (:bold t :foreground "Pink"))))

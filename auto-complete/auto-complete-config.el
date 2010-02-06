@@ -2,6 +2,7 @@
 (require 'auto-complete-emacs-lisp)
 (require 'auto-complete-flex)
 (require 'auto-complete-sql)
+(require 'auto-complete-js)
 ;; SOLO SI ESTA ACTIVO CEDET
 ;; (require 'auto-complete-semantic)
 (require 'auto-complete-css)
@@ -56,18 +57,24 @@
           (lambda ()
             (setq ac-sources '(ac-source-css-keywords ac-source-yasnippet ac-source-words-in-buffer ))
             ))
-;;;   (add-hook 'ruby-mode-hook
-;;;                (lambda ()
-;;;                  (setq ac-omni-completion-sources '(("\\.\\=" ac-source-rcodetools)))))
 
+
+(add-hook 'ruby-mode-hook
+	  (lambda ()
+	    (setq ac-omni-completion-sources '(
+					       ("\\.\\=" ac-source-rcodetools)
+					       ))
+	    ))
 
 ;; ESTA SERA UNA REFERENCIA CON AUTO-COMPLETE PARA JAVASCRIPT
-(require 'auto-complete-js)
+;; (require 'auto-complete-js)
 (add-hook 'js2-mode-hook
           (lambda ()
-            (setq ac-sources '(ac-source-js 
-			       ac-source-yasnippet 
+            (setq ac-sources '(ac-source-yasnippet 
 			       ac-source-words-in-buffer ))
-            ))
-
-
+	    (require 'auto-complete-js-hooks)
+	    ;; (setq ac-omni-completion-sources '(
+	    ;; 				       ("\\window.\\=" ac-source-js-window)
+	    ;; 				       ))
+	    
+	    ))

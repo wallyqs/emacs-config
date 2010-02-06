@@ -76,9 +76,9 @@ var $W = function(object){
   //no se puede usar mas que en Rhino
   this.print_methods = function(){
     for (var property in object){
-      if (typeof object[property] === "function"){
+      // if (typeof object[property] === "function"){
 	print(property);
-      }
+      // }
     }
   };
 

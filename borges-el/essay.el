@@ -90,9 +90,9 @@ quiero es que me de un buffer al cual yo le pueda poner nombre.
          (essay-title (read-string "De cual?: "))
          (url-request-data
           (encode-coding-string (concat "<essay>"
-                                        "<title>"
+                                        "<url_title>"
                                         essay-title
-                                        "</title>"
+                                        "</url_title>"
                                         "<is-private>"
 					;; Quiero que esta parte diga yes or no
                                         (read-string "is private? (true or false)") 
@@ -114,9 +114,9 @@ quiero es que me de un buffer al cual yo le pueda poner nombre.
         (url-request-extra-headers '(("Content-Type" . "application/xml")))
         (url-request-data
          (encode-coding-string (concat "<essay>"
-                                       "<title>"
+                                       "<url_title>"
                                        (read-from-minibuffer "Essay title: ")
-                                       "</title>"
+                                       "</url_title>"
                                        "<content>"
                                        ;; (buffer-string) ; here is the text that will be posted
                                        (wally-quitar (buffer-string))
@@ -135,10 +135,10 @@ El recurso que se crea tiene el mismo nombre que el buffer."
          (essay-title (buffer-name))
          (url-request-data
           (encode-coding-string (concat "<essay>"
-                                        "<title>"
+                                        "<url_title>"
                                         ;; (read-from-minibuffer "Essay title: ")
                                         essay-title
-                                        "</title>"
+                                        "</url_title>"
                                         "<content>"
                                         ;; (buffer-string) ; here is the text that will be posted
                                         (wally-quitar (buffer-string))
@@ -167,10 +167,10 @@ misma forma que lo hace wally-create-essay-with-title"
        (essay-title (read-from-minibuffer "Which? (title-like-this) "))
        (url-request-data
         (encode-coding-string (concat "<essay>"
-                                      "<title>"
+                                      "<url_title>"
                                       ;; (read-from-minibuffer "Essay title: ")
                                       essay-title
-                                      "</title>"
+                                      "</url_title>"
                                       "<content>"
                                       ;; (buffer-string) ; here is the text that will be posted
                                       (wally-quitar (buffer-string))
@@ -204,9 +204,9 @@ asi como guardarse el archivo en la computadora.
        (essay-title (buffer-name))
        (url-request-data
         (encode-coding-string (concat "<essay>"
-                                      "<title>"
+                                      "<url_title>"
                                       essay-title
-                                      "</title>"
+                                      "</url_title>"
                                       "<content>"
                                       ;; deberia de llamar la funciona para quitar los < y > del buffer
                                       ;; (buffer-string) ; here is the text that will be posted
