@@ -55,11 +55,11 @@
 (require 'oauth)
 (require 'image-file)
 
-;; (defvar yammer-consumer-key "skrSNtKjXO0sueSA8IRiNg")
-;; (defvar yammer-consumer-secret "CIWsqH9iqjNGACLPbMk9AccjrBuSk3bi5st7Jd0")
+(defvar yammer-consumer-key "skrSNtKjXO0sueSA8IRiNg")
+(defvar yammer-consumer-secret "CIWsqH9iqjNGACLPbMk9AccjrBuSk3bi5st7Jd0")
 
-(defvar yammer-consumer-key nil)
-(defvar yammer-consumer-secret nil)
+;; (defvar yammer-consumer-key nil)
+;; (defvar yammer-consumer-secret nil)
 
 (defvar yammer-request-url "https://www.yammer.com/oauth/request_token")
 (defvar yammer-access-url  "https://www.yammer.com/oauth/access_token") 
@@ -85,31 +85,46 @@
                        :consumer-secret yammer-consumer-secret
                        :auth-t (make-oauth-t
                                 :token (match-string 1 str)
-                                :token-secret (match-string 2 str))))))
+                                :token-secret (match-string 2 str))))
+	      (pp yammer-access-token)
+	      ))
           (save-buffer)
-          (kill-this-buffer))))
+          (kill-this-buffer))
+	))
   (unless yammer-access-token
-    (let ((callback
+    (let (
+	  ;; CALLBACK ESPECIAL PARA YAMMER
+	  (callback
            (lambda ()
              (let ((callback-token (read-string
                                     "Please enter the provided code: ")))
                (setq access-url
-                     (concat access-url "?callback_token=" callback-token))))))
+                     ;; (concat access-url "?callback_token=" callback-token)
+		     (concat access-url "?oauth_verifier=" callback-token)
+		     ))
+	     ))
+	  )
       (setq yammer-access-token
             (oauth-authorize-app yammer-consumer-key yammer-consumer-secret
                                  yammer-request-url yammer-access-url
                                  yammer-user-authorize
-                                 callback)))
+                                 callback))
+      (pp yammer-access-token)
+      )
     (save-excursion
       (find-file (format "/home/%s/.yammer-token" username))
       (end-of-buffer)
       (let ((token (oauth-access-token-auth-t yammer-access-token)))
+	(pp token)
         (insert (format "%s:%s\n" 
                         (oauth-t-token token)
-                        (oauth-t-token-secret token))))
+                        (oauth-t-token-secret token)))
+	)
       (save-buffer)
       (kill-this-buffer)))
-  yammer-access-token)
+  (pp yammer-access-token)
+  yammer-access-token
+  )
     
 (defun yammer-internal-post-message (message &optional reply-to-id)
   "Post message to yammer"
@@ -320,7 +335,7 @@ Useful when using a sperate buffer for composition, possibly with flyspell."
   yammer-font-lock-keywords-1
   "Default highlighting for yammer mode")
 
-;; (yammer-authenticate unix-user-name)
+(yammer-authenticate "mariko")
 
 (provide 'yammer)
 

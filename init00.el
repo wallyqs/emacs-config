@@ -70,6 +70,7 @@
 (load-file "~/wallemacs/site-lisp/color-theme-zenburn.el")
 (load-file "~/wallemacs/site-lisp/color-theme-topfunky.el")
 (load-file "~/wallemacs/site-lisp/color-theme-uniqlo.el")
+(load-file "~/wallemacs/site-lisp/color-theme-zen-and-art.el")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Soporte para el GIT y SVN;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'git)
@@ -405,7 +406,7 @@
 (global-set-key (kbd "<f8>") 'toggle-truncate-lines)
 (global-set-key (kbd "<C-f9>") 'menu-bar-mode)
 (global-set-key (kbd "<f10>") 'linum-mode)
-(global-set-key (kbd "<f11>") 'make-frame-command)
+(global-set-key (kbd "<C-f11>") 'make-frame-command)
 (global-set-key (kbd "<C-tab>") 'dabbrev-expand)
 (global-set-key "\C-c\C-p" 'sgml-tag)
 (global-set-key "\C-c\C-o" 'shrink-window)
@@ -424,7 +425,7 @@
 (global-set-key (kbd "<S-f2>")  'ido-switch-buffer-other-window)
 (global-set-key (kbd "<S-f4>")  'speedbar-update-contents)
 (global-set-key (kbd "<S-f8>")  'rails/console)
-(global-set-key (kbd "<C-f11>")  'undo)
+;; (global-set-key (kbd "<C-f11>")  'undo)
 (global-set-key (kbd "<C-S-f2>")  'ido-switch-buffer-other-frame)
 (global-set-key (kbd "<S-f11>")  'text-scale-decrease)
 (global-set-key (kbd "<S-f12>")  'text-scale-increase)
@@ -436,6 +437,7 @@
 (global-set-key "\C-c\C-e" 'wally-select-line-macro)
 (global-set-key (kbd "<M-f11>")  'indent-whole-buffer)
 (global-set-key "\C-cw" 'kill-this-buffer)
+(global-set-key (kbd "<C-f12>") 'kill-this-buffer)
 (global-set-key "\C-z" 'undo)
 (global-set-key "\C-cm" 'filetemignon)
 (global-set-key "\C-cs" 'wally-select-line)
@@ -443,6 +445,10 @@
 (global-set-key "\C-cl" 'choche-magical-quotes)
 (global-set-key "\M-2" 'swap-windows)
 (global-set-key (kbd "C-c N") 'wally-diccionario-es)
+
+(global-set-key (kbd "<C-prior>")  'previous-buffer)
+(global-set-key (kbd "<C-next>")  'next-buffer)
+
 
 ;; para que el speedbar ya no se actualice
 (speedbar-disable-update)
@@ -457,6 +463,22 @@
   (interactive)
   (set-default-font "-unknown-VL Gothic-normal-normal-normal-*-14-*-*-*-*-0-iso10646-1")
   )
+
+(defun wally-fix-font-bitstream()
+  (interactive)
+  (set-default-font "-bitstream-Bitstream Vera Sans Mono-bold-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+  )
+
+(defun wally-fix-font-inconsolata()
+  (interactive)
+  (set-default-font "-unknown-Inconsolata-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+)
+
+(defun wally-fix-font-envy()
+  (interactive)
+  (set-default-font "-unknown-Envy Code R-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1")
+)
+
 
 ;; NICE SCROLLING!!!
 (setq
@@ -511,6 +533,16 @@
     ;; TODO: switch to nxml/nxhtml mode
     (cond ((search-forward "<?xml" nil t) (xml-mode))
           ((search-forward "<html" nil t) (html-mode)))))
+
+(defun fullscreen (&optional f)
+  (interactive)
+      (set-frame-parameter f 'fullscreen
+                           (if (frame-parameter f 'fullscreen) nil 'fullboth)))
+
+(global-set-key [f11] 'fullscreen)
+;; (add-hook 'after-make-frame-functions 'fullscreen)
+
+
 
 ;; =================================================================================================
 ;; JAVASCRIPT STUFF
