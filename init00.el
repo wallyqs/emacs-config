@@ -83,7 +83,7 @@
 
 ;; COSAS PARA EL TWIT MODE
 ;; (load-file "~/wallemacs/site-lisp/twit.el")
-;; (require 'twit)
+(require 'twit)
 ;; (twit-minor-mode)
 
 ;; aqui le voy a poner lo del twitter.el

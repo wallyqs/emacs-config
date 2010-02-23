@@ -5,6 +5,7 @@
    '(color-theme-uniqlo
      (
       ;; (background-color . "#162433")
+      ;; (background-color . "#0B2019")
       (background-color . "#051010")
       (background-mode . dark)
       (border-color . "black")
