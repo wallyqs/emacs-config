@@ -309,13 +309,21 @@
 ;; (load-file "~/wallemacs/cedet-1.0beta3b/common/cedet.el")
 
 ;; CASI NUNCA LOS USO, usar este!!!
-;; (add-to-list 'load-path "~/wallemacs/cedet/common")
-;; (add-to-list 'load-path "~/wallemacs/cedet/eieio")
-;; (load-file "~/wallemacs/cedet/common/cedet.el")
+(add-to-list 'load-path "~/wallemacs/cedet/common")
+(add-to-list 'load-path "~/wallemacs/cedet/eieio")
+(load-file "~/wallemacs/cedet/common/cedet.el")
 
 ;; (semantic-load-enable-code-helpers)
 ;; (setq semantic-load-turn-useful-things-on t)
 ;; (setq semanticdb-project-roots (list "/home/waldemarpc/proyectos/dev/" ))
+
+;; jdee ::::::::::::::::::::::::::::::::::::::::::::
+(add-to-list 'load-path "~/wallemacs/jdee/lisp")
+(load "jde")
+(load-file "~/wallemacs/jdee/lisp/jde.el")
+;; (setq jde-web-browser "BROWSER")
+;; (setq jde-doc-dir "JDK DIRECTORY")
+;; (jde-db-set-source-paths "~/proyectos/java_threads")
 
 ;; RUDEL ------------------------------------------------------------------------
 ;; (add-to-list 'load-path "~/wallemacs/rudel/")
