@@ -199,20 +199,20 @@
 
 
 (defun swap-windows ()
- "If you have 2 windows, it swaps them."
- (interactive)
- (cond ((not (= (count-windows) 2)) (message "You need exactly 2 windows to do this."))
-       (t
-        (let* ((w1 (first (window-list)))
-               (w2 (second (window-list)))
-               (b1 (window-buffer w1))
-               (b2 (window-buffer w2))
-               (s1 (window-start w1))
-               (s2 (window-start w2)))
-          (set-window-buffer w1 b2)
-          (set-window-buffer w2 b1)
-          (set-window-start w1 s2)
-          (set-window-start w2 s1)))))
+  "If you have 2 windows, it swaps them."
+  (interactive)
+  (cond ((not (= (count-windows) 2)) (message "You need exactly 2 windows to do this."))
+        (t
+         (let* ((w1 (first (window-list)))
+                (w2 (second (window-list)))
+                (b1 (window-buffer w1))
+                (b2 (window-buffer w2))
+                (s1 (window-start w1))
+                (s2 (window-start w2)))
+           (set-window-buffer w1 b2)
+           (set-window-buffer w2 b1)
+           (set-window-start w1 s2)
+           (set-window-start w2 s1)))))
 
 ;; (fset 'wally-start-mysql
 ;;    [?\M-x ?s ?q ?l ?- ?m ?y ?s ?q ?l return ?r ?o ?o ?t return ?i ?n ?o ?v ?a ?z ?0 ?8 return return ?l ?o ?c ?a ?l ?h ?o ?s ?t return ?\M-x ?s ?q ?l ?- ?m ?o ?d ?e return])
@@ -236,9 +236,9 @@
 ;; para el nombre de los buffers
 (require 'uniquify)
 ;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-(setq 
-  uniquify-buffer-name-style 'post-forward
-  uniquify-separator ":")
+(setq
+ uniquify-buffer-name-style 'post-forward
+ uniquify-separator ":")
 
 (require 'dame-shell)
 (require 'textile-mode)
@@ -301,30 +301,34 @@
 
 
 ;; ====== with CEDET ===============================================================
-;; NO LOS NECESITO MUCHO, TIENE COMO DEPENDENCIA CEDET 
+;; NO LOS NECESITO MUCHO, TIENE COMO DEPENDENCIA CEDET
 
 ;; Adding support for CEDET
 ;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/common")
 ;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/eieio")
 ;; (load-file "~/wallemacs/cedet-1.0beta3b/common/cedet.el")
 
-;; CASI NUNCA LOS USO, usar este!!!
-(add-to-list 'load-path "~/wallemacs/cedet/common")
-(add-to-list 'load-path "~/wallemacs/cedet/eieio")
-(load-file "~/wallemacs/cedet/common/cedet.el")
+;; CASI NUNCA LOS USO, usar este!!! voy a hacer una funcion para loadear esto
+(defun wally-load-java ()
+  "Load cedet and jdee"
+  (interactive)
+  (add-to-list 'load-path "~/wallemacs/cedet/common")
+  (add-to-list 'load-path "~/wallemacs/cedet/eieio")
+  (load-file "~/wallemacs/cedet/common/cedet.el")
 
-;; (semantic-load-enable-code-helpers)
-;; (setq semantic-load-turn-useful-things-on t)
-;; (setq semanticdb-project-roots (list "/home/waldemarpc/proyectos/dev/" ))
+  ;; (semantic-load-enable-code-helpers)
+  ;; (setq semantic-load-turn-useful-things-on t)
+  ;; (setq semanticdb-project-roots (list "/home/waldemarpc/proyectos/dev/" ))
 
-;; jdee ::::::::::::::::::::::::::::::::::::::::::::
-(add-to-list 'load-path "~/wallemacs/jdee/lisp")
-(load "jde")
-(load-file "~/wallemacs/jdee/lisp/jde.el")
-;; (setq jde-web-browser "BROWSER")
-;; (setq jde-doc-dir "JDK DIRECTORY")
-;; (jde-db-set-source-paths "~/proyectos/java_threads")
+  ;; jdee ::::::::::::::::::::::::::::::::::::::::::::
+  (add-to-list 'load-path "~/wallemacs/jdee/lisp")
+  (load "jde")
+  (load-file "~/wallemacs/jdee/lisp/jde.el")
+  ;; (setq jde-web-browser "BROWSER")
+  ;; (setq jde-doc-dir "JDK DIRECTORY")
+  ;; (jde-db-set-source-paths "~/proyectos/java_threads")
 
+  )
 ;; RUDEL ------------------------------------------------------------------------
 ;; (add-to-list 'load-path "~/wallemacs/rudel/")
 ;; (add-to-list 'load-path "~/wallemacs/rudel/jupiter/")
@@ -341,15 +345,15 @@
 ;; =====================================================================
 
 ;; AMPL MODE --------------------------------------------------------------------------------
-(add-to-list 'auto-mode-alist '("\\.mod$" . ampl-mode))
-(add-to-list 'auto-mode-alist '("\\.dat$" . ampl-mode))
-(add-to-list 'auto-mode-alist '("\\.ampl$" . ampl-mode))
+;; (add-to-list 'auto-mode-alist '("\\.mod$" . ampl-mode))
+;; (add-to-list 'auto-mode-alist '("\\.dat$" . ampl-mode))
+;; (add-to-list 'auto-mode-alist '("\\.ampl$" . ampl-mode))
 
-(setq interpreter-mode-alist
-      (cons '("ampl" . ampl-mode)
-            interpreter-mode-alist))
+;; (setq interpreter-mode-alist
+;;       (cons '("ampl" . ampl-mode)
+;;             interpreter-mode-alist))
 
-(require 'ampl-mode)
+;; (require 'ampl-mode)
 ;; (load "ampl-mode")
 
 ;; Enable syntax coloring
@@ -358,27 +362,27 @@
 ;; If you find parenthesis matching a nuisance, turn it off by
 ;; removing the leading semi-colons on the following lines:
 
-;(setq ampl-auto-close-parenthesis nil)
-;(setq ampl-auto-close-brackets nil)
-;(setq ampl-auto-close-curlies nil)
-;(setq ampl-auto-close-double-quote nil)
-;(setq ampl-auto-close-single-quote nil)
+                                        ;(setq ampl-auto-close-parenthesis nil)
+                                        ;(setq ampl-auto-close-brackets nil)
+                                        ;(setq ampl-auto-close-curlies nil)
+                                        ;(setq ampl-auto-close-double-quote nil)
+                                        ;(setq ampl-auto-close-single-quote nil)
 ;; end AMPL MODE ------------------------------------------------------------------------
 
 
 ;; CSS MODE COLORS ----------------------------------------------------------------------
 (defvar hexcolour-keywords
-    '(("#[abcdef[:digit:]]\\{6\\}"
-       (0 (put-text-property
-           (match-beginning 0)
-           (match-end 0)
-           'face (list :background 
-                       (match-string-no-properties 0)))))))
-  
-  (defun hexcolour-add-to-font-lock ()
-    (font-lock-add-keywords nil hexcolour-keywords))
-  
-  (add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
+  '(("#[abcdef[:digit:]]\\{6\\}"
+     (0 (put-text-property
+         (match-beginning 0)
+         (match-end 0)
+         'face (list :background
+                     (match-string-no-properties 0)))))))
+
+(defun hexcolour-add-to-font-lock ()
+  (font-lock-add-keywords nil hexcolour-keywords))
+
+(add-hook 'css-mode-hook 'hexcolour-add-to-font-lock)
 
 ;; adding filladapt-mode
 (require 'filladapt)
@@ -388,12 +392,12 @@
 
 ;; ISPELL EN ESPANHOL?
 (defun wally-diccionario-es()
-    (interactive)
-    (ispell-change-dictionary "castellano")
-    (flyspell-buffer)
-    )
+  (interactive)
+  (ispell-change-dictionary "castellano")
+  (flyspell-buffer)
+  )
 
-;; (setq ispell-program-name "aspell" 
+;; (setq ispell-program-name "aspell"
 ;;       ;; ispell-extra-args '("--sug-mode=ultra")
 ;;       )
 
@@ -480,19 +484,19 @@
 (defun wally-fix-font-inconsolata()
   (interactive)
   (set-default-font "-unknown-Inconsolata-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
-)
+  )
 
 (defun wally-fix-font-envy()
   (interactive)
   (set-default-font "-unknown-Envy Code R-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1")
-)
+  )
 
 
 ;; NICE SCROLLING!!!
 (setq
-  scroll-margin 0                  
-  scroll-conservatively 100000
-  scroll-preserve-screen-position 1)
+ scroll-margin 0
+ scroll-conservatively 100000
+ scroll-preserve-screen-position 1)
 
 ;; DEBERIA DE HACER EL BUFFER READONLY
 (require 'hacker-news)
@@ -544,8 +548,8 @@
 
 (defun fullscreen (&optional f)
   (interactive)
-      (set-frame-parameter f 'fullscreen
-                           (if (frame-parameter f 'fullscreen) nil 'fullboth)))
+  (set-frame-parameter f 'fullscreen
+                       (if (frame-parameter f 'fullscreen) nil 'fullboth)))
 
 (global-set-key [f11] 'fullscreen)
 ;; (add-hook 'after-make-frame-functions 'fullscreen)
@@ -564,53 +568,53 @@
 ;; (setq inferior-js-program-command "/usr/bin/java org.mozilla.javascript.tools.shell.Main")
 ;; (setq inferior-js-program-command "/usr/bin/rhino")
 ;; (setq inferior-js-program-command "java -jar ~/wallemacs/useful-javascript/env-js.jar")
-(setq inferior-js-program-command (concat 
-				   "java -jar "
-				   (expand-file-name "~/wallemacs/useful-javascript/env-js.jar")
-				   ;; poner aqui que se cargue env.rhino.js
-				   ))
+(setq inferior-js-program-command (concat
+                                   "java -jar "
+                                   (expand-file-name "~/wallemacs/useful-javascript/env-js.jar")
+                                   ;; poner aqui que se cargue env.rhino.js
+                                   ))
 
-(add-hook 'js2-mode-hook '(lambda () 
-			    (local-set-key "\C-x\C-e" 'js-send-last-sexp)
-			    (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
-			    (local-set-key "\C-cb" 'js-send-buffer)
-			    (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
-			    (local-set-key "\C-cl" 'js-load-file-and-go)
-			    (local-set-key (kbd "<S-f8>") 'js-send-buffer-and-go)
-			    ;; (local-set-key (kbd "<S-f8>") 'run-js)
-			    ;; (wally-load-envjs)
-			    ))
+(add-hook 'js2-mode-hook '(lambda ()
+                            (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+                            (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+                            (local-set-key "\C-cb" 'js-send-buffer)
+                            (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+                            (local-set-key "\C-cl" 'js-load-file-and-go)
+                            (local-set-key (kbd "<S-f8>") 'js-send-buffer-and-go)
+                            ;; (local-set-key (kbd "<S-f8>") 'run-js)
+                            ;; (wally-load-envjs)
+                            ))
 
 (add-hook 'inferior-js-mode '(lambda ()
-			       (wally-load-envjs)
-			       ))
+                               (wally-load-envjs)
+                               ))
 
 
 ;; PARA JAVASCRIPT CON RHINO
 (defun wally-load-envjs()
   (interactive)
   (insert (concat  "load(\""
-		   (expand-file-name "~/wallemacs/useful-javascript/env.rhino.js")
-		   "\")"
-		   ))
+                   (expand-file-name "~/wallemacs/useful-javascript/env.rhino.js")
+                   "\")"
+                   ))
   (comint-send-input)
   )
 
 (defun wally-load-jsreflector()
   (interactive)
   (insert (concat  "load(\""
-		   (expand-file-name "~/wallemacs/useful-javascript/wally-prototype3.js")
-		   "\")"
-		   ))
+                   (expand-file-name "~/wallemacs/useful-javascript/wally-prototype3.js")
+                   "\")"
+                   ))
   (comint-send-input)
   )
 
 (defun wally-load-jquery-tools()
   (interactive)
   (insert (concat  "load(\""
-		   (expand-file-name "~/wallemacs/useful-javascript/jquery.tools.min.full.js")
-		   "\")"
-		   ))
+                   (expand-file-name "~/wallemacs/useful-javascript/jquery.tools.min.full.js")
+                   "\")"
+                   ))
   (comint-send-input)
   )
 
@@ -618,9 +622,9 @@
 (defun wally-load-jquery()
   (interactive)
   (insert (concat  "load(\""
-		   (expand-file-name "~/wallemacs/useful-javascript/jquery.js")
-		   "\")"
-		   ))
+                   (expand-file-name "~/wallemacs/useful-javascript/jquery.js")
+                   "\")"
+                   ))
   ;;(newline)
   (comint-send-input)
   )
@@ -628,12 +632,38 @@
 (defun wally-load-prototype()
   (interactive)
   (insert (concat  "load(\""
-		   (expand-file-name "~/wallemacs/useful-javascript/prototype.js")
-		   "\")"
-		   ))
+                   (expand-file-name "~/wallemacs/useful-javascript/prototype.js")
+                   "\")"
+                   ))
   (comint-send-input)
   )
 
 ;; steve yegge's elisp javascript
 (add-to-list 'load-path "~/wallemacs/ejacs")  ; change this to the real location!
 (autoload 'js-console "js-console" nil t)
+
+
+;; (setq hl-paren-colors
+;; '(;"#8f8f8f" ; this comes from Zenburn
+;;   ; and I guess I'll try to make the far-outer parens look like this
+;;   "orange1" "yellow1" "greenyellow" "green1"
+;;   "springgreen1" "cyan1" "slateblue1" "magenta1" "purple"))
+
+
+;; =======================================================
+;; HERE COMES THE PYTHON !!!
+
+(add-to-list 'load-path "~/wallemacs/emacs-python/")
+(add-to-list 'load-path "~/wallemacs/emacs-python/Pymacs/")
+(add-to-list 'load-path "~/wallemacs/emacs-python/ropemacs/")
+;; (require 'python-mode)
+;; (require 'ipython)
+;; (setq py-python-command-args '( "-colors" "Linux"))
+;; (defadvice py-execute-buffer (around python-keep-focus activate)
+;;   "return focus to python code buffer"
+;;   (save-excursion ad-do-it))
+(require 'pymacs)
+(pymacs-load "ropemacs" "rope-")
+(require 'pysmell)
+
+(add-hook 'python-mode-hook (lambda () (pysmell-mode 1)))

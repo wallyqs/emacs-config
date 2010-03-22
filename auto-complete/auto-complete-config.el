@@ -3,6 +3,7 @@
 (require 'auto-complete-flex)
 (require 'auto-complete-sql)
 (require 'auto-complete-js)
+(require 'auto-complete-pysmell)
 ;; SOLO SI ESTA ACTIVO CEDET
 ;; (require 'auto-complete-semantic)
 (require 'auto-complete-css)
@@ -53,6 +54,12 @@
             (setq ac-omni-completion-sources '(("\\.\\=" ac-source-semantic)))
             ))
 
+;; (add-hook 'java-mode-hook
+;;           (lambda ()
+;;             (setq ac-sources '(ac-source-yasnippet ac-source-words-in-buffer))
+;;             (setq ac-omni-completion-sources '(("\\.\\=" ac-source-semantic)))
+;;             ))
+
 (add-hook 'css-mode-hook
           (lambda ()
             (setq ac-sources '(ac-source-css-keywords ac-source-yasnippet ac-source-words-in-buffer ))
@@ -65,6 +72,12 @@
 					       ("\\.\\=" ac-source-rcodetools)
 					       ))
 	    ))
+
+(add-hook 'python-mode-hook
+          '(lambda ()             
+             (set (make-local-variable 'ac-sources) (append ac-sources '(ac-source-pysmell)))
+             ;; (set (make-local-variable 'ac-sources) (append ac-sources '(ac-source-pysmell)))
+	     ))
 
 ;; ESTA SERA UNA REFERENCIA CON AUTO-COMPLETE PARA JAVASCRIPT
 ;; (require 'auto-complete-js)
