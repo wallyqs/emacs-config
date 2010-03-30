@@ -127,6 +127,24 @@
 (yas/load-directory "~/wallemacs/yasnippet-new/extras/imported/rails-mode")
 ;; (yas/load-directory "~/wallemacs/yasnippet-new/extras/imported/html-mode")
 
+;; cedet for c++ programming
+;; ====== with CEDET ===============================================================
+;; NO LOS NECESITO MUCHO, TIENE COMO DEPENDENCIA CEDET
+
+;; Adding support for CEDET
+;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/common")
+;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/eieio")
+;; (load-file "~/wallemacs/cedet-1.0beta3b/common/cedet.el")
+
+(add-to-list 'load-path "~/wallemacs/cedet/common")
+(add-to-list 'load-path "~/wallemacs/cedet/eieio")
+(load-file "~/wallemacs/cedet/common/cedet.el")
+
+;; PARA ACTIVAR EL CEDET EN ALGUN DIRECTORIO
+;; (semantic-load-enable-code-helpers)
+;; (setq semantic-load-turn-useful-things-on t)
+;; (setq semanticdb-project-roots (list "/home/waldemarpc/proyectos/dev/" ))
+
 ;; =================================================================================================
 (require 'auto-complete)
 (when (require 'auto-complete nil t)
@@ -300,25 +318,13 @@
 ;; (require 'essay)
 
 
-;; ====== with CEDET ===============================================================
-;; NO LOS NECESITO MUCHO, TIENE COMO DEPENDENCIA CEDET
-
-;; Adding support for CEDET
-;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/common")
-;; (add-to-list 'load-path "~/wallemacs/cedet-1.0beta3b/eieio")
-;; (load-file "~/wallemacs/cedet-1.0beta3b/common/cedet.el")
-
 ;; CASI NUNCA LOS USO, usar este!!! voy a hacer una funcion para loadear esto
 (defun wally-load-java ()
   "Load cedet and jdee"
   (interactive)
-  (add-to-list 'load-path "~/wallemacs/cedet/common")
-  (add-to-list 'load-path "~/wallemacs/cedet/eieio")
-  (load-file "~/wallemacs/cedet/common/cedet.el")
-
-  ;; (semantic-load-enable-code-helpers)
-  ;; (setq semantic-load-turn-useful-things-on t)
-  ;; (setq semanticdb-project-roots (list "/home/waldemarpc/proyectos/dev/" ))
+  ;; (add-to-list 'load-path "~/wallemacs/cedet/common")
+  ;; (add-to-list 'load-path "~/wallemacs/cedet/eieio")
+  ;; (load-file "~/wallemacs/cedet/common/cedet.el")
 
   ;; jdee ::::::::::::::::::::::::::::::::::::::::::::
   (add-to-list 'load-path "~/wallemacs/jdee/lisp")
@@ -662,8 +668,28 @@
 ;; (defadvice py-execute-buffer (around python-keep-focus activate)
 ;;   "return focus to python code buffer"
 ;;   (save-excursion ad-do-it))
-(require 'pymacs)
-(pymacs-load "ropemacs" "rope-")
+;;(require 'pymacs)
+;;(pymacs-load "ropemacs" "rope-")
 (require 'pysmell)
-
 (add-hook 'python-mode-hook (lambda () (pysmell-mode 1)))
+(require 'django)
+
+;; random color-theme!!! =================================================
+(defun color-theme-random ()
+  (interactive)
+  (let* ((theme-number (number-to-string (random 999999999)))
+         (buffer (url-retrieve-synchronously (concat "http://inspiration.sweyla.com/code/emacs/inspiration" theme-number ".el"))))
+    (set-buffer buffer)
+    (beginning-of-buffer)
+    (replace-string (concat "inspiration-" theme-number) "color-theme-install-random")
+    (delete-region (point-min) url-http-end-of-headers)
+    (eval-buffer buffer)
+    (color-theme-install-random)
+    (setq *current-color-theme* theme-number)))
+(global-set-key (kbd "<C-f8>")  'color-theme-random)
+
+;; ========================================================================
+
+
+
+

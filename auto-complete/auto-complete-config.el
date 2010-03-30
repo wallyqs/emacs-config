@@ -51,7 +51,9 @@
 (add-hook 'c++-mode-hook
           (lambda ()
             ;; (setq ac-sources '(ac-source-semantic ac-source-words-in-buffer))
-            (setq ac-omni-completion-sources '(("\\.\\=" ac-source-semantic)))
+            (setq ac-sources '(ac-source-yasnippet ac-source-abbrev ac-source-words-in-buffer))
+            ;; (setq ac-omni-completion-sources '(("\\.\\=" ac-source-semantic)))
+	    ;; (setq ac-omni-completion-sources '(("\\->\\=" ac-source-semantic)))
             ))
 
 ;; (add-hook 'java-mode-hook
