@@ -461,7 +461,7 @@
 (global-set-key "\C-cs" 'wally-select-line)
 (global-set-key "\C-t" 'other-frame)
 (global-set-key "\C-cl" 'choche-magical-quotes)
-(global-set-key "\M-2" 'swap-windows)
+(global-set-key (kbd "C-c 2") 'swap-windows)
 (global-set-key (kbd "C-c N") 'wally-diccionario-es)
 
 (global-set-key (kbd "<C-prior>")  'previous-buffer)
@@ -687,8 +687,10 @@
     (color-theme-install-random)
     (setq *current-color-theme* theme-number)))
 (global-set-key (kbd "<C-f8>")  'color-theme-random)
-
+(global-set-key (kbd "<S-f9>")  'twit-search)
 ;; ========================================================================
+
+
 
 
 
