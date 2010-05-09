@@ -1,0 +1,6 @@
+# -*- coding: utf-8 -*-
+# name: from django template
+# contributor: Waldemar Quevedo
+# --
+from django.template import Context, loader
+$0

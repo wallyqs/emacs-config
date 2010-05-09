@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+# name: djmodel
+# contributor: Orestis Markou
+# contributor: Nishio Hirokazu
+# contributor: Yasser González Fernández <yglez@uh.cu>
+# contributor: Waldemar Quevedo
+# --
+class ${1:ClassName}(models.Model):
+
+    def __unicode__(self):
+        return $0

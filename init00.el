@@ -125,6 +125,7 @@
 (yas/load-directory "~/wallemacs/yasnippets-rails/rails-snippets")
 (yas/load-directory "~/wallemacs/yasnippet-new/extras/imported/ruby-mode")
 (yas/load-directory "~/wallemacs/yasnippet-new/extras/imported/rails-mode")
+(yas/load-directory "~/wallemacs/emacs-python/django-mode/snippets")
 ;; (yas/load-directory "~/wallemacs/yasnippet-new/extras/imported/html-mode")
 
 ;; cedet for c++ programming
@@ -467,6 +468,8 @@
 (global-set-key (kbd "<C-prior>")  'previous-buffer)
 (global-set-key (kbd "<C-next>")  'next-buffer)
 
+;; django
+
 
 ;; para que el speedbar ya no se actualice
 (speedbar-disable-update)
@@ -671,8 +674,21 @@
 ;;(require 'pymacs)
 ;;(pymacs-load "ropemacs" "rope-")
 (require 'pysmell)
-(add-hook 'python-mode-hook (lambda () (pysmell-mode 1)))
-(require 'django)
+(add-hook 'python-mode-hook (lambda () 
+			      (pysmell-mode 1)
+			      (auto-complete-mode)
+			      ))
+;; (require 'django)
+
+;; django mode
+(add-to-list 'load-path "~/wallemacs/emacs-python/django-mode/")
+(require 'django-mode)
+(require 'django-html-mode)
+(require 'django-utils)
+(global-set-key (kbd "<M-f6>")  'django-html-mode)
+
+
+
 
 ;; random color-theme!!! =================================================
 (defun color-theme-random ()
@@ -688,6 +704,8 @@
     (setq *current-color-theme* theme-number)))
 (global-set-key (kbd "<C-f8>")  'color-theme-random)
 (global-set-key (kbd "<S-f9>")  'twit-search)
+
+
 ;; ========================================================================
 
 

@@ -1,27 +1,62 @@
 (require 'comint)
 (provide 'django-utils)
 (defvar python-webserver-command "python manage.py runserver")
+(defvar python-webserver-status "off")
 
 ;; Should sniff that it is a Django Resource like in Emacs Rails
-(defun python-webserver()
+(defun python-django-webserver()
   "Starts the Django webserver "
   (interactive)
-  (message "Django Development Server started on port 0.0.0.0:8000")
-  (set-buffer (apply 'make-comint "PServer" "python" nil (list "manage.py" "runserver")))
+  (if (string-equal python-webserver-status "off")
+      (progn 
+	(message "Django Development Server started on port 0.0.0.0:8000")
+	(set-buffer (apply 'make-comint "PServer" "python" nil (list "manage.py" "runserver")))
+	(setq python-webserver-status "on")
+	)
+    ;;else
+    (progn
+      (message "Server Stopped")
+      (setq python-webserver-status "off")
+      ;; deberia de mandar una senhal al buffer
+      ;; (kill-buffer "*PServer*")
+      (with-current-buffer "*PServer*"
+	(comint-kill-subjob))
+      ;; (comint-send-string "PServer" "")
+      )
+    )
   )
 
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (local-set-key "\C-c\M-w" 'python-webserver)
-	    ;; (local-set-key "\C-c\C-cs" 'python-send-buffer)
-	    )
-	  )
+(defun python-django-syncdb()
+  "Migrates the database "
+  (interactive)
+  (message "Synchronizing the database")
+  (set-buffer (apply 'make-comint "POutput" "python" nil (list "manage.py" "syncdb")))
+  )
+
+
+(defun python-django-shell()
+  "Migrates the database "
+  (interactive)
+  (message "Starting Django Development Shell")
+  (set-buffer (apply 'make-comint "django" "python" nil (list "manage.py" "shell" "--plain")))
+  (switch-to-buffer-other-window "*django*")
+  )
+
+(add-hook 'django-mode-hook
+          (lambda ()
+            (local-set-key "\C-c\M-w" 'python-django-webserver)
+            (local-set-key "\C-c\M-d" 'python-django-syncdb)
+            (local-set-key "\C-c\M-s" 'python-django-shell)
+	    (auto-complete-mode)
+            ;; (local-set-key "\C-c\C-cs" 'python-send-buffer)
+            )
+          )
 
 ;; (add-hook python-mode-hook
 
 ;; (defun python-webserver ()
 ;;   (interactive)
-  
+
 ;;   (apply 'make-comint python-webserver-command python-webserver-command nil '())
 ;;   (delete-other-windows)
 ;;   (switch-to-buffer-other-window "*cmd*")
