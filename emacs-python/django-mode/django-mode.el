@@ -59,6 +59,7 @@
 	    ))
 (add-hook 'django-mode-hook
 	  '(lambda ()
+	     (auto-complete-mode t)
 	     (local-set-key "\C-c\C-t" 'django-insert-transpy)
 	     ))
 ;; this part ends here

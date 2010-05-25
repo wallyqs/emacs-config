@@ -1,0 +1,5 @@
+#name : <%= button_to 'name'...  %>
+# --
+<%= button_to "$1", { :controller => "${2:customers}",
+    	      	      :action => '${3:create}',
+		      :id => ${4:service} } %>

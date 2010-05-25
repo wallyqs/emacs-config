@@ -47,7 +47,7 @@
             (local-set-key "\C-c\M-w" 'python-django-webserver)
             (local-set-key "\C-c\M-d" 'python-django-syncdb)
             (local-set-key "\C-c\M-s" 'python-django-shell)
-	    (auto-complete-mode)
+	    (auto-complete-mode t)
             ;; (local-set-key "\C-c\C-cs" 'python-send-buffer)
             )
           )

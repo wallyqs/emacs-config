@@ -71,6 +71,7 @@
 (load-file "~/wallemacs/site-lisp/color-theme-topfunky.el")
 (load-file "~/wallemacs/site-lisp/color-theme-uniqlo.el")
 (load-file "~/wallemacs/site-lisp/color-theme-zen-and-art.el")
+(load-file "~/wallemacs/site-lisp/color-theme-mario-bros.el")
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Soporte para el GIT y SVN;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (require 'git)
@@ -676,7 +677,7 @@
 (require 'pysmell)
 (add-hook 'python-mode-hook (lambda () 
 			      (pysmell-mode 1)
-			      (auto-complete-mode)
+			      (auto-complete-mode t)
 			      ))
 ;; (require 'django)
 
@@ -706,10 +707,44 @@
 (global-set-key (kbd "<S-f9>")  'twit-search)
 
 
-;; ========================================================================
+;; ===================== org mode ===================================================
 
+;; org mode nice STUFF
+;; requite org-latex so that the following variables are defined
+(require 'org-latex)
 
+;; tell org to use listings
+(setq org-export-latex-listings t)
 
+;; you must include the listings package
+(add-to-list 'org-export-latex-packages-alist '("" "listings"))
 
+;; if you want colored source code then you need to include the color package
+(add-to-list 'org-export-latex-packages-alist '("" "color"))
 
+(unless (boundp 'org-export-latex-classes)
+  (setq org-export-latex-classes nil))
 
+(add-to-list 'org-export-latex-classes
+             '("beamer"
+               "\\documentclass[11pt]{beamer}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{hyperref}\n\\usepackage{verbatim}\n"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\begin{frame}\\frametitle{%s}" "\\end{frame}"
+                "\\begin{frame}\\frametitle{%s}" "\\end{frame}")))
+
+(add-to-list 'org-export-latex-classes
+             '("journal"
+               "\\documentclass[journal]{IEEEtran}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{verbatim}\n\\usepackage{listings}\n\\usepackage[page]{appendix}\n"
+	       ;; ("\\begin{abstract}\n %s \n \\end{abstract} " . "\\begin{abstract} %s \\end{abstract}")
+               ("\\section{%s}" . "\\section*{%s}")
+	       ))
+
+(add-hook 'org-mode-hook
+          '(lambda ()
+	     (local-set-key (kbd "<C-tab>") 'dabbrev-expand)
+             ))
+
+;; ============================================================
+;; FOR EDITING CASCADENIK STYLES
+(add-to-list 'auto-mode-alist '("\\.mml$" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.mss$" . css-mode))
