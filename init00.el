@@ -483,6 +483,13 @@
 
 (defun wally-fix-font()
   (interactive)
+  (set-default-font "-unknown-VL Gothic-normal-normal-normal-*-13-*-*-*-*-0-iso10646-1")
+  ;; (set-default-font "-unknown-VL Gothic-normal-normal-normal-*-14-*-*-*-*-0-iso10646-1")
+  )
+
+(defun wally-fix-font1()
+  (interactive)
+  ;; (set-default-font "-unknown-VL Gothic-normal-normal-normal-*-13-*-*-*-*-0-iso10646-1")
   (set-default-font "-unknown-VL Gothic-normal-normal-normal-*-14-*-*-*-*-0-iso10646-1")
   )
 
@@ -600,6 +607,12 @@
                                ))
 
 
+(add-hook 'hs-minor-mode-hook '(lambda ()
+				 (local-set-key "\C-c3" 'hs-hide-block)
+				 (local-set-key "\C-c4" 'hs-show-block)
+				 ))
+
+
 ;; PARA JAVASCRIPT CON RHINO
 (defun wally-load-envjs()
   (interactive)
@@ -705,6 +718,8 @@
     (setq *current-color-theme* theme-number)))
 (global-set-key (kbd "<C-f8>")  'color-theme-random)
 (global-set-key (kbd "<S-f9>")  'twit-search)
+(global-set-key (kbd "<C-f5>")  'hs-minor-mode)
+(global-set-key (kbd "<C-f6>")  'auto-complete-mode)
 
 
 ;; ===================== org mode ===================================================
@@ -748,3 +763,6 @@
 ;; FOR EDITING CASCADENIK STYLES
 (add-to-list 'auto-mode-alist '("\\.mml$" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.mss$" . css-mode))
+
+
+
