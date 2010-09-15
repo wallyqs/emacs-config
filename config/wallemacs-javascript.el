@@ -1,0 +1,38 @@
+;; JAVASCRIPT STUFF
+(autoload 'js2-mode "js2" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+;; (autoload 'espresso-mode "espresso" nil t)
+(autoload 'javascript-mode "javascript" nil t)
+;; (require 'javascript-mode)
+(require 'js-comint)
+;; (setq inferior-js-program-command "/usr/bin/java org.mozilla.javascript.tools.shell.Main")
+;; (setq inferior-js-program-command "/usr/bin/rhino")
+
+;; (setq inferior-js-program-command (concat
+;;                                    "java -jar "
+;;                                    (expand-file-name "~/wallemacs/useful-javascript/env-js.jar")
+;;                                    ))
+
+(add-hook 'js2-mode-hook '(lambda ()
+                            (local-set-key "\C-x\C-e" 'js-send-last-sexp)
+                            (local-set-key "\C-\M-x" 'js-send-last-sexp-and-go)
+                            (local-set-key "\C-cb" 'js-send-buffer)
+                            (local-set-key "\C-c\C-b" 'js-send-buffer-and-go)
+                            (local-set-key "\C-cl" 'js-load-file-and-go)
+                            (local-set-key (kbd "<S-f8>") 'js-send-buffer-and-go)
+                            ;; (local-set-key (kbd "<S-f8>") 'run-js)
+                            ;; (wally-load-envjs)
+                            ))
+
+(add-hook 'inferior-js-mode '(lambda ()
+                               (wally-load-envjs)
+                               ))
+
+
+(add-hook 'hs-minor-mode-hook '(lambda ()
+				 (local-set-key "\C-c3" 'hs-hide-block)
+				 (local-set-key "\C-c4" 'hs-show-block)
+				 ))
+
+(provide 'wallemacs-javascript)

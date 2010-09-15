@@ -1,0 +1,4 @@
+#name : borre este snippet sin querer... ... : ...
+# --
+for i in range(${start},${end}):
+    $0

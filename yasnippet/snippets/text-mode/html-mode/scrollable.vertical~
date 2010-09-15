@@ -1,0 +1,60 @@
+#name : scrollable from jquery tools
+# --
+
+${1:<script src="http://cdn.jquerytools.org/1.1.2/full/jquery.tools.min.js"></script>
+    <link rel="stylesheet" href="http://static.flowplayer.org/tools/css/tabs-slideshow.css" type="text/css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="http://static.flowplayer.org/tools/css/scrollable-horizontal.css" />
+    <link rel="stylesheet" type="text/css" href="http://static.flowplayer.org/tools/css/scrollable-buttons.css" />
+    <link rel="stylesheet" type="text/css" href="http://static.flowplayer.org/tools/css/scrollable-navigator.css" />
+  <style type="text/css" media="screen">
+    /* root element for scrollable */
+    div.scrollable {
+    /* required settings */
+    position:relative;
+    overflow:hidden;
+    /* vertical scrollers have typically larger height than width */
+    height: 665px;
+    width: 700px;
+    }
+    /* root element for scrollable items */
+    div.scrollable div.items {
+    position:absolute;
+    /* this time we have very large space for the height */
+    height:20000em;
+    }
+  </style>
+}
+
+  <script type="text/javascript">
+    window.onload = function() {
+    $("div.scrollable").scrollable({
+    vertical:true,
+    size: 3
+    }).mousewheel();
+    alert('sirve esto');
+    };
+  </script>
+
+   <div id="actions">
+    <a class="prevPage">&laquo; Back</a>
+    <a class="nextPage">More pictures &raquo;</a>
+  </div>
+  <!-- root element for scrollable -->
+  <div class="scrollable">
+    <!-- root element for the items -->
+    <div class="items">
+      <!-- first item. can contain anything -->
+      <div> <img src="http://farm4.static.flickr.com/3629/3323896446_3b87a8bf75_m.jpg" />        
+        <h3>1. Barcelona Pavilion</h3>
+        <p>The Pavilion was not only a pioneer ...</p>
+      </div>      
+      <!-- poner mas -->
+      <div> <img src="http://farm4.static.flickr.com/3629/3323896446_3b87a8bf75_m.jpg" />        
+        <h3>1. Barcelona Pavilion</h3>
+        <p>The Pavilion was not only a pioneer ...</p>
+      </div>      
+    </div>
+  </div>
+
+$0
+

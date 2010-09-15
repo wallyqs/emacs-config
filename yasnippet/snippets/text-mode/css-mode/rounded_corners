@@ -1,0 +1,20 @@
+#name : <scrollable...>...</scrollable>
+# --
+
+${1:
+margin-top: 10px;
+margin-bottom: 10px;
+margin-left: 10px;
+margin-right: 10px;
+padding: 10px 10px 10px 10px;
+/* QUIERO ROUNDED CORNERS */
+background-color: #222222;
+border-radius: 25px;
+-moz-border-radius: 25px;
+-webkit-border-radius: 25px;
+background: #222222 url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IGZpbGw9IiMxMTEiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz48cmVjdCBmaWxsPSIjMjIyMjIyIiByeD0iMTAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiLz48L3N2Zz4=);
+}
+
+$0
+
+

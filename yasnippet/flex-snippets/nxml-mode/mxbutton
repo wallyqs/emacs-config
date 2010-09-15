@@ -1,0 +1,4 @@
+#contributor : Waldemar Quevedo Salinas <invertedplate@inovaz.com>
+#name : <mx:Button label="">...</mx:Button>
+# --
+<mx:Button label="$1" /> $0

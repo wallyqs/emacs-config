@@ -1,0 +1,3 @@
+#name : <%= yield 'name' %>
+# --
+<%= yield ${:something} $0 %>

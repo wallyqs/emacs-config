@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+# name: class
+# contributor: Waldemar Quevedo
+# --
+
+setup(name="$1",
+      version="1.7.1",
+      description="$2",
+      license="GNU v3",
+      author="Graham Jones with the help of ",
+      author_email="",
+      url="",
+      packages = ['townguide'],
+      keywords= "twitter library",
+      zip_safe = True)

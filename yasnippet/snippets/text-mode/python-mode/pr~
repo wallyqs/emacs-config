@@ -1,0 +1,4 @@
+#name : for i in range ... : ...
+# --
+for i in range(${start},${end}):
+    $0

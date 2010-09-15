@@ -1,0 +1,6 @@
+#contributor : Waldemar Quevedo Salinas
+#name : python template language
+# --
+{% if $1 %}
+   $0
+{% endif %}
