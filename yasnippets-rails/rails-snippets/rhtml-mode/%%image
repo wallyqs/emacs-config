@@ -1,3 +1,0 @@
-#name : <%= image_tag 'name'  %>
-# --
-<%= image_tag "${rails.png}"$0  %>

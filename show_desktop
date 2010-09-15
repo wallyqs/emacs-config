@@ -1,9 +1,0 @@
-#!/usr/bin/tcsh
-if (`gconftool --get /apps/nautilus/preferences/show_desktop` == "true" ) then
-       gconftool --set /apps/nautilus/preferences/show_desktop --type boolean false
-       echo "disable"
-else
-       gconftool --set /apps/nautilus/preferences/show_desktop --type boolean true
-       echo "enable"
-endif
-# EOF

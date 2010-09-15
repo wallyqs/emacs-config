@@ -1,4 +1,0 @@
-#contributor : Waldemar Quevedo Salinas <invertedplate@inovaz.com>
-#name : <mx:Label>...</mx:Label>
-# --
-<mx:Label fontSize="$1" text="$2" />$0

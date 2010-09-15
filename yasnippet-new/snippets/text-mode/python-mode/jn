@@ -1,3 +1,0 @@
-#name : Join list
-# --
-''.join(${['a', 'b', 'c']})$0

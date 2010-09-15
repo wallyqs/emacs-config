@@ -1,6 +1,0 @@
-#name : <%= checkboxes... %>
-# --
-<% for ${service} in ${Service}.all %>
-  <%= check_box_tag "${service}[${category_ids}][]", ${category}.id, @${service}.${categories}.include?(${category}) %>
-  <%=h ${category}.name %><br />
-<% end %>

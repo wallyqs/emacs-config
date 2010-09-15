@@ -1,6 +1,0 @@
-#name : resource object name
-#key : ro
-#group : rails.resources
-#condition : (rails/cur-res-title)
-# --
-${1:`(singularize-string (rails/cur-res-title))`}$0

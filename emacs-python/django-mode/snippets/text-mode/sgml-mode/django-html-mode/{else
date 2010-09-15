@@ -1,4 +1,0 @@
-#contributor : Waldemar Quevedo Salinas
-#name : python template language
-# --
-{% else %}

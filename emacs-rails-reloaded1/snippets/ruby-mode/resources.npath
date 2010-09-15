@@ -1,6 +1,0 @@
-#name : nested_resource_path(@resource)
-#key : npath
-#group : rails.resources
-#condition : (rails/cur-res-title)
-# --
-${1:owner}_${2:`(singularize-string (rails/cur-res-title))`}_path(@$1, @$2)

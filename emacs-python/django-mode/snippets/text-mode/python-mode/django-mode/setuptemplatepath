@@ -1,9 +1,0 @@
-# -*- coding: utf-8 -*-
-# name: setup template path
-# contributor: Waldemar Quevedo
-# --
-import os.path
-PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
-# Put this on TEMPLATE_DIRS... templates dir should be at PROJECT_PATH/templates
-# os.path.join(PROJECT_PATH, 'templates'),
-$0

@@ -1,8 +1,0 @@
-# -*- coding: utf-8 -*-
-# name: def
-# contributor: Orestis Markou
-# contributor: Yasser González Fernández <yglez@uh.cu>
-# contributor: Waldemar Quevedo
-# --
-def ${1:name}(self${2:,object}):
-    return $0

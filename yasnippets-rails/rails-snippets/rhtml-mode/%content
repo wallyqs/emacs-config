@@ -1,5 +1,0 @@
-#name : <% form_tag(:action => " ... ") do %> ... <% end  %>
-# --
-<% content_for :${yield_tag} do %>
-$0
-<% end %>

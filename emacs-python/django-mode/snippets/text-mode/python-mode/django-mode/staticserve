@@ -1,9 +1,0 @@
-# -*- coding: utf-8 -*-
-# name: setup template path
-# contributor: Waldemar Quevedo
-# --
-(r'^${1:tiny_mce}/(?P<path>.*)$',
-     'django.views.static.serve',
-     {'document_root': '${2:/home/mariko/proyectos/django/cms/jscripts/tiny_mce}'},
-     )
-$0

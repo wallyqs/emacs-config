@@ -1,6 +1,0 @@
-# -*- coding: utf-8 -*-
-# name: from 
-# contributor: Waldemar Quevedo
-# --
-from $1 import $2
-$0

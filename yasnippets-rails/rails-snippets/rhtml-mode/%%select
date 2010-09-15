@@ -1,3 +1,0 @@
-#name : <%= select... %>
-# --
-<%= select("${user}", "${role_ids}", ${Role}.all.collect{|r| [r.name, r.id]}) %>

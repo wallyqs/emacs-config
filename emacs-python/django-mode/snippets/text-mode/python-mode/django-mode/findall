@@ -1,5 +1,0 @@
-# -*- coding: utf-8 -*-
-# name: Model.objects.all()...
-# contributor: Waldemar Quevedo
-# --
-${1:Model}.objects.all()$0

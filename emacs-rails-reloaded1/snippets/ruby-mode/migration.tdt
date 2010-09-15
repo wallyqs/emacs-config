@@ -1,6 +1,0 @@
-#name : t.datetime
-#key : tdt
-#group : rails.migration
-#condition : (rails/migration?)
-# --
-t.datetime :${1:name}

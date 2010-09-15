@@ -1,8 +1,0 @@
-# -*- coding: utf-8 -*-
-# name: django template loader
-# contributor: Waldemar Quevedo
-# --
-HttpResponseRedirect(reverse('${1:mysite.polls.views.results}',
-                                args=(${2:p.id},)
-                                ))
-$0
