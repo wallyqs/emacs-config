@@ -49,7 +49,7 @@
   (set-default-font "-unknown-Envy Code R-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1")
   )
 
-(require 'paredit)
+
 
 ;; PRETTY-LAMBDAS
 (defun pretty-lambdas ()
@@ -145,6 +145,7 @@
 
 ;; (require 'blank-mode)
 ;; (load-file "~/wallemacs/site-lisp/light-symbol.el")
+(require 'paredit)
 (require 'textmate)
 (require 'pastie)
 (require 'magit)
@@ -157,6 +158,8 @@
 (require 'php-mode)
 (require 'twittering-mode)
 (require 'rainbow-mode)
+(require 'haml-mode)
+(require 'sass-mode)
 
 (add-to-list 'auto-mode-alist '("\\.php$" . mumamo-alias-html-mumamo-mode))
 ;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)

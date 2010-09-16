@@ -34,7 +34,7 @@
    '(color-theme-topfunky
      (
       ;; (background-color . "#444444")
-      (background-color . "gray5")
+      (background-color . "gray12")
       (background-mode . dark)
       (border-color . "black")
       (cursor-color . "#cccccc")

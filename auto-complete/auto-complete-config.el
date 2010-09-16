@@ -3,7 +3,7 @@
 (require 'auto-complete-flex)
 (require 'auto-complete-sql)
 (require 'auto-complete-js)
-;; (require 'auto-complete-pysmell)
+(require 'auto-complete-pysmell)
 
 ;; SOLO SI ESTA ACTIVO CEDET
 ;; (require 'auto-complete-semantic)
@@ -78,7 +78,7 @@
 
 (add-hook 'python-mode-hook
           '(lambda ()             
-             (set (make-local-variable 'ac-sources) (append ac-sources '(ac-source-pysmell)))
+	     (setq ac-sources '(ac-source-yasnippet ac-source-words-in-buffer ))
              ;; (set (make-local-variable 'ac-sources) (append ac-sources '(ac-source-pysmell)))
 	     ))
 
