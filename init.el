@@ -12,7 +12,7 @@
 (add-to-list 'load-path (concat *wallemacs-root* "modules/"))
 (add-to-list 'load-path (concat *wallemacs-root* "modules/anthy"))
 (add-to-list 'load-path (concat *wallemacs-root* "modules/mumamos"))
-(add-to-list 'load-path (concat *wallemacs-root* "modules/twittering-mode"))
+(add-to-list 'load-path (concat *wallemacs-root* "modules/twittering-mode1"))
 (add-to-list 'load-path (concat *wallemacs-root* "modules/jdee"))
 (add-to-list 'load-path (concat *wallemacs-root* "emacs-python/Pymacs/"))
 (add-to-list 'load-path (concat *wallemacs-root* "emacs-python/ropemacs/"))

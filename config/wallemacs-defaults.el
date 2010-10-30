@@ -161,6 +161,10 @@
 (require 'haml-mode)
 (require 'sass-mode)
 
+(require 'ourcomments-util)
+(require 'mlinks)
+(require 'mumamo-fun)
+
 (add-to-list 'auto-mode-alist '("\\.php$" . mumamo-alias-html-mumamo-mode))
 ;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (setq uniquify-buffer-name-style 'post-forward uniquify-separator ":")
@@ -205,5 +209,9 @@
 (speedbar-disable-update)
 (winner-mode t)
 (setq delete-auto-save-files t)
+
+;; Objc-mode as major mode for Objective j
+;; (add-to-list 'auto-mode-alist '("\\.j$" . objc-mode))
+(require 'objj-mode)
 
 (provide 'wallemacs-defaults)

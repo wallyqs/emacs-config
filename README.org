@@ -1,1 +1,16 @@
-Redid my emacs config
+* How to use:
+
+- First checkout the repository...
+
+  git clone git://github.com/wallyqs/wallemacs wallemacs
+
+- and write this on your ~/.emacs
+
+  (load-file "~/wallemacs/init.el")
+
+
+
+
+
+
+
