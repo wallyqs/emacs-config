@@ -222,6 +222,7 @@
   (setenv "PATH" (concat "/opt/local/bin:/usr/local/bin:" (getenv "PATH")))
   (push "/opt/local/bin" exec-path))
 
+;; 
 ;; fixing the js2-mode, taken from https://github.com/mitchellh/dotfiles/blob/master/emacs.d/modes.el
 (require 'espresso)
 
