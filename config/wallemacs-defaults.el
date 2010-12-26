@@ -285,4 +285,20 @@
 ;; Add the hook so this is all loaded when JS2-mode is loaded
 (add-hook 'js2-mode-hook 'my-js2-mode-hook)
 
+;; Adding configuration for org2blog
+(require 'org2blog)
+
+;; (setq org2blog-blog-alist
+;;        '(("wordpress"
+;;           :url "http://username.wordpress.com/xmlrpc.php"
+;;           :username "username"   
+;;           :default-title "Hello World"
+;;           :default-categories ("org2blog" "emacs")
+;;           :tags-as-categories nil)
+;;          ("my-blog"             
+;;           :url "http://username.server.com/xmlrpc.php"
+;;           :username "admin")))
+
+
+
 (provide 'wallemacs-defaults)
