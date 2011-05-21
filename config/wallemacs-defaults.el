@@ -299,6 +299,9 @@
 ;;           :url "http://username.server.com/xmlrpc.php"
 ;;           :username "admin")))
 
-
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    (local-set-key "\C-cp" 'org-insert-property-drawer)
+	    ))
 
 (provide 'wallemacs-defaults)
