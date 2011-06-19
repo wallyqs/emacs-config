@@ -21,6 +21,7 @@
 (global-set-key "\C-c\C-v" 'x-clipboard-yank)
 (global-set-key "\C-ce" 'ido-switch-buffer)
 (global-set-key (kbd "<C-f10>")  'dame-shell)
+(global-set-key (kbd "<M-f10>")  'rename-buffer)
 (global-set-key (kbd "<f12>")  'anthy-mode)
 (global-set-key (kbd "<M-prior>") 'previous-error)
 (global-set-key (kbd "<M-next>")  'next-error)

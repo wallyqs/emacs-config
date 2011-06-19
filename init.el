@@ -11,7 +11,7 @@
 (add-to-list 'load-path (concat *wallemacs-root* "emacs-rails/"))
 (add-to-list 'load-path (concat *wallemacs-root* "modules/"))
 (add-to-list 'load-path (concat *wallemacs-root* "modules/anthy"))
-(add-to-list 'load-path (concat *wallemacs-root* "modules/mumamos"))
+;; (add-to-list 'load-path (concat *wallemacs-root* "modules/mumamos"))
 (add-to-list 'load-path (concat *wallemacs-root* "modules/twittering-mode1"))
 (add-to-list 'load-path (concat *wallemacs-root* "modules/org-mode/lisp"))
 (add-to-list 'load-path (concat *wallemacs-root* "modules/org-mode/contrib"))
@@ -37,6 +37,9 @@
 (when (require 'auto-complete nil t)
   (load-file (concat *wallemacs-root* "auto-complete/auto-complete-config.el"))
   )                                     ;fin del autocomplete
+
+(unless terminal-frame                                                                                   
+  (scroll-bar-mode))
 
 ;; Add emacs-rails
 (require 'wallemacs-rails)

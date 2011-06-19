@@ -161,9 +161,9 @@
 (require 'haml-mode)
 (require 'sass-mode)
 
-(require 'ourcomments-util)
-(require 'mlinks)
-(require 'mumamo-fun)
+;; (require 'ourcomments-util)
+;; (require 'mlinks)
+;; (require 'mumamo-fun)
 
 (add-to-list 'auto-mode-alist '("\\.php$" . mumamo-alias-html-mumamo-mode))
 ;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
@@ -190,6 +190,10 @@
              (inf-ruby-keys)
              (ruby-electric-mode t)
              ))
+
+;; rhtml-templates
+(add-to-list 'auto-mode-alist '("\\.rhtml$" . rhtml-mode))
+(add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
 
 ;; For editing Cascadenik Styles
 (add-to-list 'auto-mode-alist '("\\.mml$" . nxml-mode))
