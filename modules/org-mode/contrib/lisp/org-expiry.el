@@ -81,6 +81,11 @@
   :tag "Org Expiry"
   :group 'org)
 
+(defcustom org-expiry-inactive-timestamps nil
+  "Insert inactive timestamps for the created and expired time properties"
+  :type 'boolean
+  :group 'org-expiry)
+
 (defcustom org-expiry-created-property-name "CREATED"
   "The name of the property for setting the creation date."
   :type 'string
@@ -181,7 +186,7 @@ restart `org-mode' if necessary."
     ;; need this to refresh org-mode hooks
     (when (org-mode-p)
       (org-mode)
-      (if (interactive-p)
+      (if (org-called-interactively-p)
 	  (message "Org-expiry insinuated, `org-mode' restarted.")))))
 
 (defun org-expiry-deinsinuate (&optional arg)
@@ -202,7 +207,7 @@ and restart `org-mode' if necessary."
     ;; need this to refresh org-mode hooks
     (when (org-mode-p)
       (org-mode)
-      (if (interactive-p)
+      (if (org-called-interactively-p)
 	  (message "Org-expiry de-insinuated, `org-mode' restarted.")))))
 
 ;;; org-expiry-expired-p:
@@ -233,7 +238,7 @@ If FORCE is non-nil, don't require confirmation from the user.
 Otherwise rely on `org-expiry-confirm-flag' to decide."
   (interactive "P")
   (save-excursion
-    (when (interactive-p) (org-reveal))
+    (when (org-called-interactively-p) (org-reveal))
     (when (org-expiry-expired-p)
       (org-back-to-heading)
       (looking-at org-complex-heading-regexp)
@@ -265,7 +270,7 @@ The expiry process will run the function defined by
 	(while (and (outline-next-heading) (< (point) end))
 	  (when (org-expiry-expired-p)
 	    (setq expired (1+ expired))
-	    (if (if (interactive-p)
+	    (if (if (org-called-interactively-p)
 		    (call-interactively 'org-expiry-process-entry)
 		  (org-expiry-process-entry))
 		(setq processed (1+ processed)))))
@@ -283,21 +288,25 @@ to today's date.  With two `C-u' prefixes, prompt the user for to
 update the date."
   (interactive "P")
   (let* ((d (org-entry-get (point) org-expiry-created-property-name))
-	 d-time d-hour)
+	 d-time d-hour timestr)
     (when (or (null d) arg)
       ;; update if no date or non-nil prefix argument
       ;; FIXME Use `org-time-string-to-time' 
-      (setq d-time (if d (apply 'encode-time (org-parse-time-string d))
+      (setq d-time (if d (org-time-string-to-time d)
 		     (current-time)))
       (setq d-hour (format-time-string "%H:%M" d-time))
+      (setq timestr
+	    ;; two C-u prefixes will call org-read-date
+	    (if (equal arg '(16))
+		(concat "<" (org-read-date
+			     nil nil nil nil d-time d-hour) ">")
+	      (format-time-string (cdr org-time-stamp-formats))))
+      ;; maybe transform to inactive timestamp
+      (if org-expiry-inactive-timestamps
+	  (setq timestr (concat "[" (substring timestr 1 -1) "]")))
       (save-excursion
 	(org-entry-put
-	 (point) org-expiry-created-property-name
-	 ;; two C-u prefixes will call org-read-date
-	 (if (equal arg '(16))
-	     (concat "<" (org-read-date
-			  nil nil nil nil d-time d-hour) ">")
-	   (format-time-string (cdr org-time-stamp-formats))))))))
+	 (point) org-expiry-created-property-name timestr)))))
 
 (defun org-expiry-insert-expiry (&optional today)
   "Insert a property with the expiry date.
@@ -306,15 +315,20 @@ and insert today's date."
   (interactive "P")
   (let* ((d (org-entry-get (point) org-expiry-expiry-property-name))
 	 d-time d-hour)
-    (setq d-time (if d (apply 'encode-time (org-parse-time-string d))
+    (setq d-time (if d (org-time-string-to-time d)
 		   (current-time)))
     (setq d-hour (format-time-string "%H:%M" d-time))
+    (setq timestr (if today
+		      (format-time-string (cdr org-time-stamp-formats))
+		    (concat "<" (org-read-date
+				 nil nil nil nil d-time d-hour) ">")))
+    ;; maybe transform to inactive timestamp
+    (if org-expiry-inactive-timestamps
+	(setq timestr (concat "[" (substring timestr 1 -1) "]")))
+     
     (save-excursion
       (org-entry-put
-       (point) org-expiry-expiry-property-name
-       (if today (format-time-string (cdr org-time-stamp-formats))
-	 (concat "<" (org-read-date
-		      nil nil nil nil d-time d-hour) ">"))))))
+       (point) org-expiry-expiry-property-name timestr))))
 
 ;;; Functions to process expired entries:
 
@@ -324,7 +338,7 @@ and insert today's date."
   (save-excursion
     (if (org-expiry-expired-p)
 	(org-archive-subtree)
-      (if (interactive-p)
+      (if (org-called-interactively-p)
 	  (message "Entry at point is not expired.")))))
 
 (defun org-expiry-add-keyword (&optional keyword)
@@ -335,7 +349,7 @@ and insert today's date."
       (save-excursion
 	(if (org-expiry-expired-p)
 	    (org-todo keyword)
-	  (if (interactive-p)
+	  (if (org-called-interactively-p)
 	      (message "Entry at point is not expired."))))
     (error "\"%s\" is not a to-do keyword in this buffer" keyword)))
 

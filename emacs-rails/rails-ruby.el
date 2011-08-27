@@ -26,7 +26,8 @@
 (require 'inf-ruby)
 
 (defvar rails/ruby/file-suffix ".rb")
-(defvar rails/ruby/command "ruby")
+;; (defvar rails/ruby/command "ruby")
+(defvar rails/ruby/command "rails")
 
 (defun rails/ruby/current-method ()
   (let (action
@@ -72,6 +73,8 @@
   (interactive)
   (when-bind (root (rails/root))
     (in-directory root
-      (rails/ruby/run-in-buffer "ruby" "script/console" rails/default-environment))))
+      ;; (rails/ruby/run-in-buffer "ruby" "script/console" rails/default-environment)
+      (rails/ruby/run-in-buffer "rails" "console" rails/default-environment)
+      )))
 
 (provide 'rails-ruby)

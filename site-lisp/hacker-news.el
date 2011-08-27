@@ -30,10 +30,11 @@
           (re-search-forward "\<tr" nil t)
           (re-search-forward "tr\>" nil t)
           (setq final (match-end 0))
-          ;; AHORA DEBO DE METER TODO EN CONTENT => bloque de html que quiero
+	  
+	  ;; AHORA DEBO DE METER TODO EN CONTENT => bloque de html que quiero
           (setq content
                 (buffer-substring-no-properties inicio final))
-
+	  
           ;; SACAR EL CONTENIDO QUE QUIERO
           ;; titulo, url, puntos, posted_by, time, discuss
           ;; AHORA METERLO TODO EN UN HASH
@@ -146,6 +147,8 @@
         ;; t: titulo, l: link
         ;; FOREACH PARA CADA UNO DE LOS LINKS QUE ENCONTRO: The View
         (setq articles-counter 0)
+	(insert "* Hacker News" "\n")
+
         (maphash (lambda(ti li)
                    (setq articles-counter
                          (1+ articles-counter))
@@ -156,9 +159,9 @@
 		   ;; "992023" 
 		   ;; "davidwurtz" 
 		   ;; "6 comments"
-                   (insert articles-counter-s ". " (elt li 0)) ; TITULO
+                   (insert "** " articles-counter-s ". " (elt li 0)) ; TITULO
                    (insert "\n")		   
-                   (insert  (elt li 1)  "\n") ; LINK
+                   (insert "   :PROPERTIES:\n" "   :Link: " (elt li 1)  "\n"  "   :END:" "\n") ; LINK
                    ;; esto esta super chafilla deberia de pasarle un argumento
                    ;; al boton pero no supe como
                    ;; el boton tiene una posicion que se llama (overlay-start buton)
@@ -184,6 +187,7 @@
                    ) hashy)
         (set-window-buffer (next-window) "*Hacker News*")
         (goto-char (point-min))
+	(org-mode)
         ) ;; lambda end
      )
     ) ;; let end ----------------------------

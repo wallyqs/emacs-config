@@ -32,12 +32,8 @@
 		   (cons
 		    (expand-file-name "jump" org-test-dir)
 		    load-path))))
-  (require 'ert-batch)
   (require 'ert)
-  (require 'ert-exp)
-  (require 'ert-exp-t)
-  (require 'ert-run)
-  (require 'ert-ui)
+  (require 'ert-x)
   (require 'jump)
   (require 'which-func)
   (require 'org))
@@ -180,6 +176,25 @@ files."
 (define-key emacs-lisp-mode-map "\M-\C-j" 'org-test-jump)
 
 
+;;; Miscellaneous helper functions
+(defun org-test-strip-text-props (s)
+  "Return S without any text properties."
+  (let ((noprop (copy-sequence s)))
+    (set-text-properties 0 (length noprop) nil noprop)
+    noprop))
+
+
+(defun org-test-string-exact-match (regex string &optional start)
+  "case sensative string-match"
+  (let ((case-fold-search nil)
+        (case-replace nil))
+    (if(and (equal regex "")
+	    (not(equal string "")))
+        nil
+      (if (equal 0 (string-match regex string start))
+          t
+        nil))))
+
 ;;; Load and Run tests
 (defun org-test-load ()
   "Load up the org-mode test suite."

@@ -6,7 +6,7 @@
 ;; Author: Carsten Dominik <carsten at orgmode dot org>
 ;; Keywords: outlines, hypermedia, calendar, wp
 ;; Homepage: http://orgmode.org
-;; Version: 7.4
+;; Version: 7.6
 ;;
 ;; This file is part of GNU Emacs.
 ;;
@@ -71,6 +71,14 @@ This variable is obsolete and has no effect anymore, instead add or remove
   :group 'org-archive
   :type 'boolean)
 
+(defcustom org-archive-subtree-add-inherited-tags 'infile
+  "Non-nil means append inherited tags when archiving a subtree."
+  :group 'org-archive
+  :type '(choice
+	  (const :tag "Never" nil)
+	  (const :tag "When archiving a subtree to the same file" infile)
+	  (const :tag "Always" t)))
+
 (defcustom org-archive-save-context-info '(time file olpath category todo itags)
   "Parts of context info that should be stored as properties when archiving.
 When a subtree is moved to an archive file, it loses information given by
@@ -88,7 +96,7 @@ olpath     The outline path to the item.  These are all headlines above
            the current item, separated by /, like a file path.
 
 For each symbol present in the list, a property will be created in
-the archived entry, with a prefix \"PRE_ARCHIVE_\", to remember this
+the archived entry, with a prefix \"ARCHIVE_\", to remember this
 information."
   :group 'org-archive
   :type '(set :greedy t
@@ -201,14 +209,15 @@ this heading."
 	  (time (format-time-string
 		 (substring (cdr org-time-stamp-formats) 1 -1)
 		 (current-time)))
-	  category todo priority ltags itags
+	  category todo priority ltags itags atags
           ;; end of variables that will be used for saving context
-	  location afile heading buffer level newfile-p visiting)
+	  location afile heading buffer level newfile-p infile-p visiting)
 
       ;; Find the local archive location
       (setq location (org-get-local-archive-location)
 	    afile (org-extract-archive-file location)
-	    heading (org-extract-archive-heading location))
+	    heading (org-extract-archive-heading location)
+	    infile-p (equal file (abbreviate-file-name afile)))
       (unless afile
 	(error "Invalid `org-archive-location'"))
 
@@ -226,14 +235,14 @@ this heading."
       (save-excursion
 	(org-back-to-heading t)
 	;; Get context information that will be lost by moving the tree
-	(org-refresh-category-properties)
-	(setq category (org-get-category)
+	(setq category (org-get-category nil 'force-refresh)
 	      todo (and (looking-at org-todo-line-regexp)
 			(match-string 2))
 	      priority (org-get-priority
 			(if (match-end 3) (match-string 3) ""))
 	      ltags (org-get-tags)
-	      itags (org-delete-all ltags (org-get-tags-at)))
+	      itags (org-delete-all ltags (org-get-tags-at))
+	      atags (org-get-tags-at))
 	(setq ltags (mapconcat 'identity ltags " ")
 	      itags (mapconcat 'identity itags " "))
 	;; We first only copy, in case something goes wrong
@@ -290,7 +299,12 @@ this heading."
 	    (goto-char (point-max)) (insert "\n"))
 	  ;; Paste
 	  (org-paste-subtree (org-get-valid-level level (and heading 1)))
-
+	  ;; Shall we append inherited tags?
+	  (and itags
+	       (or (and (eq org-archive-subtree-add-inherited-tags 'infile) 
+			infile-p)
+		   (eq org-archive-subtree-add-inherited-tags t))
+	       (org-set-tags-to atags))
 	  ;; Mark the entry as done
 	  (when (and org-archive-mark-done
 		     (looking-at org-todo-line-regexp)

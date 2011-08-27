@@ -18,6 +18,13 @@
  '(twitter-header-face ((t nil)))
  '(mumamo-background-chunk-submode ((((class color) (min-colors 88) (background dark)) nil))))
 
+(defun wally-insert-backslash()
+  "Japanese Mac does not have backslash button"
+  (interactive)
+  (insert "\\")
+  (message "You are in Japan!"))
+
+
 (defun wally-alpha()
   (interactive)
   (set-frame-parameter (selected-frame) 'alpha
@@ -302,6 +309,7 @@
 ;;          ("my-blog"             
 ;;           :url "http://username.server.com/xmlrpc.php"
 ;;           :username "admin")))
+
 
 (add-hook 'org-mode-hook
 	  (lambda ()

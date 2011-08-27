@@ -6,7 +6,7 @@
 ;; Author: Carsten Dominik <carsten at orgmode dot org>
 ;; Keywords: outlines, hypermedia, calendar, wp
 ;; Homepage: http://orgmode.org
-;; Version: 7.4
+;; Version: 7.6
 ;;
 ;; This file is part of GNU Emacs.
 ;;
@@ -1004,7 +1004,7 @@ See also the variable `org-reverse-note-order'."
 	     ((eq org-remember-interactive-interface 'outline-path-completion)
 	      (let ((org-refile-targets '((nil . (:maxlevel . 10))))
 		    (org-refile-use-outline-path t))
-		(setq spos (org-refile-get-location "Heading: ")
+		(setq spos (org-refile-get-location "Heading")
 		      exitcmd 'return
 		      spos (nth 3 spos))))
 	     (t (error "This should not happen")))

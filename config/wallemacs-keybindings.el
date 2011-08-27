@@ -62,6 +62,8 @@
 (global-set-key (kbd "<C-f5>")  'hs-minor-mode)
 (global-set-key (kbd "<C-f6>")  'auto-complete-mode)
 (global-set-key (kbd "<S-f1>")  'twittering-friends-timeline)
+(global-set-key "\C-co" 'wally-insert-org-block)
+(global-set-key "\C-c¥" 'wally-insert-backslash)
 
 (add-hook 'org-mode-hook
           '(lambda ()

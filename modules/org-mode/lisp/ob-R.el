@@ -5,7 +5,7 @@
 ;; Author: Eric Schulte, Dan Davison
 ;; Keywords: literate programming, reproducible research, R, statistics
 ;; Homepage: http://orgmode.org
-;; Version: 7.4
+;; Version: 7.6
 
 ;; This file is part of GNU Emacs.
 
@@ -51,6 +51,13 @@
 (defvar org-babel-R-command "R --slave --no-save"
   "Name of command to use for executing R code.")
 
+(defvar ess-local-process-name)
+(defun org-babel-edit-prep:R (info)
+  (let ((session (cdr (assoc :session (nth 2 info)))))
+    (when (and session (string-match "^\\*\\(.+?\\)\\*$" session))
+      (save-match-data (org-babel-R-initiate-session session nil))
+      (setq ess-local-process-name (match-string 1 session)))))
+
 (defun org-babel-expand-body:R (body params &optional graphics-file)
   "Expand BODY according to PARAMS, return the expanded body."
   (let ((graphics-file
@@ -88,7 +95,6 @@ This function is called by `org-babel-execute-src-block'."
 	     (or (equal "yes" rownames-p)
 		 (org-babel-pick-name
 		  (cdr (assoc :rowname-names params)) rownames-p)))))
-      (message "result is %S" result)
       (if graphics-file nil result))))
 
 (defun org-babel-prep-session:R (session params)
@@ -222,7 +228,7 @@ current code buffer."
 (defvar org-babel-R-eoe-indicator "'org_babel_R_eoe'")
 (defvar org-babel-R-eoe-output "[1] \"org_babel_R_eoe\"")
 
-(defvar org-babel-R-write-object-command "{function(object, transfer.file) {object;invisible(if(inherits(try(write.table(object, file=transfer.file, sep=\"\\t\", na=\"nil\",row.names=%s, col.names=%s, quote=FALSE), silent=TRUE),\"try-error\")) {if(!file.exists(transfer.file)) file.create(transfer.file)})}}(object=%s, transfer.file=\"%s\")")
+(defvar org-babel-R-write-object-command "{function(object,transfer.file){object;invisible(if(inherits(try({tfile<-tempfile();write.table(object,file=tfile,sep=\"\\t\",na=\"nil\",row.names=%s,col.names=%s,quote=FALSE);file.rename(tfile,transfer.file)},silent=TRUE),\"try-error\")){if(!file.exists(transfer.file))file.create(transfer.file)})}}(object=%s,transfer.file=\"%s\")")
 
 (defun org-babel-R-evaluate
   (session body result-type column-names-p row-names-p)
