@@ -56,7 +56,7 @@
 (global-set-key (kbd "C-c N") 'wally-diccionario-es)
 (global-set-key (kbd "<C-prior>")  'previous-buffer)
 (global-set-key (kbd "<C-next>")  'next-buffer)
-(global-set-key (kbd "<S-f2>")  'donde-esta-hacker-news)
+(global-set-key (kbd "<S-f2>")  'hacker-news)
 (global-set-key [f11] 'fullscreen)
 (global-set-key (kbd "<M-f6>")  'django-html-mode)
 (global-set-key (kbd "<S-f9>")  'twit-search)
@@ -65,6 +65,7 @@
 (global-set-key (kbd "<S-f1>")  'twittering-friends-timeline)
 (global-set-key "\C-co" 'wally-insert-org-block)
 (global-set-key "\C-c¥" 'wally-insert-backslash)
+(global-set-key (kbd "<C-s-f10>")  'wally-fix-buffer-settings)
 
 (add-hook 'org-mode-hook
           '(lambda ()

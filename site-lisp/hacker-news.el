@@ -13,7 +13,7 @@
 ;; Arreglar los item?XXXXXX
 ;; how many points???
 
-(defun donde-esta-hacker-news()
+(defun hacker-news()
   (interactive)
   (let ((url-request-method "GET"))
     (url-retrieve
@@ -161,7 +161,7 @@
 		   ;; "6 comments"
                    (insert "** " articles-counter-s ". " (elt li 0)) ; TITULO
                    (insert "\n")		   
-                   (insert "   :PROPERTIES:\n" "   :Link: " (elt li 1)  "\n"  "   :END:" "\n") ; LINK
+                   (insert "   :PROPERTIES:\n" "   :url: " (elt li 1)  "\n"  "   :END:" "\n") ; LINK
                    ;; esto esta super chafilla deberia de pasarle un argumento
                    ;; al boton pero no supe como
                    ;; el boton tiene una posicion que se llama (overlay-start buton)

@@ -316,4 +316,21 @@
 	    (local-set-key "\C-cp" 'org-insert-property-drawer)
 	    ))
 
+
+(defun wally-reload-yasnippet()
+  (interactive)
+  (require 'yasnippet)
+  (yas/initialize)
+  (yas/load-directory (concat *wallemacs-root* "yasnippet/snippets"))
+  (yas/load-directory (concat *wallemacs-root* "yasnippet/django-snippets"))
+  (yas/load-directory (concat *wallemacs-root* "yasnippet/flex-snippets"))
+  (yas/load-directory (concat *wallemacs-root* "yasnippet/rails-snippets")))
+
+
+(defun wally-fix-buffer-settings()
+  (interactive)
+  (set-cursor-color "green")
+  (set-foreground-color "white")
+  (set-frame-parameter (selected-frame) 'alpha 95))
+
 (provide 'wallemacs-defaults)
