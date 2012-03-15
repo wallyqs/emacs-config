@@ -13010,8 +13010,8 @@ Contains faces for erc, gnus, most of jde."
      (font-latex-string-face ((t (nil))))
      (font-latex-warning-face ((t (nil))))
      (font-lock-builtin-face ((t (:foreground "pink2"))))
-     (font-lock-comment-face ((t (:italic t :background "black" :slant
-italic))))
+     (font-lock-comment-face ((t (:italic t :slant italic))))
+     ;; (font-lock-comment-face ((t (:italic t :background "black" :slant italic))))
      (font-lock-constant-face ((t (:foreground "magenta"))))
      (font-lock-doc-face ((t (nil))))
      (font-lock-doc-string-face ((t (nil))))

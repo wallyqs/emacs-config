@@ -1,0 +1,15 @@
+#name : <scrollable...>...</scrollable>
+# --
+
+${1:
+
+background: url('/images/$2') center center fixed no-repeat;
+background-color: black;
+-moz-background-size: cover;
+background-size: cover;
+
+}
+
+$0
+
+

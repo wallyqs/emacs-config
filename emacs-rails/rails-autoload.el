@@ -83,7 +83,7 @@
 (defun rails/setup-auto-modes-alist ()
   "Added default ruby/rails filetypes to `auto-mode-alist' if not defined."
   (let ((modes
-         '((ruby-mode "\\.rb\\'" "\\.rake\\'" "Rakefile\\'" "\\.rjs\\'" "\\.rxml\\'" "\\.builder\\'")
+         '((ruby-mode "\\.rb\\'" "\\.rake\\'" "Gemfile" "Rakefile\\'" "\\.rjs\\'" "\\.rxml\\'" "\\.builder\\'")
            (eruby-html-mumamo "\\.erb\\'" "\\.rhtml\\'"))))
     (dolist (mode modes)
       (loop for regexp in (cdr mode)
