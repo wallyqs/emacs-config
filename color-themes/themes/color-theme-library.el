@@ -12760,13 +12760,12 @@ Contains faces for erc, gnus, most of jde."
      (widget-field-face ((t (:italic t :foreground "#00CC00" :background "black" :slant oblique))))
      (widget-inactive-face ((t (nil))))
      (widget-single-line-field-face ((t (nil)))))))
-
 (defun color-theme-matrix ()
   "Color theme by walterh@rocketmail.com, created 2003-10-16."
   (interactive)
   (color-theme-install
    '(color-theme-matrix
-     ((background-color . "black")
+     ((background-color . "gray15")
       (background-mode . dark)
       (background-toolbar-color . "bisque")
       (border-color . "orange")

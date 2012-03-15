@@ -172,7 +172,8 @@
 ;; (require 'mlinks)
 ;; (require 'mumamo-fun)
 
-(add-to-list 'auto-mode-alist '("\\.php$" . mumamo-alias-html-mumamo-mode))
+(add-to-list 'auto-mode-alist '("\\.rdoc$" . rdoc-mode))
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 ;; (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 (setq uniquify-buffer-name-style 'post-forward uniquify-separator ":")
 (add-to-list 'auto-mode-alist '("\\.textile$" . textile-mode))
@@ -332,5 +333,19 @@
   (set-cursor-color "green")
   (set-foreground-color "white")
   (set-frame-parameter (selected-frame) 'alpha 95))
+
+(add-to-list 'auto-mode-alist '("README$" . org-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
+
+(add-to-list 'auto-mode-alist '("\\.less$" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.json$" . javascript-mode))
+(add-to-list 'auto-mode-alist '("\\.ejs$" . rhtml-mode))
+
+(defun wally-insert-org-block()
+  (interactive)
+  (insert "#+BEGIN_SRC \n#+END_SRC")
+  (previous-line)
+  (end-of-line))
 
 (provide 'wallemacs-defaults)
