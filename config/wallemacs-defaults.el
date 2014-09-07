@@ -167,6 +167,7 @@
 (require 'rainbow-mode)
 (require 'haml-mode)
 (require 'sass-mode)
+(require 'git-timemachine)
 
 ;; (require 'ourcomments-util)
 ;; (require 'mlinks)
