@@ -349,4 +349,17 @@
   (previous-line)
   (end-of-line))
 
+(setq org-src-fontify-natively t)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (R . t)
+   (C . t)
+   (sh . t)
+   (ruby . t)
+   (python . t)
+   (js . t)
+   ))
+(setq org-confirm-babel-evaluate nil)
+
 (provide 'wallemacs-defaults)
