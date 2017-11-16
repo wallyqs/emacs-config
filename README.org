@@ -8,4 +8,4 @@
 
 - and write this on your ~/.emacs
 
-:  (load-file "~/wallemacs/init.el")
+:  (load-file "~/emacs-config/init.el")
