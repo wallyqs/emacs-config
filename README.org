@@ -4,8 +4,8 @@
 
 - First checkout the repository
 
-:  git clone git://github.com/wallyqs/wallemacs wallemacs
+:  git clone git://github.com/wallyqs/emacs-config emacs-config
 
 - and write this on your ~/.emacs
 
-:  (load-file "~/wallemacs/init.el")
+:  (load-file "~/emacs-config/init.el")
