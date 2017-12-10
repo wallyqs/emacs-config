@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: fn
+# key: fn
+# type: snippet
+# --
+fn ${1:name}() -> ${2:-> value} {
+    $0
+}

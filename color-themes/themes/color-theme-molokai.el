@@ -13,7 +13,8 @@
   (color-theme-install
    '(color-theme-molokai
      ((foreground-color . "#F8F8F2")
-      (background-color . "#1B1D1E")
+      ;; (background-color . "#1B1D1E")
+      (background-color . "gray20")
       (cursor-color . "#F8F8F0")
       (background-mode . dark))
      (default ((t (:foreground "#F8F8F2" :background "#1B1D1E"))))
@@ -22,7 +23,8 @@
      (custom-face-tag ((t (:foreground "#66D9EF" :weight bold))))
      (custom-state ((t (:foreground "#A6E22E"))))
      (italic ((t (:slant italic))))
-     (region ((t (:background "#403D3D"))))
+     ;; (region ((t (:background "#403D3D"))))
+     (region ((t (:foreground "cyan" :background "dark cyan"))))
      (underline ((t (:underline t))))
      (css-selector ((t (:foreground "#F92672"))))
      (css-property ((t (:foreground "#66D9EF"))))
@@ -36,14 +38,18 @@
      (diff-removed ((t (:foreground "#F92672" :weight bold))))
      (escape-glyph ((t (:foreground "#E6DB74"))))
      (minibuffer-prompt ((t (:foreground "#66D9EF"))))
-     (mode-line ((t (:foreground "#F8F8F2" :background "#000000"
+     (mode-line ((t (:foreground "#F8F8F2" :background "gray"
                                  :box (:line-width 1 :color "#000000" :style released-button)))))
      (mode-line-buffer-id ((t (:foreground nil :background "#000000" :weight semi-bold))))
-     (mode-line-inactive ((t (:foreground "#BCBCBC" :background "#000000"
+     (mode-line-inactive ((t (:foreground "#BCBCBC" :background "#BCBCBC"
                                           :box (:line-width 1 :color "#232526")))))
      (mode-line-mousable ((t (:foreground "#BCBCBC" :background "#000000"))))
      (mode-line-mousable-minor-mode ((t (:foreground "#BCBCBC" :background "#000000"))))
      (font-lock-builtin-face ((t (:foreground "#A6E22E"))))
+     ;; (font-lock-comment-face ((t (:foreground "#465457" :slant italic))))
+     ;; (font-lock-comment-delimiter-face ((t (:foreground "#465457" :slant italic))))
+     (font-lock-comment-face ((t (:foreground "#ccbb66"))))
+     (font-lock-comment-delimiter-face ((t (:foreground "#874"))))
      (font-lock-comment-face ((t (:foreground "#465457" :slant italic))))
      (font-lock-comment-delimiter-face ((t (:foreground "#465457" :slant italic))))
      (font-lock-constant-face ((t (:foreground "#AE81FF"))))
@@ -106,6 +112,21 @@
      (woman-bold ((t (:foreground "#F92672"))))
      (woman-italic ((t (:foreground "#A6E22E"))))
      (woman-unknown ((t (:foreground "#66D9EF"))))
+     
+     ;; company ------
+     (company-tooltip      ((t (:background "#403D3D"))))
+     (company-scrollbar-bg ((t (:background "#232526"))))
+     (company-scrollbar-fg ((t (:background "#E6DB74"))))
+     (company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+     (company-tooltip-common ((t (:foreground "#F92672"))))
+     (company-tooltip-annotation ((t (:foreground "#cafe12"))))
+     (company-preview ((t (:background "#403D3D" :foreground "#cafe12"))))
+
+     ;; (company-tooltip-selection
+     ;;  ((t :inherit font-lock-function-name-face)))
+     ;; (company-tooltip-common
+     ;;  ((t :inherit font-lock-constant-face)))
+     ;; ---------------------
      )))
 
 (provide 'color-theme-molokai)

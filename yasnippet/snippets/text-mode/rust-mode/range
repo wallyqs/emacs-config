@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: for name in 0..n { … }
+# key: range
+# type: snippet
+# --
+for ${1:i} in ${2:0}..${3:n} {
+    $0
+}

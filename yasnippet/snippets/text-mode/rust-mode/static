@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: static NAME: Type = expr;
+# key: static
+# type: snippet
+# --
+static ${1:NAME}: ${2:Type} = ${3:expr};$0

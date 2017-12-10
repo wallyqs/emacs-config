@@ -55,7 +55,8 @@
 ;; (defvar zenburn-bg "#3f3f3f")
 ;; (defvar zenburn-bg+1 "#4f4f4f")
 ;; (defvar zenburn-bg+2 "#5f5f5f")
-(defvar zenburn-bg "#222222")
+;; (defvar zenburn-bg "#222222")
+(defvar zenburn-bg "gray25")
 (defvar zenburn-bg+1 "#333333")
 (defvar zenburn-bg+2 "#444444")
 
@@ -199,7 +200,8 @@ static char *gnus-pointer[] = {
   (color-theme-install
    (append
     (list 'color-theme-zenburn
-          `((background-color . ,zenburn-bg)
+          `( ;; (background-color . ,zenburn-bg)
+	    (background-color . "gray25")
             (background-mode . dark)
             (border-color . ,zenburn-bg)
             (foreground-color . ,zenburn-fg)

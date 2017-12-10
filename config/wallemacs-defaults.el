@@ -158,7 +158,7 @@
 (require 'magit)
 (require 'hacker-news)
 (require 'tabbar)
-(require 'sr-speedbar)
+;; (require 'sr-speedbar)
 (require 'dame-shell)
 (require 'textile-mode)
 (require 'uniquify)
@@ -219,7 +219,7 @@
 (ido-mode t)
 (menu-bar-mode nil)
 (put 'upcase-region 'disabled nil)
-(speedbar-disable-update)
+;; (speedbar-disable-update)
 (winner-mode t)
 (setq delete-auto-save-files t)
 

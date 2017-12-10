@@ -4,9 +4,13 @@
   (color-theme-install
    '(color-theme-zen-and-art
      (
-      (background-color . "#191717")
+      (background-color . "gray12")
+      ;; (background-color . "gray18")
+      ;; (background-color . "#191717")
       ;; (background-color . "#0B2019")
-      (background-mode . dark)
+      ;; (background-mode . dark)
+      ;; (background-mode . "gray17")
+      (background-mode . "#191717")
       (border-color . "black")
       (cursor-color . "#A7A7A7")
       (foreground-color . "#D2DEC4")

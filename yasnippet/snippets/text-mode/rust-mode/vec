@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: vec
+# key: vec
+# type: snippet
+# --
+vec![${1:things}];$0

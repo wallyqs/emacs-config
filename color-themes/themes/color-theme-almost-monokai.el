@@ -33,7 +33,9 @@
   ;; (color-theme-reset-faces)
   (color-theme-install
    '(color-theme-almost-monokai
-     ((background-color . "#272821")
+     (
+      ;; (background-color . "#272821")
+      (background-color . "gray18")
       (foreground-color . "#F8F8F2")
       (cursor-color . "#DAD085"))
      (default ((t (nil))))

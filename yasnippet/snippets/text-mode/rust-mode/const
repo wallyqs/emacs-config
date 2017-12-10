@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: const NAME: Type = expr;
+# key: const
+# type: snippet
+# --
+const ${1:NAME}: ${2:Type} = ${3:expr};$0

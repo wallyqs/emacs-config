@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: for name in iterable { … }
+# key: for
+# type: snippet
+# --
+for ${1:name} in ${2:iterable} {
+    ${0}
+}

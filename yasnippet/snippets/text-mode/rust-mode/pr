@@ -1,0 +1,4 @@
+#name : println! ...
+#group : definitions
+# --
+println!("${}", $0);
