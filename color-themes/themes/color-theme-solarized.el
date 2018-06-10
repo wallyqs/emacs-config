@@ -32,7 +32,9 @@ Ported to Emacs by Greg Pfeil, http://ethanschoonover.com/solarized."
         (violet  "#6c71c4")
         (blue    "#268bd2")
         (cyan    "#2aa198")
-        (green   "#859900"))
+        (green   "#859900")
+	(cafe12  "#cafe12")
+	)
     (when (eq 'light mode)
       (rotatef base03 base3)
       (rotatef base02 base2)
@@ -40,7 +42,9 @@ Ported to Emacs by Greg Pfeil, http://ethanschoonover.com/solarized."
       (rotatef base00 base0))
     (color-theme-install
      `(color-theme-solarized
-       ((foreground-color . ,base0)
+       (
+	;; (foreground-color . ,base0)
+	(foreground-color . ,cafe12)
         (background-color . ,base03)
         (background-mode . ,mode)
         (cursor-color . ,base0))
